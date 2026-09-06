@@ -14,12 +14,28 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
 
-// MVP Tools
+// MVP & Active Tools
 import { JsonFormatterTool } from './components/tools/JsonFormatterTool';
 import { ImageResizerTool } from './components/tools/ImageResizerTool';
 import { TimeZoneConverterTool } from './components/tools/TimeZoneConverterTool';
 import { PercentageCalculatorTool } from './components/tools/PercentageCalculatorTool';
 import { BusinessDaysCalculatorTool } from './components/tools/BusinessDaysCalculatorTool';
+import { PdfMergeTool } from './components/tools/PdfMergeTool';
+import { ImagesToPdfTool } from './components/tools/ImagesToPdfTool';
+import { QrCodeGeneratorTool } from './components/tools/QrCodeGeneratorTool';
+import { WordCounterTool } from './components/tools/WordCounterTool';
+import { CaseConverterTool } from './components/tools/CaseConverterTool';
+import { Base64Tool } from './components/tools/Base64Tool';
+import { UrlEncoderTool } from './components/tools/UrlEncoderTool';
+import { UuidGeneratorTool } from './components/tools/UuidGeneratorTool';
+import { HashGeneratorTool } from './components/tools/HashGeneratorTool';
+import { ImageCropperTool } from './components/tools/ImageCropperTool';
+import { UnitConverterTool } from './components/tools/UnitConverterTool';
+import { DataStorageConverterTool } from './components/tools/DataStorageConverterTool';
+import { NumberBaseConverterTool } from './components/tools/NumberBaseConverterTool';
+import { PasswordGeneratorTool } from './components/tools/PasswordGeneratorTool';
+import { AgeCalculatorTool } from './components/tools/AgeCalculatorTool';
+import { MetaTagGeneratorTool } from './components/tools/MetaTagGeneratorTool';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -69,7 +85,7 @@ export default function App() {
       return <CategoryDetailPage categorySlug={slug} onNavigate={navigate} />;
     }
 
-    // 5. MVP Tools
+    // 5. Active Tools
     if (cleanPath === '/json-formatter') {
       return <JsonFormatterTool onNavigate={navigate} />;
     }
@@ -84,6 +100,54 @@ export default function App() {
     }
     if (cleanPath === '/business-days-calculator') {
       return <BusinessDaysCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/pdf-merge') {
+      return <PdfMergeTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/images-to-pdf') {
+      return <ImagesToPdfTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/qr-code-generator') {
+      return <QrCodeGeneratorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/word-counter') {
+      return <WordCounterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/case-converter') {
+      return <CaseConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/base64-encoder') {
+      return <Base64Tool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/url-encoder') {
+      return <UrlEncoderTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/uuid-generator') {
+      return <UuidGeneratorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/hash-generator') {
+      return <HashGeneratorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/image-cropper') {
+      return <ImageCropperTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/length-converter') {
+      return <UnitConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/data-storage-converter') {
+      return <DataStorageConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/number-base-converter') {
+      return <NumberBaseConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/password-generator') {
+      return <PasswordGeneratorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/age-calculator') {
+      return <AgeCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/meta-tag-generator') {
+      return <MetaTagGeneratorTool onNavigate={navigate} />;
     }
 
     // 6. Information & Legal Pages

@@ -1,10 +1,13 @@
 export type ToolCategory =
-  | 'developer-tools'
+  | 'document-tools'
   | 'image-tools'
+  | 'text-tools'
+  | 'developer-tools'
+  | 'converters'
   | 'calculators'
   | 'date-and-time'
-  | 'text-tools'
-  | 'converters';
+  | 'security-tools'
+  | 'seo-web-tools';
 
 export interface FAQItem {
   question: string;
@@ -37,3 +40,5 @@ export interface CategoryInfo {
 }
 
 export type SupportedLanguage = 'en' | 'fr' | 'es' | 'de' | 'ar';
+
+export type ColorTheme = 'emerald' | 'indigo' | 'ocean' | 'rose' | 'amber';

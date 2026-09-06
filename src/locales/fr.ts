@@ -292,6 +292,8 @@ export const fr = {
   'tool.lorem-ipsum.desc': 'Générez du texte de remplissage personnalisé en paragraphes, phrases ou mots pour vos maquettes de mise en page.',
 
   // Categories Names & Descriptions
+  'cat.document-tools.name': 'Outils Documents & PDF',
+  'cat.document-tools.desc': 'Fusionnez, convertissez et organisez vos documents PDF et images 100% dans votre navigateur.',
   'cat.developer-tools.name': 'Outils pour développeurs',
   'cat.developer-tools.desc': 'Formatez, validez, encodez et déboguez du code et des données directement dans votre navigateur.',
   'cat.image-tools.name': 'Outils d\'images',
@@ -304,4 +306,44 @@ export const fr = {
   'cat.text-tools.desc': 'Comptez les mots, changez la casse, nettoyez et formatez des textes facilement.',
   'cat.converters.name': 'Convertisseurs',
   'cat.converters.desc': 'Convertissez unités, données, longueurs, températures et devises sans effort.',
+  'cat.security-tools.name': 'Sécurité & Confidentialité',
+  'cat.security-tools.desc': 'Générez des mots de passe robustes, des empreintes cryptographiques et protégez vos données.',
+  'cat.seo-web-tools.name': 'Outils SEO & Web',
+  'cat.seo-web-tools.desc': 'Générez des balises meta, optimisez vos pages et prévisualisez les cartes sociales.',
+
+  // Tool Names & Descriptions
+  'tool.pdf-merge.name': 'Fusionner des fichiers PDF',
+  'tool.pdf-merge.desc': 'Combinez plusieurs documents PDF en un seul fichier ordonné en toute sécurité dans votre navigateur.',
+  'tool.images-to-pdf.name': 'Convertir Images en PDF',
+  'tool.images-to-pdf.desc': 'Transformez des images JPG, PNG et WebP en un document PDF de haute qualité.',
+  'tool.uuid-generator.name': 'Générateur de UUID / GUID',
+  'tool.uuid-generator.desc': 'Générez des identifiants uniques universels aléatoires (UUID v4) avec options de mise en forme.',
+  'tool.hash-generator.name': 'Générateur de Hash cryptographique',
+  'tool.hash-generator.desc': 'Générez des condensats sécurisés SHA-256, SHA-512, SHA-384 et SHA-1 directement côté client.',
+  'tool.qr-code-generator.name': 'Générateur de Code QR',
+  'tool.qr-code-generator.desc': 'Créez des codes QR personnalisés pour des URL, du texte ou des réseaux Wi-Fi avec téléchargement PNG.',
+  'tool.image-cropper.name': 'Recadrage d\'image',
+  'tool.image-cropper.desc': 'Recadrez des photos avec des formats standards ou un gabarit d\'avatar circulaire.',
+  'tool.length-converter.name': 'Convertisseur d\'unités',
+  'tool.length-converter.desc': 'Convertissez instantanément longueurs, poids, températures, superficies et vitesses.',
+  'tool.data-storage-converter.name': 'Convertisseur de stockage de données',
+  'tool.data-storage-converter.desc': 'Convertissez entre octets, Ko, Mo, Go et To selon les normes décimales et binaires.',
+  'tool.number-base-converter.name': 'Convertisseur de bases numériques',
+  'tool.number-base-converter.desc': 'Convertissez des nombres entre décimal, binaire, octal et hexadécimal.',
+  'tool.age-calculator.name': 'Calculateur d\'âge précis',
+  'tool.age-calculator.desc': 'Calculez votre âge exact en années, mois et jours avec compte à rebours pour le prochain anniversaire.',
+  'tool.password-generator.name': 'Générateur de mot de passe',
+  'tool.password-generator.desc': 'Créez des mots de passe aléatoires ultra-sécurisés et des codes PIN avec indicateur de force.',
+  'tool.meta-tag-generator.name': 'Générateur de balises Meta',
+  'tool.meta-tag-generator.desc': 'Générez des balises meta et Open Graph pour Google et réseaux sociaux avec aperçu en direct.',
+
+  // Theme & Colors
+  'theme.colorTheme': 'Couleurs du site',
+  'theme.selectColor': 'Choisir la couleur principale du site',
+  'theme.colorEmerald': 'Vert Émeraude',
+  'theme.colorIndigo': 'Indigo Classique',
+  'theme.colorOcean': 'Bleu Océan',
+  'theme.colorRose': 'Rose Cramoisi',
+  'theme.colorAmber': 'Ambre Chaud',
 };
+

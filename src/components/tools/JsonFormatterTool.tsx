@@ -255,7 +255,7 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs sm:text-sm font-black shadow-xs hover:shadow-sm transition-all cursor-pointer"
             >
               <FileCode className="w-4 h-4" />
-              <span>Format / Beautify</span>
+              <span>{t('jsonFormatter.format', 'Format / Beautify')}</span>
             </button>
             <button
               id="btn-validate-json"
@@ -263,7 +263,7 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
               className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer"
             >
               <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-              <span>Validate</span>
+              <span>{t('jsonFormatter.validate', 'Validate')}</span>
             </button>
             <button
               id="btn-minify-json"
@@ -271,14 +271,14 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
               className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer"
             >
               <Minimize2 className="w-4 h-4" />
-              <span>Minify</span>
+              <span>{t('jsonFormatter.minify', 'Minify')}</span>
             </button>
           </div>
 
           {/* Indent selector & secondary actions */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs">
             <div className="flex items-center gap-1.5 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
-              <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Indent:</span>
+              <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">{t('jsonFormatter.indent', 'Indent')}:</span>
               <select
                 value={indentSize}
                 onChange={(e) => {
@@ -287,45 +287,45 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
                 }}
                 className="bg-transparent font-bold text-slate-800 dark:text-slate-200 focus:outline-hidden cursor-pointer"
               >
-                <option value={2} className="dark:bg-slate-900">2 Spaces</option>
-                <option value={4} className="dark:bg-slate-900">4 Spaces</option>
-                <option value="tab" className="dark:bg-slate-900">Tabs</option>
+                <option value={2} className="dark:bg-slate-900">{t('jsonFormatter.spaces2', '2 Spaces')}</option>
+                <option value={4} className="dark:bg-slate-900">{t('jsonFormatter.spaces4', '4 Spaces')}</option>
+                <option value="tab" className="dark:bg-slate-900">{t('jsonFormatter.tabIndent', 'Tabs')}</option>
               </select>
             </div>
 
             <button
               onClick={handleLoadSample}
               className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold transition-colors cursor-pointer"
-              title="Load sample JSON"
+              title={t('jsonFormatter.sample', 'Load sample JSON')}
             >
-              Sample JSON
+              {t('jsonFormatter.sample', 'Sample JSON')}
             </button>
 
             <button
               id="btn-copy-json"
               onClick={handleCopy}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors cursor-pointer"
-              title="Copy result"
+              title={t('jsonFormatter.copy', 'Copy result')}
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied!' : 'Copy'}</span>
+              <span>{copied ? t('jsonFormatter.copied', 'Copied!') : t('jsonFormatter.copy', 'Copy')}</span>
             </button>
 
             <button
               id="btn-download-json"
               onClick={handleDownload}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors cursor-pointer"
-              title="Download JSON file"
+              title={t('jsonFormatter.download', 'Download JSON file')}
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Download</span>
+              <span>{t('jsonFormatter.download', 'Download')}</span>
             </button>
 
             <button
               id="btn-clear-json"
               onClick={handleClear}
               className="p-2 text-slate-400 hover:text-rose-500 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
-              title="Clear all"
+              title={t('jsonFormatter.clear', 'Clear all')}
             >
               <Trash2 className="w-4 h-4" />
             </button>
