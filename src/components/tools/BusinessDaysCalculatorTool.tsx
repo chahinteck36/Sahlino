@@ -212,7 +212,7 @@ export const BusinessDaysCalculatorTool: React.FC<BusinessDaysCalculatorToolProp
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
           name: 'Sahlino Business Days Calculator',
-          url: 'https://toolora.app/business-days-calculator',
+          url: 'https://sahlino.com/business-days-calculator',
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Any',
           browserRequirements: 'Requires JavaScript',

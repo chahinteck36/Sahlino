@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { FAQItem } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface FAQSectionProps {
   title?: string;
@@ -9,11 +10,15 @@ interface FAQSectionProps {
 }
 
 export const FAQSection: React.FC<FAQSectionProps> = ({
-  title = 'Frequently Asked Questions',
-  subtitle = 'Find answers to common questions about this tool, accuracy, and in-browser processing.',
+  title,
+  subtitle,
   faqs,
 }) => {
+  const { t } = useLanguage();
   const [openIndexes, setOpenIndexes] = useState<number[]>([0]);
+
+  const displayTitle = title || t('common.faqTitle', 'Frequently Asked Questions');
+  const displaySubtitle = subtitle !== undefined ? subtitle : t('common.faqSubtitle', 'Find answers to common questions about this tool, accuracy, and in-browser processing.');
 
   const toggleIndex = (index: number) => {
     setOpenIndexes((prev) =>
@@ -27,10 +32,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
     <section className="my-14 pt-8 border-t border-slate-200 dark:border-slate-800" aria-label="FAQ">
       <div className="flex items-center gap-2 mb-2">
         <HelpCircle className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{title}</h2>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{displayTitle}</h2>
       </div>
-      {subtitle && (
-        <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-6">{subtitle}</p>
+      {displaySubtitle && (
+        <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-6">{displaySubtitle}</p>
       )}
 
       <div className="space-y-3.5" itemScope itemType="https://schema.org/FAQPage">
@@ -46,7 +51,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
             >
               <button
                 onClick={() => toggleIndex(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                className="w-full px-6 py-4 text-start flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
                 aria-expanded={isOpen}
               >
                 <span itemProp="name">{faq.question}</span>
@@ -58,7 +63,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
               </button>
               {isOpen && (
                 <div
-                  className="px-6 pb-5 pt-1 text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/60"
+                  className="px-6 pb-5 pt-1 text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 text-start"
                   itemScope
                   itemProp="acceptedAnswer"
                   itemType="https://schema.org/Answer"

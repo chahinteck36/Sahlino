@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer
       id="main-footer"
-      className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 transition-colors mt-20"
+      className="border-t border-slate-200/90 dark:border-slate-800 bg-white dark:bg-[#0f172a] transition-colors mt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">

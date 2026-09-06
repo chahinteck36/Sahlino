@@ -180,7 +180,7 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'formatted-toolora.json';
+    link.download = 'formatted-sahlino.json';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -205,7 +205,7 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
           name: 'Sahlino JSON Formatter & Validator',
-          url: 'https://toolora.app/json-formatter',
+          url: 'https://sahlino.com/json-formatter',
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
           browserRequirements: 'Requires JavaScript',

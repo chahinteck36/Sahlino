@@ -73,11 +73,11 @@ export const TOOLS: ToolItem[] = [
       },
       {
         question: 'Is my JSON data uploaded or stored on any server?',
-        answer: 'No. Toolora processes all JSON formatting, validation, and minification 100% locally in your browser. Your sensitive API payloads, tokens, and data never leave your computer.',
+        answer: 'No. Sahlino processes all JSON formatting, validation, and minification 100% locally in your browser. Your sensitive API payloads, tokens, and data never leave your computer.',
       },
       {
         question: 'How does JSON validation detect errors?',
-        answer: 'The validator parses your input according to strict RFC 8259 JSON specifications. If a syntax error is detected (such as a missing bracket, trailing comma, or unquoted key), Toolora calculates the approximate line and column position with descriptive guidance on how to fix it.',
+        answer: 'The validator parses your input according to strict RFC 8259 JSON specifications. If a syntax error is detected (such as a missing bracket, trailing comma, or unquoted key), Sahlino calculates the approximate line and column position with descriptive guidance on how to fix it.',
       },
       {
         question: 'Can I download the formatted JSON file?',
@@ -102,7 +102,7 @@ export const TOOLS: ToolItem[] = [
     seoDescription: 'Resize, compress and convert images online for free. Change image dimensions, reduce file size and download your image instantly.',
     faqs: [
       {
-        question: 'How are images processed in Toolora?',
+        question: 'How are images processed in Sahlino?',
         answer: 'All image rendering, resizing, and compression tasks are performed client-side using standard HTML5 Canvas and browser image APIs. Your pictures and private graphics are never uploaded to any remote server.',
       },
       {
@@ -115,7 +115,7 @@ export const TOOLS: ToolItem[] = [
       },
       {
         question: 'Is there a file size limit?',
-        answer: 'Because images are processed inside your browser memory, Toolora safely handles high-resolution images up to 25–30MB smoothly without slowdown.',
+        answer: 'Because images are processed inside your browser memory, Sahlino safely handles high-resolution images up to 25–30MB smoothly without slowdown.',
       },
     ],
   },
@@ -136,12 +136,12 @@ export const TOOLS: ToolItem[] = [
     seoDescription: 'Convert time between time zones worldwide. Compare cities and find the correct local time instantly with daylight saving precision.',
     faqs: [
       {
-        question: 'How does Toolora handle Daylight Saving Time (DST)?',
-        answer: 'Toolora leverages the browser standard internationalization API (Intl) and canonical IANA time zone database. DST shifts (spring forward and fall back) are calculated automatically based on the exact date and location you choose.',
+        question: 'How does Sahlino handle Daylight Saving Time (DST)?',
+        answer: 'Sahlino leverages the browser standard internationalization API (Intl) and canonical IANA time zone database. DST shifts (spring forward and fall back) are calculated automatically based on the exact date and location you choose.',
       },
       {
         question: 'Can I compare multiple time zones simultaneously?',
-        answer: 'Yes! Toolora includes a multi-city comparison dashboard. You can add cities like London, New York, Tokyo, Dubai, Paris, Sydney, and Singapore to compare all local times side-by-side.',
+        answer: 'Yes! Sahlino includes a multi-city comparison dashboard. You can add cities like London, New York, Tokyo, Dubai, Paris, Sydney, and Singapore to compare all local times side-by-side.',
       },
       {
         question: 'What is UTC and how does it relate to local time?',
@@ -167,7 +167,7 @@ export const TOOLS: ToolItem[] = [
     faqs: [
       {
         question: 'What calculation modes are included?',
-        answer: 'Toolora provides 6 specialized percentage calculation modes: (1) What is X% of Y?, (2) X is what percentage of Y?, (3) Percentage increase from X to Y, (4) Percentage decrease from X to Y, (5) Percentage difference between X and Y, and (6) Percentage change from X to Y.',
+        answer: 'Sahlino provides 6 specialized percentage calculation modes: (1) What is X% of Y?, (2) X is what percentage of Y?, (3) Percentage increase from X to Y, (4) Percentage decrease from X to Y, (5) Percentage difference between X and Y, and (6) Percentage change from X to Y.',
       },
       {
         question: 'What is the difference between percentage change and percentage difference?',
@@ -175,7 +175,7 @@ export const TOOLS: ToolItem[] = [
       },
       {
         question: 'Can I use decimal values?',
-        answer: 'Yes. Toolora accepts integers, decimals, and negative numbers with high floating-point precision.',
+        answer: 'Yes. Sahlino accepts integers, decimals, and negative numbers with high floating-point precision.',
       },
     ],
   },
@@ -197,15 +197,15 @@ export const TOOLS: ToolItem[] = [
     faqs: [
       {
         question: 'Can I customize which days are considered weekends?',
-        answer: 'Yes! While Saturday and Sunday is standard in most countries, Toolora allows you to easily switch to Friday and Saturday (common in the Middle East and parts of the world) or customize excluded days.',
+        answer: 'Yes! While Saturday and Sunday is standard in most countries, Sahlino allows you to easily switch to Friday and Saturday (common in the Middle East and parts of the world) or customize excluded days.',
       },
       {
         question: 'How do custom holidays work?',
-        answer: 'You can add custom holiday dates that fall between your start and end dates. Toolora will automatically deduct them from the final working day count if they fall on a scheduled workday.',
+        answer: 'You can add custom holiday dates that fall between your start and end dates. Sahlino will automatically deduct them from the final working day count if they fall on a scheduled workday.',
       },
       {
         question: 'Can I calculate a target date by adding business days?',
-        answer: 'Yes. Switch to "Add / Subtract Days" mode, enter a start date and the number of business days (e.g., 15 days), and Toolora will find the exact resulting target date.',
+        answer: 'Yes. Switch to "Add / Subtract Days" mode, enter a start date and the number of business days (e.g., 15 days), and Sahlino will find the exact resulting target date.',
       },
     ],
   },
@@ -234,7 +234,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'Link',
     status: 'coming_soon',
     tags: ['url', 'encoder', 'decoder', 'uri', 'percent', 'query'],
-    seoTitle: 'URL Encoder & Decoder Online - Toolora',
+    seoTitle: 'URL Encoder & Decoder Online - Sahlino',
     seoDescription: 'Encode and decode URLs and URI query parameters quickly and securely in your browser.',
   },
   {
@@ -247,7 +247,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'Hash',
     status: 'coming_soon',
     tags: ['uuid', 'guid', 'v4', 'generator', 'random', 'developer'],
-    seoTitle: 'UUID / GUID Generator Online - Toolora',
+    seoTitle: 'UUID / GUID Generator Online - Sahlino',
     seoDescription: 'Generate random UUID v4 identifiers instantly in your browser.',
   },
   {
@@ -260,7 +260,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'Crop',
     status: 'coming_soon',
     tags: ['image', 'crop', 'cropper', 'photo', 'cut'],
-    seoTitle: 'Image Cropper Online - Toolora',
+    seoTitle: 'Image Cropper Online - Sahlino',
     seoDescription: 'Crop images online for free with custom aspect ratios directly in your browser.',
   },
   {
@@ -286,7 +286,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'Type',
     status: 'coming_soon',
     tags: ['case', 'converter', 'uppercase', 'lowercase', 'titlecase', 'camelcase'],
-    seoTitle: 'Text Case Converter Online - Toolora',
+    seoTitle: 'Text Case Converter Online - Sahlino',
     seoDescription: 'Easily convert text between uppercase, lowercase, title case, camelCase and more.',
   },
   {
@@ -299,7 +299,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'Ruler',
     status: 'coming_soon',
     tags: ['length', 'converter', 'distance', 'meters', 'feet', 'miles'],
-    seoTitle: 'Length Converter Online - Toolora',
+    seoTitle: 'Length Converter Online - Sahlino',
     seoDescription: 'Convert length and distance units online with instant precision.',
   },
   {
@@ -312,7 +312,7 @@ export const TOOLS: ToolItem[] = [
     iconName: 'HardDrive',
     status: 'coming_soon',
     tags: ['data', 'storage', 'converter', 'bytes', 'mb', 'gb', 'tb'],
-    seoTitle: 'Data Storage Converter Online - Toolora',
+    seoTitle: 'Data Storage Converter Online - Sahlino',
     seoDescription: 'Convert bits, bytes, kilobytes, megabytes, gigabytes, and terabytes effortlessly.',
   },
 ];

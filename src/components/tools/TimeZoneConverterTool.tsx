@@ -256,7 +256,7 @@ export const TimeZoneConverterTool: React.FC<TimeZoneConverterToolProps> = ({ on
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
           name: 'Sahlino Time Zone Converter',
-          url: 'https://toolora.app/time-zone-converter',
+          url: 'https://sahlino.com/time-zone-converter',
           applicationCategory: 'UtilitiesApplication',
           operatingSystem: 'Any',
           browserRequirements: 'Requires JavaScript',

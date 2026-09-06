@@ -13,13 +13,13 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = localStorage.getItem('toolora_theme') as Theme;
+    const saved = localStorage.getItem('sahlino_theme') as Theme;
     return saved || 'system';
   });
 
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
-    const saved = localStorage.getItem('toolora_theme') as Theme;
+    const saved = localStorage.getItem('sahlino_theme') as Theme;
     if (saved === 'dark') return true;
     if (saved === 'light') return false;
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -52,7 +52,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('toolora_theme', newTheme);
+    localStorage.setItem('sahlino_theme', newTheme);
   };
 
   const toggleTheme = () => {

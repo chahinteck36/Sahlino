@@ -136,7 +136,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-blue-500 selection:text-white transition-colors duration-200">
+        <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#0b1329] text-slate-800 dark:text-slate-100 selection:bg-indigo-600 selection:text-white transition-colors duration-200">
           {/* Header Navigation */}
           <Navbar
             currentPath={currentPath}
@@ -154,7 +154,7 @@ export default function App() {
           <SearchModal
             isOpen={isSearchModalOpen}
             onClose={() => setIsSearchModalOpen(false)}
-            onNavigate={navigate}
+            onSelectTool={(slug) => navigate('/' + slug)}
           />
         </div>
       </LanguageProvider>

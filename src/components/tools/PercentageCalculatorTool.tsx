@@ -239,7 +239,7 @@ export const PercentageCalculatorTool: React.FC<PercentageCalculatorToolProps> =
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
           name: 'Sahlino Percentage Calculator',
-          url: 'https://toolora.app/percentage-calculator',
+          url: 'https://sahlino.com/percentage-calculator',
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
           browserRequirements: 'Requires JavaScript',

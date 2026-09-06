@@ -60,11 +60,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: 'Sahlino',
-          url: 'https://toolora.app/',
+          url: 'https://sahlino.com/',
           description: 'Sahlino — Make It Easy. Fast, free online tools.',
           potentialAction: {
             '@type': 'SearchAction',
-            target: 'https://toolora.app/tools?q={search_term_string}',
+            target: 'https://sahlino.com/tools?q={search_term_string}',
             'query-input': 'required name=search_term_string',
           },
         }}
