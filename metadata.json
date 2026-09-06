@@ -1,0 +1,7 @@
+{
+  "name": "Sahlino",
+  "description": "Sahlino — Make It Easy. Fast, free, browser-based online tools for developers, creators, businesses and everyday tasks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
