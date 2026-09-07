@@ -13,6 +13,7 @@ import { ContactPage } from './pages/ContactPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 // MVP & Active Tools
 import { JsonFormatterTool } from './components/tools/JsonFormatterTool';

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toolora.app/sitemap.xml
+Sitemap: https://www.sahlino.tech/sitemap.xml

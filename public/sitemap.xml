@@ -1,68 +1,460 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://toolora.app/</loc>
+    <loc>https://www.sahlino.tech/</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/" />
   </url>
   <url>
-    <loc>https://toolora.app/tools</loc>
+    <loc>https://www.sahlino.tech/tools</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/tools" />
   </url>
   <url>
-    <loc>https://toolora.app/categories</loc>
+    <loc>https://www.sahlino.tech/categories</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/categories/document-tools</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/document-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/document-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/document-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/document-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/document-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/document-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/json-formatter</loc>
+    <loc>https://www.sahlino.tech/categories/developer-tools</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/developer-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/developer-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/developer-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/developer-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/developer-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/developer-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/image-resizer</loc>
+    <loc>https://www.sahlino.tech/categories/image-tools</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/image-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/image-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/image-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/image-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/image-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/image-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/time-zone-converter</loc>
+    <loc>https://www.sahlino.tech/categories/text-tools</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/text-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/text-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/text-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/text-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/text-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/text-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/percentage-calculator</loc>
+    <loc>https://www.sahlino.tech/categories/converters</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/converters" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/converters" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/converters" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/converters" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/converters" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/converters" />
   </url>
   <url>
-    <loc>https://toolora.app/business-days-calculator</loc>
+    <loc>https://www.sahlino.tech/categories/calculators</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/calculators" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/calculators" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/calculators" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/calculators" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/calculators" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/calculators" />
   </url>
   <url>
-    <loc>https://toolora.app/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.sahlino.tech/categories/date-and-time</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/date-and-time" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/date-and-time" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/date-and-time" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/date-and-time" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/date-and-time" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/date-and-time" />
   </url>
   <url>
-    <loc>https://toolora.app/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.sahlino.tech/categories/security-tools</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/security-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/security-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/security-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/security-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/security-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/security-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/privacy-policy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.sahlino.tech/categories/seo-web-tools</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/categories/seo-web-tools" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/categories/seo-web-tools" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/categories/seo-web-tools" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/categories/seo-web-tools" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/categories/seo-web-tools" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/categories/seo-web-tools" />
   </url>
   <url>
-    <loc>https://toolora.app/terms</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.sahlino.tech/json-formatter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/json-formatter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/json-formatter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/json-formatter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/json-formatter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/json-formatter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/json-formatter" />
   </url>
   <url>
-    <loc>https://toolora.app/cookie-policy</loc>
+    <loc>https://www.sahlino.tech/image-resizer</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/image-resizer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/image-resizer" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/image-resizer" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/image-resizer" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/image-resizer" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/image-resizer" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/time-zone-converter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/time-zone-converter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/time-zone-converter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/time-zone-converter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/time-zone-converter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/time-zone-converter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/time-zone-converter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/percentage-calculator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/percentage-calculator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/percentage-calculator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/percentage-calculator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/percentage-calculator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/percentage-calculator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/percentage-calculator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/business-days-calculator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/business-days-calculator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/business-days-calculator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/business-days-calculator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/business-days-calculator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/business-days-calculator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/business-days-calculator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/pdf-merge</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/pdf-merge" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/pdf-merge" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/pdf-merge" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/pdf-merge" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/pdf-merge" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/pdf-merge" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/images-to-pdf</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/images-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/images-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/images-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/images-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/images-to-pdf" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/images-to-pdf" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/base64-encoder</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/base64-encoder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/base64-encoder" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/base64-encoder" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/base64-encoder" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/base64-encoder" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/base64-encoder" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/url-encoder</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/url-encoder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/url-encoder" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/url-encoder" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/url-encoder" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/url-encoder" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/url-encoder" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/uuid-generator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/uuid-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/uuid-generator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/uuid-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/uuid-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/uuid-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/uuid-generator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/hash-generator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/hash-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/hash-generator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/hash-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/hash-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/hash-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/hash-generator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/qr-code-generator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/qr-code-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/qr-code-generator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/qr-code-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/qr-code-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/qr-code-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/qr-code-generator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/image-cropper</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/image-cropper" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/image-cropper" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/image-cropper" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/image-cropper" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/image-cropper" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/image-cropper" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/word-counter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/word-counter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/word-counter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/word-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/word-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/word-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/word-counter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/case-converter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/case-converter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/case-converter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/case-converter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/case-converter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/case-converter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/case-converter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/length-converter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/length-converter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/length-converter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/length-converter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/length-converter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/length-converter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/length-converter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/data-storage-converter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/data-storage-converter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/data-storage-converter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/data-storage-converter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/data-storage-converter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/data-storage-converter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/data-storage-converter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/number-base-converter</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/number-base-converter" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/number-base-converter" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/number-base-converter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/number-base-converter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/number-base-converter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/number-base-converter" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/age-calculator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/age-calculator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/age-calculator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/age-calculator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/age-calculator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/age-calculator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/age-calculator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/password-generator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/password-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/password-generator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/password-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/password-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/password-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/password-generator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/meta-tag-generator</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/meta-tag-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/meta-tag-generator" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/meta-tag-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/meta-tag-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/meta-tag-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/meta-tag-generator" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/about</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/about" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/about" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/contact</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/contact" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/contact" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/contact" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/privacy-policy</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/privacy-policy" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/terms</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/terms" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/terms" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/terms" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/terms" />
+  </url>
+  <url>
+    <loc>https://www.sahlino.tech/cookie-policy</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sahlino.tech/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sahlino.tech/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.sahlino.tech/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sahlino.tech/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.sahlino.tech/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.sahlino.tech/cookie-policy" />
   </url>
 </urlset>
