@@ -570,6 +570,383 @@ export const TOOLS: ToolItem[] = [
         answer: 'Open Graph meta tags control how your links look when shared on social media platforms like Facebook, LinkedIn, Discord, and messaging apps.',
       },
     ],
+    relatedArticles: ['how-to-create-custom-qr-codes'],
+  },
+
+  // 1. BMI Calculator
+  {
+    id: 'bmi-calculator',
+    name: 'BMI Calculator (Body Mass Index)',
+    slug: 'bmi-calculator',
+    description: 'Calculate your Body Mass Index (BMI), ideal healthy weight range, and WHO classification instantly in metric or imperial units.',
+    category: 'calculators',
+    categoryName: 'Calculators',
+    iconName: 'Activity',
+    popular: true,
+    status: 'available',
+    tags: ['bmi', 'calculator', 'body mass index', 'weight', 'health', 'fitness', 'ideal weight', 'metric', 'imperial', 'حاسبة BMI', 'مؤشر كتلة الجسم'],
+    seoTitle: 'Free BMI Calculator Online - Body Mass Index & Ideal Weight',
+    seoDescription: 'Calculate your exact Body Mass Index (BMI) and find your healthy weight range with instant WHO categories. Fast, free, and accurate.',
+    faqs: [
+      {
+        question: 'What is a healthy BMI range?',
+        answer: 'According to the World Health Organization (WHO), a BMI between 18.5 and 24.9 is considered normal and healthy for adults.',
+      },
+      {
+        question: 'What is the formula for calculating BMI?',
+        answer: 'In metric units: BMI = Weight (kg) / [Height (m)]². In imperial: BMI = 703 * Weight (lbs) / [Height (inches)]².',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-bmi-healthy-weight'],
+  },
+
+  // 2. Discount Calculator
+  {
+    id: 'discount-calculator',
+    name: 'Discount & Sales Tax Calculator',
+    slug: 'discount-calculator',
+    description: 'Calculate final price after store discounts, stacked promo coupons, and sales tax (VAT) with step-by-step savings breakdown.',
+    category: 'calculators',
+    categoryName: 'Calculators',
+    iconName: 'BadgePercent',
+    popular: true,
+    status: 'available',
+    tags: ['discount', 'calculator', 'sales tax', 'vat', 'promo', 'coupon', 'savings', 'shopping', 'حاسبة الخصم', 'تخفيض'],
+    seoTitle: 'Discount Calculator Online - Calculate Sales Price & Savings',
+    seoDescription: 'Calculate final prices after discounts, percentage off, extra coupons, and sales tax. Free instant shopping math tool.',
+    faqs: [
+      {
+        question: 'How do you calculate a percentage discount?',
+        answer: 'Multiply original price by discount percentage, divide by 100, then subtract that amount from the original price: Final = Price * (1 - Discount/100).',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-percentages-and-discounts'],
+  },
+
+  // 3. Loan & Mortgage Calculator
+  {
+    id: 'loan-calculator',
+    name: 'Loan & Mortgage Payment Calculator',
+    slug: 'loan-calculator',
+    description: 'Compute monthly loan installments, total interest paid, and total loan payback cost with interactive term duration.',
+    category: 'calculators',
+    categoryName: 'Calculators',
+    iconName: 'Landmark',
+    popular: true,
+    status: 'available',
+    tags: ['loan', 'calculator', 'mortgage', 'interest', 'monthly payment', 'finance', 'emi', 'car loan', 'حاسبة القرض', 'الفوائد'],
+    seoTitle: 'Loan Payment Calculator - Calculate Monthly Installment & Interest',
+    seoDescription: 'Calculate exact monthly loan payments, total interest costs, and total repayment amounts for personal, auto, and home loans.',
+    faqs: [
+      {
+        question: 'How is monthly loan payment calculated?',
+        answer: 'Using the standard amortization formula: M = P * [r(1+r)^n] / [(1+r)^n - 1], where P is principal, r is monthly interest rate, and n is total months.',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-loan-interest-and-installments'],
+  },
+
+  // 4. Calorie & TDEE Calculator
+  {
+    id: 'calorie-calculator',
+    name: 'Daily Calorie & TDEE Calculator',
+    slug: 'calorie-calculator',
+    description: 'Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) for weight loss, maintenance, or muscle gain.',
+    category: 'calculators',
+    categoryName: 'Calculators',
+    iconName: 'Flame',
+    popular: true,
+    status: 'available',
+    tags: ['calorie', 'calculator', 'tdee', 'bmr', 'diet', 'nutrition', 'weight loss', 'macros', 'حاسبة السعرات', 'السعرات الحرارية'],
+    seoTitle: 'Free Calorie & TDEE Calculator - Daily Calories for Weight Goals',
+    seoDescription: 'Calculate your exact BMR and daily calorie requirements (TDEE) based on age, gender, activity level, and weight goals.',
+    faqs: [
+      {
+        question: 'What is BMR vs TDEE?',
+        answer: 'BMR (Basal Metabolic Rate) is the energy burned at complete rest. TDEE (Total Daily Energy Expenditure) adds your daily movement and exercise to BMR.',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-bmi-healthy-weight'],
+  },
+
+  // 5. Date Difference & Countdown Calculator
+  {
+    id: 'date-calculator',
+    name: 'Date Difference & Countdown Calculator',
+    slug: 'date-calculator',
+    description: 'Calculate exact days, weeks, and months between two dates, or add/subtract days from any starting date.',
+    category: 'date-and-time',
+    categoryName: 'Date & Time',
+    iconName: 'Calendar',
+    popular: false,
+    status: 'available',
+    tags: ['date', 'calculator', 'days between dates', 'countdown', 'calendar', 'time difference', 'حاسبة التاريخ', 'فرق الأيام'],
+    seoTitle: 'Date Difference Calculator - Days Between Two Dates Online',
+    seoDescription: 'Calculate the exact number of days, weeks, and months between two dates or add/subtract days with instant countdown.',
+    faqs: [
+      {
+        question: 'Does this calculator consider leap years?',
+        answer: 'Yes, all calculations strictly account for leap years and precise calendar month day counts.',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-exact-age-and-birthdays'],
+  },
+
+  // 6. Split PDF
+  {
+    id: 'pdf-split',
+    name: 'Split PDF Pages & Extract',
+    slug: 'pdf-split',
+    description: 'Split large PDF documents into separate pages or extract selected custom page ranges with 100% in-browser privacy.',
+    category: 'document-tools',
+    categoryName: 'Document & PDF Tools',
+    iconName: 'Scissors',
+    popular: true,
+    status: 'available',
+    tags: ['pdf', 'split', 'extract pages', 'separate', 'cut pdf', 'divide', 'documents', 'تقسيم pdf', 'فصل صفحات'],
+    seoTitle: 'Split PDF Online Free - Extract Pages from PDF in Browser',
+    seoDescription: 'Split PDF files and extract specific pages online for free. Fast, client-side, secure, and preserves original resolution.',
+    faqs: [
+      {
+        question: 'How do I specify page ranges to extract?',
+        answer: 'You can type comma-separated numbers or hyphenated ranges like: 1-3, 5, 8-10.',
+      },
+      {
+        question: 'Are my PDF documents uploaded to the cloud?',
+        answer: 'No. Processing happens entirely on your device using WebAssembly and pdf-lib in your browser.',
+      },
+    ],
+    relatedArticles: ['how-to-split-pdf-pages', 'how-to-merge-pdf-files-online'],
+  },
+
+  // 7. Rotate PDF
+  {
+    id: 'pdf-rotate',
+    name: 'Rotate PDF Pages Online',
+    slug: 'pdf-rotate',
+    description: 'Permanently rotate upside-down or sideways PDF pages by 90, 180, or 270 degrees and download immediately.',
+    category: 'document-tools',
+    categoryName: 'Document & PDF Tools',
+    iconName: 'RotateCw',
+    popular: false,
+    status: 'available',
+    tags: ['pdf', 'rotate', 'turn pages', 'orientation', 'upside down', 'تدوير pdf', 'تعديل اتجاه'],
+    seoTitle: 'Rotate PDF Online - Turn PDF Pages 90, 180, or 270 Degrees',
+    seoDescription: 'Rotate individual or all pages of your PDF document permanently online for free. 100% private in-browser tool.',
+    faqs: [
+      {
+        question: 'Can I rotate just one page or the entire document?',
+        answer: 'You can choose to rotate all pages simultaneously or selectively rotate odd, even, or specific pages.',
+      },
+    ],
+    relatedArticles: ['how-to-merge-pdf-files-online'],
+  },
+
+  // 8. Text to PDF
+  {
+    id: 'text-to-pdf',
+    name: 'Text & Document to PDF Converter',
+    slug: 'text-to-pdf',
+    description: 'Convert typed or pasted text and notes into a clean, printable PDF document with customizable margins and font sizes.',
+    category: 'document-tools',
+    categoryName: 'Document & PDF Tools',
+    iconName: 'FileText',
+    popular: true,
+    status: 'available',
+    tags: ['text to pdf', 'convert text', 'txt to pdf', 'word to pdf', 'create pdf', 'print text', 'تحويل النص إلى pdf', 'مستند'],
+    seoTitle: 'Convert Text to PDF Online - Free Plain Text & Document to PDF',
+    seoDescription: 'Convert plain text, notes, or articles into polished PDF documents. Customize fonts, line heights, and margins with instant download.',
+    faqs: [
+      {
+        question: 'Can I choose between Portrait and Landscape orientation?',
+        answer: 'Yes, you can toggle between Portrait and Landscape layout and pick standard font sizing.',
+      },
+    ],
+    relatedArticles: ['how-to-convert-word-to-pdf'],
+  },
+
+  // 9. Image Format Converter
+  {
+    id: 'image-converter',
+    name: 'Image Format Converter (WebP, JPG, PNG)',
+    slug: 'image-converter',
+    description: 'Convert images seamlessly between JPG, PNG, and WebP formats with adjustable compression quality in your browser.',
+    category: 'image-tools',
+    categoryName: 'Image Tools',
+    iconName: 'ArrowLeftRight',
+    popular: true,
+    status: 'available',
+    tags: ['image converter', 'webp to jpg', 'png to jpg', 'jpg to png', 'png to webp', 'format', 'convert', 'تحويل صيغ الصور'],
+    seoTitle: 'Image Format Converter Online - Convert WebP, JPG, PNG Free',
+    seoDescription: 'Convert images between WebP, PNG, and JPG formats effortlessly in your browser. Fast, free, high quality, and 100% private.',
+    faqs: [
+      {
+        question: 'Why convert images to WebP?',
+        answer: 'WebP provides superior lossless and lossy compression, resulting in 25-35% smaller file sizes compared to JPEG without visual loss.',
+      },
+    ],
+    relatedArticles: ['difference-between-jpg-png-webp', 'how-to-compress-images-without-losing-quality'],
+  },
+
+  // 10. Rotate & Flip Image
+  {
+    id: 'image-rotate',
+    name: 'Rotate & Flip Image Online',
+    slug: 'image-rotate',
+    description: 'Rotate images by 90, 180, or 270 degrees and flip horizontally or vertically with live instant canvas preview.',
+    category: 'image-tools',
+    categoryName: 'Image Tools',
+    iconName: 'FlipHorizontal',
+    popular: false,
+    status: 'available',
+    tags: ['rotate image', 'flip image', 'mirror photo', 'turn picture', 'orientation', 'تدوير الصور', 'قلب الصورة'],
+    seoTitle: 'Rotate & Flip Image Online Free - Mirror and Turn Photos',
+    seoDescription: 'Rotate images 90 degrees clockwise or counter-clockwise, and flip horizontally or vertically with instant download.',
+    faqs: [
+      {
+        question: 'Does rotating reduce image resolution?',
+        answer: 'No, your image maintains its original pixel dimensions and aspect ratio during rotation and mirroring.',
+      },
+    ],
+    relatedArticles: ['how-to-compress-images-without-losing-quality'],
+  },
+
+  // 11. Text Cleaner & Duplicate Remover
+  {
+    id: 'text-cleaner',
+    name: 'Text Cleaner & Duplicate Line Remover',
+    slug: 'text-cleaner',
+    description: 'Remove duplicate lines, eliminate unnecessary whitespace, sort lines alphabetically, and clean up messy text strings.',
+    category: 'text-tools',
+    categoryName: 'Text Tools',
+    iconName: 'Sparkles',
+    popular: true,
+    status: 'available',
+    tags: ['text cleaner', 'remove duplicate lines', 'trim spaces', 'sort lines', 'clean text', 'deduplicate', 'تنظيف النصوص', 'حذف المكرر'],
+    seoTitle: 'Text Cleaner Online - Remove Duplicate Lines & Extra Spaces',
+    seoDescription: 'Clean up text by removing duplicate rows, stripping empty spaces, sorting alphabetically, and normalizing line breaks.',
+    faqs: [
+      {
+        question: 'Can I sort lines alphabetically after cleaning?',
+        answer: 'Yes, you can sort lines in ascending (A-Z) or descending (Z-A) order with a single click.',
+      },
+    ],
+    relatedArticles: ['how-to-clean-and-deduplicate-text'],
+  },
+
+  // 12. Find & Replace Text
+  {
+    id: 'text-replace',
+    name: 'Find and Replace Text Online',
+    slug: 'text-replace',
+    description: 'Search and replace words, phrases, or regular expression (RegEx) patterns in large blocks of text with live match counter.',
+    category: 'text-tools',
+    categoryName: 'Text Tools',
+    iconName: 'Search',
+    popular: false,
+    status: 'available',
+    tags: ['find and replace', 'search text', 'regex replace', 'word replace', 'batch replace', 'بحث واستبدال'],
+    seoTitle: 'Find and Replace Text Online - Batch String & RegEx Replacer',
+    seoDescription: 'Find and replace words, sentences, and RegEx patterns in your text with instant match preview and counter.',
+    faqs: [
+      {
+        question: 'Does this support Regular Expressions (RegEx)?',
+        answer: 'Yes! You can toggle RegEx mode to replace advanced pattern sequences with capture groups.',
+      },
+    ],
+    relatedArticles: ['how-to-clean-and-deduplicate-text'],
+  },
+
+  // 13. HTML & CSS Formatter & Minifier
+  {
+    id: 'html-css-formatter',
+    name: 'HTML & CSS Formatter & Minifier',
+    slug: 'html-css-formatter',
+    description: 'Beautify unformatted HTML and CSS with clean indentation or minify code for maximum web page loading speed.',
+    category: 'developer-tools',
+    categoryName: 'Developer Tools',
+    iconName: 'CodeXml',
+    popular: true,
+    status: 'available',
+    tags: ['html formatter', 'css beautifier', 'minify html', 'minify css', 'developer', 'code clean', 'تنسيق html و css'],
+    seoTitle: 'HTML & CSS Formatter & Minifier Online - Beautify Code',
+    seoDescription: 'Format, beautify, and minify HTML and CSS code online for free. Clean syntax, indent properly, and compress file size.',
+    faqs: [
+      {
+        question: 'What is the benefit of minifying CSS and HTML?',
+        answer: 'Minification removes comments, whitespace, and extra line breaks, reducing payload size and accelerating browser page rendering.',
+      },
+    ],
+    relatedArticles: ['how-to-format-validate-json-payloads'],
+  },
+
+  // 14. Unix Timestamp & Epoch Converter
+  {
+    id: 'timestamp-converter',
+    name: 'Unix Timestamp & Epoch Converter',
+    slug: 'timestamp-converter',
+    description: 'Convert Unix epoch timestamps (seconds and milliseconds) to human-readable dates (UTC and Local), or generate timestamps from dates.',
+    category: 'developer-tools',
+    categoryName: 'Developer Tools',
+    iconName: 'Clock',
+    popular: false,
+    status: 'available',
+    tags: ['timestamp', 'epoch', 'unix time', 'converter', 'developer', 'utc', 'seconds to date', 'محول التوقيت الزمني'],
+    seoTitle: 'Unix Timestamp Converter Online - Epoch to Human Readable Date',
+    seoDescription: 'Convert Unix epoch timestamps to human-readable local and UTC dates, or generate timestamps from date pickers with live clock.',
+    faqs: [
+      {
+        question: 'What is Unix Epoch time?',
+        answer: 'Unix epoch time is the number of seconds that have elapsed since January 1, 1970 00:00:00 UTC (excluding leap seconds).',
+      },
+    ],
+    relatedArticles: ['how-to-format-validate-json-payloads'],
+  },
+
+  // 15. Color Converter (HEX, RGB, HSL)
+  {
+    id: 'color-converter',
+    name: 'Color Converter (HEX, RGB, HSL)',
+    slug: 'color-converter',
+    description: 'Convert color codes between HEX, RGB, HSL, and CSS formats with interactive color picker and contrast checker.',
+    category: 'developer-tools',
+    categoryName: 'Developer Tools',
+    iconName: 'Palette',
+    popular: false,
+    status: 'available',
+    tags: ['color converter', 'hex to rgb', 'rgb to hex', 'hsl', 'color picker', 'css color', 'محول الألوان'],
+    seoTitle: 'Color Code Converter Online - HEX to RGB, HSL, and CSS',
+    seoDescription: 'Convert colors between HEX, RGB, and HSL formats with live color preview, complementary palette, and easy copy buttons.',
+    faqs: [
+      {
+        question: 'How do you convert HEX to RGB?',
+        answer: 'A HEX code like #FF5733 splits into 3 pairs: FF (255 Red), 57 (87 Green), and 33 (51 Blue), giving rgb(255, 87, 51).',
+      },
+    ],
+    relatedArticles: ['how-to-create-custom-qr-codes'],
+  },
+
+  // 16. Currency Converter
+  {
+    id: 'currency-converter',
+    name: 'Currency Converter & Exchange Rates',
+    slug: 'currency-converter',
+    description: 'Convert between 30+ world currencies including USD, EUR, GBP, SAR, AED, EGP, KWD with quick comparison rates.',
+    category: 'converters',
+    categoryName: 'Converters',
+    iconName: 'Coins',
+    popular: true,
+    status: 'available',
+    tags: ['currency converter', 'exchange rates', 'usd to eur', 'sar to usd', 'aed', 'egp', 'money', 'forex', 'محول العملات', 'أسعار الصرف'],
+    seoTitle: 'Currency Converter Online - Real-Time Exchange Rates Calculator',
+    seoDescription: 'Convert between major global and regional currencies (USD, EUR, SAR, AED, EGP, GBP, JPY). Fast, accurate, and easy to use.',
+    faqs: [
+      {
+        question: 'Are the exchange rates indicative?',
+        answer: 'Yes, rates provided are benchmark market exchange rates for general calculations and personal estimates.',
+      },
+    ],
+    relatedArticles: ['how-to-calculate-percentages-and-discounts'],
   },
 ];
 
@@ -601,4 +978,12 @@ export function searchTools(query: string): ToolItem[] {
       tool.tags.some((tag) => tag.toLowerCase().includes(clean))
     );
   });
+}
+
+export function getAllCategories(): CategoryInfo[] {
+  return CATEGORIES;
+}
+
+export function getCategoryById(id: string): CategoryInfo | undefined {
+  return CATEGORIES.find((c) => c.id === id || c.slug === id);
 }

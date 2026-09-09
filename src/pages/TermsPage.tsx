@@ -1,72 +1,88 @@
 import React from 'react';
+import { FileCheck, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { useLanguage } from '../context/LanguageContext';
 
-export const TermsPage: React.FC = () => {
+interface LegalPageProps {
+  onNavigate: (path: string) => void;
+}
+
+export const TermsPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
+  const { language } = useLanguage();
+  const isAr = language === 'ar';
+  const canonicalUrl = 'https://www.sahlino.tech/terms';
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors py-8 sm:py-12">
       <SEOHead
-        title="Terms of Service - Sahlino"
-        description="Terms of service and usage conditions for Sahlino's free browser-based online tools."
-        canonicalPath="/terms"
+        title={isAr ? 'شروط الاستخدام | Sahlino' : 'Terms of Service | Sahlino'}
+        description={
+          isAr
+            ? 'شروط وأحكام استخدام منصة وأدوات Sahlino الرقمية المجانية.'
+            : 'Terms of Service and conditions for using the Sahlino free online utility platform.'
+        }
+        canonicalUrl={canonicalUrl}
+        breadcrumbs={[
+          { name: isAr ? 'الرئيسية' : 'Home', item: 'https://www.sahlino.tech/' },
+          { name: isAr ? 'شروط الاستخدام' : 'Terms of Service', item: canonicalUrl },
+        ]}
       />
 
-      <Breadcrumbs items={[{ label: 'Terms of Service' }]} />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <Breadcrumbs
+            items={[
+              { label: isAr ? 'الرئيسية' : 'Home', href: '/' },
+              { label: isAr ? 'شروط الاستخدام' : 'Terms of Service' },
+            ]}
+            onNavigate={onNavigate}
+          />
+        </div>
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight mb-2">
-          Terms of Service
-        </h1>
-        <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          Last updated: September 2026
-        </p>
-      </div>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+          <header className="border-b border-slate-100 dark:border-slate-800 pb-6">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              {isAr ? 'شروط وأحكام الاستخدام' : 'Terms of Service'}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+              {isAr ? 'ساري المفعول اعتباراً من: مارس 2025' : 'Effective date: March 2025'}
+            </p>
+          </header>
 
-      <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            1. Acceptance of Terms
-          </h2>
-          <p>
-            By accessing or using Sahlino (the &quot;Service&quot;), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the website.
-          </p>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? '1. قبول الشروط' : '1. Acceptance of Terms'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'باستخدامك لموقع وأدوات Sahlino، فإنك توافق على الالتزام بهذه الشروط وجميع القوانين واللوائح المعمول بها. إذا كنت لا توافق على أي من هذه الشروط، يرجى التوقف عن استخدام الموقع.'
+                : 'By accessing and using Sahlino tools, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you disagree with any part, you may not use the services.'}
+            </p>
+          </section>
 
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            2. Permitted Use
-          </h2>
-          <p>
-            Sahlino provides browser-based utilities for personal, educational, and commercial purposes. You agree not to misuse the Service, attempt unauthorized access, interfere with site availability, or transmit malicious code or scripts.
-          </p>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? '2. الاستخدام المسموح والمشروع' : '2. Permitted Use'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'تُقدم جميع الأدوات مجاناً للاستخدام الشخصي والمهني المشروع. يُحظر استخدام الأدوات لأي غرض غير قانوني، أو محاولة تعطيل الخوادم، أو استخراج البيانات عبر البوتات الضارة.'
+                : 'All tools are provided free of charge for legitimate personal and commercial use. You agree not to misuse our services or engage in automated scraping or attacks targeting service availability.'}
+            </p>
+          </section>
 
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            3. Disclaimer of Warranties
-          </h2>
-          <p>
-            The Service and all tools are provided on an &quot;as is&quot; and &quot;as available&quot; basis without warranties of any kind, whether express or implied. While we strive for rigorous precision in all calculations and data conversions, you are encouraged to verify critical results independently.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            4. Limitation of Liability
-          </h2>
-          <p>
-            In no event shall Sahlino or its maintainers be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use of or inability to use the tools.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            5. Modifications to the Service
-          </h2>
-          <p>
-            We reserve the right to modify, update, or discontinue tools or features at any time without prior notice.
-          </p>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? '3. إخلاء المسؤولية' : '3. Disclaimer of Warranties'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'تُقدم الأدوات الحسابية ومحولات الصيغ "كما هي" دون أي ضمانات صريحة أو ضمنية. نحن نسعى دائماً لتحقيق أعلى درجات الدقة، ولكننا لا نتحمل المسؤولية عن أي خسائر ناتجة عن الاعتماد الحصري على النتائج المالية أو الرياضية دون مراجعة مختص.'
+                : 'Tools, calculators, and converters are provided "as is" without warranty of any kind. While we strive for absolute mathematical precision, Sahlino shall not be held liable for damages or errors resulting from reliance on outputs without independent verification.'}
+            </p>
+          </section>
+        </div>
       </div>
     </div>
   );

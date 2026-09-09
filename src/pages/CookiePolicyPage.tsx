@@ -1,67 +1,89 @@
 import React from 'react';
+import { Cookie, Info } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { useLanguage } from '../context/LanguageContext';
 
-export const CookiePolicyPage: React.FC = () => {
+interface LegalPageProps {
+  onNavigate: (path: string) => void;
+}
+
+export const CookiePolicyPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
+  const { language } = useLanguage();
+  const isAr = language === 'ar';
+  const canonicalUrl = 'https://www.sahlino.tech/cookie-policy';
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors py-8 sm:py-12">
       <SEOHead
-        title="Cookie Policy - Sahlino"
-        description="Learn about how Sahlino uses cookies and local browser storage to provide theme and language settings."
-        canonicalPath="/cookie-policy"
+        title={isAr ? 'سياسة ملفات تعريف الارتباط (Cookies) | Sahlino' : 'Cookie Policy | Sahlino'}
+        description={
+          isAr
+            ? 'سياسة ملفات تعريف الارتباط والكوكيز المستخدمة على منصة ساهلينو وكيفية إدارتها.'
+            : 'Cookie Policy of Sahlino. How cookies and local browser storage are used and managed.'
+        }
+        canonicalUrl={canonicalUrl}
+        breadcrumbs={[
+          { name: isAr ? 'الرئيسية' : 'Home', item: 'https://www.sahlino.tech/' },
+          { name: isAr ? 'ملفات تعريف الارتباط' : 'Cookie Policy', item: canonicalUrl },
+        ]}
       />
 
-      <Breadcrumbs items={[{ label: 'Cookie Policy' }]} />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <Breadcrumbs
+            items={[
+              { label: isAr ? 'الرئيسية' : 'Home', href: '/' },
+              { label: isAr ? 'ملفات تعريف الارتباط' : 'Cookie Policy' },
+            ]}
+            onNavigate={onNavigate}
+          />
+        </div>
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight mb-2">
-          Cookie Policy
-        </h1>
-        <p className="text-xs text-neutral-500 dark:text-neutral-400">
-          Last updated: September 2026
-        </p>
-      </div>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+          <header className="border-b border-slate-100 dark:border-slate-800 pb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 text-xs font-bold mb-3">
+              <Cookie className="w-3.5 h-3.5" />
+              <span>{isAr ? 'شفافية كاملة' : 'Transparent Cookies'}</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              {isAr ? 'سياسة ملفات تعريف الارتباط (Cookie Policy)' : 'Cookie Policy'}
+            </h1>
+          </header>
 
-      <div className="space-y-6 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            1. What Are Cookies?
-          </h2>
-          <p>
-            Cookies are small text files stored on your computer or mobile device when you visit a website. They help websites remember your device and preferences.
-          </p>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? 'ما هي ملفات تعريف الارتباط؟' : 'What Are Cookies?'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'ملفات تعريف الارتباط هي ملفات نصية صغيرة تُخزن على جهازك لتذكر تفضيلاتك مثل الوضع الليلي (Dark Mode) أو لغة الواجهة (العربية / الإنجليزية).'
+                : 'Cookies are small text files stored on your device that help remember your user preferences such as Dark Mode or Language selection.'}
+            </p>
+          </section>
 
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            2. How Sahlino Uses Cookies & Local Storage
-          </h2>
-          <p>
-            Sahlino operates with minimal data persistence. We primarily use browser <code>localStorage</code> rather than intrusive tracking cookies to:
-          </p>
-          <ul className="list-disc pl-5 mt-2 space-y-1 text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm">
-            <li>Remember your selected interface theme (Light or Dark mode).</li>
-            <li>Remember your preferred language setting.</li>
-          </ul>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? 'ملفات تعريف الارتباط الإعلانية' : 'Advertising Cookies'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'نستخدم خدمات إعلانية مثل Google AdSense لتمويل المنصة مجاناً. تتيح هذه الملفات للشركاء الإعلانيين تقديم إعلانات مخصصة للمستخدمين بناءً على تفاعلهم على الويب.'
+                : 'We partner with Google AdSense to serve ads. Third-party vendors and ad networks may use cookies to serve ads based on prior browsing history.'}
+            </p>
+          </section>
 
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            3. Third-Party Analytics & Advertising
-          </h2>
-          <p>
-            Third-party services that deliver advertisements or perform basic traffic measurement may use cookies to serve ads based on prior visits or general geographic signals. Sahlino does not control these third-party cookies directly.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            4. Managing Your Cookies
-          </h2>
-          <p>
-            Most modern web browsers allow you to manage or delete cookies and local storage through browser settings. Disabling cookies will not prevent you from using Sahlino&apos;s calculators or tools.
-          </p>
-        </section>
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? 'كيفية التحكم في ملفات تعريف الارتباط' : 'How to Manage Cookies'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'يمكنك تعديل إعدادات متصفحك لرفض الكوكيز أو تنبيهك عند إرسالها. يرجى ملاحظة أن تعطيل بعض الملفات قد يؤثر على تذكر تفضيلاتك في الموقع.'
+                : 'You can configure your web browser to block or delete cookies. Please note that disabling cookies may affect website functionality such as saved theme or language preferences.'}
+            </p>
+          </section>
+        </div>
       </div>
     </div>
   );

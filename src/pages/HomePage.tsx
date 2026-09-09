@@ -9,6 +9,8 @@ import {
   Globe2,
   CheckCircle2,
   Layers,
+  BookOpen,
+  Clock,
 } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { generateHomeStructuredData } from '../utils/seo';
@@ -16,6 +18,7 @@ import { DynamicIcon } from '../components/common/DynamicIcon';
 import { AdPlaceholder } from '../components/common/AdPlaceholder';
 import { FAQSection } from '../components/common/FAQSection';
 import { CATEGORIES, TOOLS, searchTools } from '../data/tools';
+import { ARTICLES } from '../data/articles';
 import { ToolItem } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -25,7 +28,7 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModal }) => {
-  const { t, getToolName, getToolDesc, getCategoryName, getCategoryDesc } = useLanguage();
+  const { language, t, getToolName, getToolDesc, getCategoryName, getCategoryDesc } = useLanguage();
   const [inlineSearch, setInlineSearch] = useState('');
 
   const popularTools = TOOLS.filter((t) => t.popular);
@@ -273,6 +276,65 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Knowledge Center & Guides Showcase */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-[11px] font-bold mb-2">
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>{t('knowledge.badge', 'Knowledge Hub & Educational Guides')}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              {t('knowledge.title', 'In-Depth Articles & User Guides')}
+            </h2>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">
+              {t('knowledge.subtitle', 'Learn the science, mathematics, and best practices behind every tool.')}
+            </p>
+          </div>
+          <button
+            onClick={() => onNavigate('/knowledge')}
+            className="text-xs sm:text-sm font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer"
+          >
+            <span>{t('knowledge.viewAll', 'View All Articles')}</span>
+            <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {ARTICLES.slice(0, 3).map((article) => (
+            <article
+              key={article.id}
+              onClick={() => onNavigate(`/articles/${article.slug}`)}
+              className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-emerald-500/60 hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    {language === 'ar' ? article.categoryNameAr : article.categoryName}
+                  </span>
+                  <div className="flex items-center gap-1 text-[11px] text-slate-400 font-medium">
+                    <Clock className="w-3 h-3" />
+                    <span>{language === 'ar' ? article.readTimeAr : article.readTime}</span>
+                  </div>
+                </div>
+
+                <h3 className="text-lg font-black text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
+                  {language === 'ar' ? article.titleAr : article.title}
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                  {language === 'ar' ? article.descriptionAr : article.description}
+                </p>
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-black text-emerald-600 dark:text-emerald-400">
+                <span>{t('knowledge.readGuide', 'Read Complete Guide')}</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

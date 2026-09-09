@@ -84,6 +84,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 text-sm font-semibold">
               <li>
                 <button
+                  onClick={() => onNavigate('/knowledge')}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                >
+                  {t('nav.knowledge', 'Knowledge Hub & Guides')}
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('/about')}
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
                 >

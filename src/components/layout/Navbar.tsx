@@ -33,6 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
     { label: t('nav.home', 'Home'), path: '/' },
     { label: t('nav.tools', 'Tools'), path: '/tools' },
     { label: t('nav.categories', 'Categories'), path: '/categories' },
+    { label: language === 'ar' ? 'مركز المعرفة' : 'Knowledge Hub', path: '/knowledge' },
     { label: t('nav.about', 'About'), path: '/about' },
     { label: t('nav.contact', 'Contact'), path: '/contact' },
   ];

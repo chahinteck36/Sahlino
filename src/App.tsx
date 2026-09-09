@@ -14,6 +14,8 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { KnowledgeHubPage } from './pages/KnowledgeHubPage';
+import { ArticleDetailPage } from './pages/ArticleDetailPage';
 
 // MVP & Active Tools
 import { JsonFormatterTool } from './components/tools/JsonFormatterTool';
@@ -37,6 +39,24 @@ import { NumberBaseConverterTool } from './components/tools/NumberBaseConverterT
 import { PasswordGeneratorTool } from './components/tools/PasswordGeneratorTool';
 import { AgeCalculatorTool } from './components/tools/AgeCalculatorTool';
 import { MetaTagGeneratorTool } from './components/tools/MetaTagGeneratorTool';
+
+// Expanded Suite Tools
+import { BmiCalculatorTool } from './components/tools/BmiCalculatorTool';
+import { DiscountCalculatorTool } from './components/tools/DiscountCalculatorTool';
+import { LoanCalculatorTool } from './components/tools/LoanCalculatorTool';
+import { CalorieCalculatorTool } from './components/tools/CalorieCalculatorTool';
+import { DateCalculatorTool } from './components/tools/DateCalculatorTool';
+import { PdfSplitTool } from './components/tools/PdfSplitTool';
+import { PdfRotateTool } from './components/tools/PdfRotateTool';
+import { TextToPdfTool } from './components/tools/TextToPdfTool';
+import { ImageConverterTool } from './components/tools/ImageConverterTool';
+import { ImageRotateTool } from './components/tools/ImageRotateTool';
+import { TextCleanerTool } from './components/tools/TextCleanerTool';
+import { TextReplaceTool } from './components/tools/TextReplaceTool';
+import { HtmlCssFormatterTool } from './components/tools/HtmlCssFormatterTool';
+import { TimestampConverterTool } from './components/tools/TimestampConverterTool';
+import { ColorConverterTool } from './components/tools/ColorConverterTool';
+import { CurrencyConverterTool } from './components/tools/CurrencyConverterTool';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -86,7 +106,16 @@ export default function App() {
       return <CategoryDetailPage categorySlug={slug} onNavigate={navigate} />;
     }
 
-    // 5. Active Tools
+    // 5. Knowledge Hub & SEO Guides (/knowledge or /articles)
+    if (cleanPath === '/knowledge' || cleanPath === '/articles') {
+      return <KnowledgeHubPage onNavigate={navigate} />;
+    }
+    if (cleanPath.startsWith('/articles/')) {
+      const slug = cleanPath.replace('/articles/', '');
+      return <ArticleDetailPage articleSlug={slug} onNavigate={navigate} />;
+    }
+
+    // 6. Active Tools
     if (cleanPath === '/json-formatter') {
       return <JsonFormatterTool onNavigate={navigate} />;
     }
@@ -151,7 +180,57 @@ export default function App() {
       return <MetaTagGeneratorTool onNavigate={navigate} />;
     }
 
-    // 6. Information & Legal Pages
+    // Newly Added Suite Tools
+    if (cleanPath === '/bmi-calculator') {
+      return <BmiCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/discount-calculator') {
+      return <DiscountCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/loan-calculator') {
+      return <LoanCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/calorie-calculator') {
+      return <CalorieCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/date-calculator') {
+      return <DateCalculatorTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/pdf-split') {
+      return <PdfSplitTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/pdf-rotate') {
+      return <PdfRotateTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/text-to-pdf') {
+      return <TextToPdfTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/image-converter') {
+      return <ImageConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/image-rotate') {
+      return <ImageRotateTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/text-cleaner') {
+      return <TextCleanerTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/text-replace') {
+      return <TextReplaceTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/html-css-formatter') {
+      return <HtmlCssFormatterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/timestamp-converter') {
+      return <TimestampConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/color-converter') {
+      return <ColorConverterTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/currency-converter') {
+      return <CurrencyConverterTool onNavigate={navigate} />;
+    }
+
+    // 7. Information & Legal Pages
     if (cleanPath === '/about') {
       return <AboutPage onNavigate={navigate} />;
     }
@@ -159,13 +238,13 @@ export default function App() {
       return <ContactPage onNavigate={navigate} />;
     }
     if (cleanPath === '/privacy-policy') {
-      return <PrivacyPolicyPage />;
+      return <PrivacyPolicyPage onNavigate={navigate} />;
     }
     if (cleanPath === '/terms') {
-      return <TermsPage />;
+      return <TermsPage onNavigate={navigate} />;
     }
     if (cleanPath === '/cookie-policy') {
-      return <CookiePolicyPage />;
+      return <CookiePolicyPage onNavigate={navigate} />;
     }
 
     // 7. 404 Fallback

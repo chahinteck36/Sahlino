@@ -1,166 +1,163 @@
 import React, { useState } from 'react';
-import { Mail, MessageSquare, Send, CheckCircle, Sparkles, HelpCircle } from 'lucide-react';
+import { Mail, MessageSquare, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { useLanguage } from '../context/LanguageContext';
 
-interface ContactPageProps {
+interface LegalPageProps {
   onNavigate: (path: string) => void;
 }
 
-export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
-  const { t } = useLanguage();
+export const ContactPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
+  const { language } = useLanguage();
+  const isAr = language === 'ar';
+  const canonicalUrl = 'https://www.sahlino.tech/contact';
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('Feedback / Tool Suggestion');
+  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setError('Please fill in all required fields.');
-      return;
-    }
-    if (!email.includes('@') || !email.includes('.')) {
-      setError('Please provide a valid email address.');
-      return;
-    }
-
-    setError(null);
+    if (!name || !email || !message) return;
     setSubmitted(true);
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors py-8 sm:py-12">
       <SEOHead
-        title={`Sahlino — ${t('nav.contact', 'Contact Us')}`}
-        description="Have a tool suggestion, feedback, or a bug report? Contact the Sahlino team. We'd love to hear from you."
-        canonicalPath="/contact"
+        title={isAr ? 'اتصل بنا | الدعم الفني والملاحظات - Sahlino' : 'Contact Us | Support & Feedback - Sahlino'}
+        description={
+          isAr
+            ? 'تواصل مع فريق ساهلينو للاقتراحات أو الإبلاغ عن أخطاء أو طلب إضافة أدوات جديدة.'
+            : 'Contact the Sahlino team for tool requests, feedback, or technical support.'
+        }
+        canonicalUrl={canonicalUrl}
+        breadcrumbs={[
+          { name: isAr ? 'الرئيسية' : 'Home', item: 'https://www.sahlino.tech/' },
+          { name: isAr ? 'اتصل بنا' : 'Contact Us', item: canonicalUrl },
+        ]}
       />
 
-      <Breadcrumbs items={[{ label: t('nav.contact', 'Contact') }]} />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <Breadcrumbs
+            items={[
+              { label: isAr ? 'الرئيسية' : 'Home', href: '/' },
+              { label: isAr ? 'اتصل بنا' : 'Contact Us' },
+            ]}
+            onNavigate={onNavigate}
+          />
+        </div>
 
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
-          {t('nav.contact', 'Contact Us')}
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-          We are continuously expanding Sahlino. Suggest a tool, report an issue, or send general inquiries.
-        </p>
-      </div>
-
-      <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 p-6 sm:p-8 shadow-xs">
-        {submitted ? (
-          <div className="py-12 text-center space-y-4">
-            <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
-              <CheckCircle className="w-8 h-8" />
-            </div>
-            <h2 className="text-xl font-bold text-neutral-900 dark:text-white">
-              Thank you for reaching out!
-            </h2>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md mx-auto">
-              Your message has been received. Our team reviews all tool suggestions and feedback to prioritize our roadmap.
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+          <header className="border-b border-slate-100 dark:border-slate-800 pb-6 text-center">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              {isAr ? 'تواصل معنا' : 'Contact Support & Feedback'}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+              {isAr
+                ? 'نسعد دائماً بسماع آرائكم واقتراحاتكم لتطوير أدوات جديدة مفيدة'
+                : 'We would love to hear from you. Suggest new tools or report bugs.'}
             </p>
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                setMessage('');
-              }}
-              className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer"
-            >
-              Send Another Message
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {error && (
-              <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900 text-xs text-rose-700 dark:text-rose-300">
-                {error}
-              </div>
-            )}
+          </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {submitted ? (
+            <div className="p-8 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-3">
+              <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+              <h3 className="text-lg font-bold text-emerald-950 dark:text-emerald-100">
+                {isAr ? 'تم استلام رسالتك بنجاح!' : 'Message Received!'}
+              </h3>
+              <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-300">
+                {isAr
+                  ? 'شكراً لتواصلك معنا. سنراجع اقتراحك أو ملاحظتك في أقرب وقت ممكن.'
+                  : 'Thank you for reaching out. Our team will review your feedback shortly.'}
+              </p>
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  setMessage('');
+                }}
+                className="mt-4 px-6 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 cursor-pointer"
+              >
+                {isAr ? 'إرسال رسالة أخرى' : 'Send another message'}
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                    {isAr ? 'الاسم الكامل' : 'Your Name'}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                    {isAr ? 'البريد الإلكتروني' : 'Email Address'}
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5">
-                  Your Name *
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                  {isAr ? 'موضوع الرسالة' : 'Subject'}
                 </label>
                 <input
                   type="text"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Alex Miller"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  placeholder={isAr ? 'اقتراح أداة جديدة / إبلاغ عن مشكلة' : 'Tool suggestion / Issue report'}
+                  className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5">
-                  Email Address *
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                  {isAr ? 'نص الرسالة' : 'Message'}
                 </label>
-                <input
-                  type="email"
+                <textarea
+                  rows={5}
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. alex@example.com"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={isAr ? 'اكتب رسالتك أو تفاصيل استفسارك بالتفصيل...' : 'Type your message or tool suggestions here...'}
+                  className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm leading-relaxed"
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5">
-                Topic / Subject
-              </label>
-              <select
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 cursor-pointer"
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
-                <option value="Feedback / Tool Suggestion">Suggest a New Tool</option>
-                <option value="Bug Report">Report a Bug / Issue</option>
-                <option value="Partnership / Sponsorship">Partnership & Inquiries</option>
-                <option value="General Feedback">General Feedback</option>
-              </select>
-            </div>
+                <Send className="w-4 h-4" />
+                <span>{isAr ? 'إرسال الرسالة الآن' : 'Send Message'}</span>
+              </button>
+            </form>
+          )}
 
-            <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5">
-                Message *
-              </label>
-              <textarea
-                required
-                rows={5}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Tell us what tool you'd like to see on Sahlino, or describe the issue you encountered..."
-                className="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <Send className="w-4 h-4" />
-              <span>Send Message</span>
-            </button>
-          </form>
-        )}
-      </div>
-
-      <div className="mt-8 text-center text-xs text-neutral-500 dark:text-neutral-400">
-        Looking for quick answers? Check out our{' '}
-        <button
-          onClick={() => onNavigate('/')}
-          className="text-blue-600 dark:text-blue-400 underline font-medium"
-        >
-          Frequently Asked Questions
-        </button>
-        .
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-400">
+            {isAr ? 'يمكنك أيضاً مراسلتنا مباشرة عبر:' : 'Or email directly to:'}{' '}
+            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">contact@sahlino.tech</span>
+          </div>
+        </div>
       </div>
     </div>
   );
