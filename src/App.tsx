@@ -169,33 +169,7 @@ export default function App() {
     }
 
     // 7. 404 Fallback
-    return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="inline-block px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 text-xs font-bold mb-4">
-          404 Not Found
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white mb-3">
-          Page or Tool Not Found
-        </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-md mx-auto mb-8">
-          The tool or page you are looking for does not exist or may have been moved.
-        </p>
-        <div className="flex justify-center gap-3">
-          <button
-            onClick={() => navigate('/')}
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-colors cursor-pointer"
-          >
-            Go to Home
-          </button>
-          <button
-            onClick={() => navigate('/tools')}
-            className="px-5 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
-          >
-            Browse All Tools
-          </button>
-        </div>
-      </div>
-    );
+    return <NotFoundPage onNavigate={navigate} onOpenSearch={() => setIsSearchModalOpen(true)} />;
   };
 
   return (

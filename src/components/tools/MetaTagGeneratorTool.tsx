@@ -30,8 +30,8 @@ export const MetaTagGeneratorTool: React.FC<{ onNavigate: (path: string) => void
 
   const [siteTitle, setSiteTitle] = useState('Sahlino - Make It Easy');
   const [description, setDescription] = useState('Free all-in-one privacy-first online tools for creators and developers.');
-  const [url, setUrl] = useState('https://sahlino.com');
-  const [image, setImage] = useState('https://sahlino.com/og-image.png');
+  const [url, setUrl] = useState('https://www.sahlino.tech');
+  const [image, setImage] = useState('https://www.sahlino.tech/assets/og-image.png');
   const [twitterUser, setTwitterUser] = useState('@sahlino');
   const [copied, setCopied] = useState(false);
 
@@ -69,15 +69,20 @@ export const MetaTagGeneratorTool: React.FC<{ onNavigate: (path: string) => void
         title={toolData.seoTitle}
         description={toolData.seoDescription}
         canonicalPath="/meta-tag-generator"
+        toolSlug="meta-tag-generator"
       />
 
       <Breadcrumbs
         items={[
           {
             label: getCategoryName('seo-web-tools', 'SEO & Web Tools'),
+            href: '/categories/seo-web-tools',
             onClick: () => onNavigate('/categories/seo-web-tools'),
           },
-          { label: getToolName('meta-tag-generator', toolData.name) },
+          {
+            label: getToolName('meta-tag-generator', toolData.name),
+            href: '/meta-tag-generator',
+          },
         ]}
       />
 

@@ -201,30 +201,20 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
         title={toolData.seoTitle}
         description={toolData.seoDescription}
         canonicalPath="/json-formatter"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: 'Sahlino JSON Formatter & Validator',
-          url: 'https://sahlino.com/json-formatter',
-          applicationCategory: 'DeveloperApplication',
-          operatingSystem: 'Any',
-          browserRequirements: 'Requires JavaScript',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description: toolData.seoDescription,
-        }}
+        toolSlug="json-formatter"
       />
 
       <Breadcrumbs
         items={[
           {
             label: getCategoryName('developer-tools', 'Developer Tools'),
+            href: '/categories/developer-tools',
             onClick: () => onNavigate('/categories/developer-tools'),
           },
-          { label: getToolName(toolData.slug, toolData.name) },
+          {
+            label: getToolName(toolData.slug, toolData.name),
+            href: '/json-formatter',
+          },
         ]}
       />
 

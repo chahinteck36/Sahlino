@@ -5,6 +5,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { DynamicIcon } from '../components/common/DynamicIcon';
 import { AdPlaceholder } from '../components/common/AdPlaceholder';
 import { CATEGORIES, getToolsByCategory } from '../data/tools';
+import { generateCategoryStructuredData } from '../utils/seo';
 import { ToolCategory } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -44,12 +45,25 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({
         title={`${localizedCategoryName} - Sahlino`}
         description={localizedCategoryDesc}
         canonicalPath={`/categories/${category.slug}`}
+        structuredData={generateCategoryStructuredData(
+          category,
+          tools,
+          localizedCategoryName,
+          localizedCategoryDesc
+        )}
       />
 
       <Breadcrumbs
         items={[
-          { label: t('nav.categories', 'Categories'), onClick: () => onNavigate('/categories') },
-          { label: localizedCategoryName },
+          {
+            label: t('nav.categories', 'Categories'),
+            href: '/categories',
+            onClick: () => onNavigate('/categories'),
+          },
+          {
+            label: localizedCategoryName,
+            href: `/categories/${category.slug}`,
+          },
         ]}
       />
 

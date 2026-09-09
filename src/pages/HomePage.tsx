@@ -11,6 +11,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
+import { generateHomeStructuredData } from '../utils/seo';
 import { DynamicIcon } from '../components/common/DynamicIcon';
 import { AdPlaceholder } from '../components/common/AdPlaceholder';
 import { FAQSection } from '../components/common/FAQSection';
@@ -56,18 +57,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
         title={`Sahlino — ${t('brand.tagline', 'Make It Easy.')}`}
         description={t('hero.subtitle', 'Free online tools for developers, creators, businesses and everyday tasks.')}
         canonicalPath="/"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: 'Sahlino',
-          url: 'https://sahlino.com/',
-          description: 'Sahlino — Make It Easy. Fast, free online tools.',
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: 'https://sahlino.com/tools?q={search_term_string}',
-            'query-input': 'required name=search_term_string',
-          },
-        }}
+        structuredData={generateHomeStructuredData()}
       />
 
       {/* Hero Section */}

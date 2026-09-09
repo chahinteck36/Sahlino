@@ -235,30 +235,20 @@ export const PercentageCalculatorTool: React.FC<PercentageCalculatorToolProps> =
         title={toolData.seoTitle}
         description={toolData.seoDescription}
         canonicalPath="/percentage-calculator"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: 'Sahlino Percentage Calculator',
-          url: 'https://sahlino.com/percentage-calculator',
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          browserRequirements: 'Requires JavaScript',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description: toolData.seoDescription,
-        }}
+        toolSlug="percentage-calculator"
       />
 
       <Breadcrumbs
         items={[
           {
             label: getCategoryName('calculators', 'Calculators'),
+            href: '/categories/calculators',
             onClick: () => onNavigate('/categories/calculators'),
           },
-          { label: getToolName(toolData.slug, toolData.name) },
+          {
+            label: getToolName(toolData.slug, toolData.name),
+            href: '/percentage-calculator',
+          },
         ]}
       />
 

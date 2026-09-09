@@ -208,30 +208,20 @@ export const BusinessDaysCalculatorTool: React.FC<BusinessDaysCalculatorToolProp
         title={toolData.seoTitle}
         description={toolData.seoDescription}
         canonicalPath="/business-days-calculator"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: 'Sahlino Business Days Calculator',
-          url: 'https://sahlino.com/business-days-calculator',
-          applicationCategory: 'BusinessApplication',
-          operatingSystem: 'Any',
-          browserRequirements: 'Requires JavaScript',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description: toolData.seoDescription,
-        }}
+        toolSlug="business-days-calculator"
       />
 
       <Breadcrumbs
         items={[
           {
             label: getCategoryName('date-and-time', 'Date & Time'),
+            href: '/categories/date-and-time',
             onClick: () => onNavigate('/categories/date-and-time'),
           },
-          { label: getToolName(toolData.slug, toolData.name) },
+          {
+            label: getToolName(toolData.slug, toolData.name),
+            href: '/business-days-calculator',
+          },
         ]}
       />
 

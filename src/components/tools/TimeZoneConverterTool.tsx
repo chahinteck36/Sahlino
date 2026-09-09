@@ -252,30 +252,20 @@ export const TimeZoneConverterTool: React.FC<TimeZoneConverterToolProps> = ({ on
         title={toolData.seoTitle}
         description={toolData.seoDescription}
         canonicalPath="/time-zone-converter"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: 'Sahlino Time Zone Converter',
-          url: 'https://sahlino.com/time-zone-converter',
-          applicationCategory: 'UtilitiesApplication',
-          operatingSystem: 'Any',
-          browserRequirements: 'Requires JavaScript',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description: toolData.seoDescription,
-        }}
+        toolSlug="time-zone-converter"
       />
 
       <Breadcrumbs
         items={[
           {
             label: getCategoryName('date-and-time', 'Date & Time'),
+            href: '/categories/date-and-time',
             onClick: () => onNavigate('/categories/date-and-time'),
           },
-          { label: getToolName(toolData.slug, toolData.name) },
+          {
+            label: getToolName(toolData.slug, toolData.name),
+            href: '/time-zone-converter',
+          },
         ]}
       />
 

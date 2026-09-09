@@ -6,6 +6,7 @@ import {
   DEFAULT_OG_IMAGE,
   getCanonicalUrl,
   generateToolStructuredData,
+  generateBreadcrumbStructuredData,
 } from '../../utils/seo';
 import { TOOLS } from '../../data/tools';
 
@@ -17,6 +18,7 @@ export interface SEOHeadProps {
   ogType?: 'website' | 'article';
   ogImage?: string;
   toolSlug?: string;
+  breadcrumbs?: { name: string; path: string }[];
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -66,6 +68,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   ogType = 'website',
   ogImage = DEFAULT_OG_IMAGE,
   toolSlug,
+  breadcrumbs,
   structuredData,
 }) => {
   const { language, getToolName, getToolDesc, getCategoryName } = useLanguage();
@@ -118,38 +121,65 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     const scriptId = 'sahlino-json-ld';
     let scriptTag = document.getElementById(scriptId) as HTMLScriptElement | null;
 
-    let finalStructuredData: unknown = structuredData;
+    let schemas: Record<string, unknown>[] = [];
 
-    // If toolSlug is specified and no manual structuredData provided, generate rich tool schemas
-    if (!finalStructuredData && toolSlug) {
-      const toolItem = TOOLS.find((t) => t.slug === toolSlug);
+    if (Array.isArray(structuredData)) {
+      schemas = [...structuredData];
+    } else if (structuredData && typeof structuredData === 'object') {
+      schemas = [structuredData];
+    }
+
+    // Identify if this is a tool
+    const inferredSlug =
+      toolSlug ||
+      TOOLS.find((t) => `/${t.slug}` === canonicalPath || t.slug === canonicalPath)?.slug;
+
+    if (inferredSlug) {
+      const toolItem = TOOLS.find((t) => t.slug === inferredSlug);
       if (toolItem) {
         const localizedName = getToolName(toolItem.slug, toolItem.name);
         const localizedDesc = getToolDesc(toolItem.slug, toolItem.seoDescription);
         const localizedCatName = getCategoryName(toolItem.category, toolItem.categoryName);
-        finalStructuredData = generateToolStructuredData(
+        const toolSchemas = generateToolStructuredData(
           toolItem,
           localizedName,
           localizedDesc,
           localizedCatName
         );
+
+        // Merge tool schemas if not already present
+        toolSchemas.forEach((ts) => {
+          const type = ts['@type'];
+          const alreadyExists = schemas.some((s) => s['@type'] === type);
+          if (!alreadyExists) {
+            schemas.push(ts);
+          }
+        });
       }
     }
 
-    if (finalStructuredData) {
+    // If explicit breadcrumbs provided and no BreadcrumbList exists yet
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const hasBreadcrumbs = schemas.some((s) => s['@type'] === 'BreadcrumbList');
+      if (!hasBreadcrumbs) {
+        schemas.push(generateBreadcrumbStructuredData(breadcrumbs));
+      }
+    }
+
+    if (schemas.length > 0) {
       if (!scriptTag) {
         scriptTag = document.createElement('script');
         scriptTag.id = scriptId;
         scriptTag.type = 'application/ld+json';
         document.head.appendChild(scriptTag);
       }
-      scriptTag.text = JSON.stringify(finalStructuredData);
+      scriptTag.text = JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
     } else if (scriptTag) {
       scriptTag.remove();
     }
 
     return () => {
-      // Cleanup tags that shouldn't persist across page transitions
+      // Cleanup if needed
     };
   }, [
     title,
@@ -159,6 +189,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     ogType,
     ogImage,
     toolSlug,
+    breadcrumbs,
     structuredData,
     language,
     getToolName,

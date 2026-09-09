@@ -8,6 +8,7 @@ export interface ColorThemeOption {
   name: string;
   nameAr: string;
   primaryHex: string;
+  primaryBgClass: string;
   accentClass: string;
   btnClass: string;
   badgeClass: string;
@@ -20,6 +21,7 @@ export const COLOR_THEMES: ColorThemeOption[] = [
     name: 'Emerald Green',
     nameAr: 'أخضر زمردي (ساهل)',
     primaryHex: '#10b981',
+    primaryBgClass: 'bg-emerald-600',
     accentClass: 'text-emerald-600 dark:text-emerald-400',
     btnClass: 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/20',
     badgeClass: 'bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
@@ -30,6 +32,7 @@ export const COLOR_THEMES: ColorThemeOption[] = [
     name: 'Classic Indigo',
     nameAr: 'بنفسجي نيلي',
     primaryHex: '#6366f1',
+    primaryBgClass: 'bg-indigo-600',
     accentClass: 'text-indigo-600 dark:text-indigo-400',
     btnClass: 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/20',
     badgeClass: 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
@@ -40,6 +43,7 @@ export const COLOR_THEMES: ColorThemeOption[] = [
     name: 'Ocean Blue',
     nameAr: 'أزرق محيطي',
     primaryHex: '#0284c7',
+    primaryBgClass: 'bg-sky-600',
     accentClass: 'text-sky-600 dark:text-sky-400',
     btnClass: 'bg-sky-600 hover:bg-sky-700 text-white shadow-sky-500/20',
     badgeClass: 'bg-sky-50 dark:bg-sky-950/70 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800',
@@ -50,6 +54,7 @@ export const COLOR_THEMES: ColorThemeOption[] = [
     name: 'Crimson Rose',
     nameAr: 'وردي قرمزي',
     primaryHex: '#e11d48',
+    primaryBgClass: 'bg-rose-600',
     accentClass: 'text-rose-600 dark:text-rose-400',
     btnClass: 'bg-rose-600 hover:bg-rose-700 text-white shadow-rose-500/20',
     badgeClass: 'bg-rose-50 dark:bg-rose-950/70 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800',
@@ -60,6 +65,7 @@ export const COLOR_THEMES: ColorThemeOption[] = [
     name: 'Warm Amber',
     nameAr: 'عنبري دافئ',
     primaryHex: '#d97706',
+    primaryBgClass: 'bg-amber-600',
     accentClass: 'text-amber-600 dark:text-amber-400',
     btnClass: 'bg-amber-600 hover:bg-amber-700 text-white shadow-amber-500/20',
     badgeClass: 'bg-amber-50 dark:bg-amber-950/70 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
