@@ -11,6 +11,9 @@ export function getCanonicalUrl(path = ''): string {
   if (!path || path === '/') {
     return `${SITE_URL}/`;
   }
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
   const cleanPath = path.replace(/^\/+|\/+$/g, '');
   return `${SITE_URL}/${cleanPath}`;
 }
@@ -230,16 +233,22 @@ export function generateCategoryStructuredData(
  * Generates BreadcrumbList schema for any list of breadcrumb items
  */
 export function generateBreadcrumbStructuredData(
-  items: { name: string; path: string }[]
+  items: { name: string; path?: string; item?: string; href?: string }[]
 ) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: getCanonicalUrl(item.path),
-    })),
+    itemListElement: items.map((item, index) => {
+      const rawTarget = item.item || item.path || item.href || '/';
+      const itemUrl = rawTarget.startsWith('http://') || rawTarget.startsWith('https://')
+        ? rawTarget
+        : getCanonicalUrl(rawTarget);
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: itemUrl,
+      };
+    }),
   };
 }

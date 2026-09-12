@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface ImageConverterToolProps {
   onNavigate: (path: string) => void;
@@ -65,6 +66,12 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onNaviga
       setConvertedSize((sizeBytes / 1024).toFixed(1) + ' KB');
     };
     img.src = imageSrc;
+  };
+
+  const handleDownloadConverted = () => {
+    if (!convertedUrl) return;
+    const ext = targetFormat === 'jpeg' ? 'jpg' : targetFormat;
+    triggerDownload(convertedUrl, `${fileName || 'converted_image'}.${ext}`);
   };
 
   return (
@@ -137,7 +144,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onNaviga
                   </label>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { id: 'webp', label: 'WebP (موصى به)' },
+                      { id: 'webp', label: isAr ? 'WebP (موصى به)' : 'WebP (Recommended)' },
                       { id: 'jpeg', label: 'JPG / JPEG' },
                       { id: 'png', label: 'PNG' },
                     ].map((fmt) => (
@@ -213,14 +220,14 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onNaviga
                   </div>
                 </div>
 
-                <a
-                  href={convertedUrl}
-                  download={`${fileName}.${targetFormat}`}
-                  className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2"
+                <button
+                  type="button"
+                  onClick={handleDownloadConverted}
+                  className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>{isAr ? 'تحميل الصورة' : 'Download Image'}</span>
-                </a>
+                </button>
               </div>
             )}
           </div>

@@ -11,14 +11,14 @@ import {
 import { TOOLS } from '../../data/tools';
 
 export interface SEOHeadProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonicalPath?: string;
   robots?: string;
   ogType?: 'website' | 'article';
   ogImage?: string;
   toolSlug?: string;
-  breadcrumbs?: { name: string; path: string }[];
+  breadcrumbs?: { name: string; path?: string; item?: string; href?: string }[];
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -74,11 +74,32 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   const { language, getToolName, getToolDesc, getCategoryName } = useLanguage();
 
   useEffect(() => {
+    // Identify if this is a tool
+    const inferredSlug =
+      toolSlug ||
+      TOOLS.find((t) => `/${t.slug}` === canonicalPath || t.slug === canonicalPath)?.slug;
+
+    const toolItem = inferredSlug ? TOOLS.find((t) => t.slug === inferredSlug) : undefined;
+
+    // Resolve effective title, description, and canonical path
+    const resolvedTitle =
+      title ||
+      (toolItem ? `${getToolName(toolItem.slug, toolItem.name)}` : SITE_NAME);
+
+    const resolvedDesc =
+      description ||
+      (toolItem ? getToolDesc(toolItem.slug, toolItem.seoDescription) : '');
+
+    const effectiveCanonicalPath = canonicalPath || (toolItem ? `/${toolItem.slug}` : '');
+
     // 1. Calculate full absolute canonical URL
-    const fullCanonical = getCanonicalUrl(canonicalPath);
+    const fullCanonical = getCanonicalUrl(effectiveCanonicalPath);
 
     // 2. Title & Formatting
-    const cleanTitle = title.includes('Sahlino') ? title : `${title} - ${SITE_NAME}`;
+    const cleanTitle =
+      resolvedTitle.includes('Sahlino') || resolvedTitle.includes('ساهلينو')
+        ? resolvedTitle
+        : `${resolvedTitle} - ${SITE_NAME}`;
     document.title = cleanTitle;
 
     // 3. Document language & direction
@@ -86,13 +107,13 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
 
     // 4. Standard Meta Tags
-    setOrCreateMeta('meta[name="description"]', 'name', 'description', description);
+    setOrCreateMeta('meta[name="description"]', 'name', 'description', resolvedDesc);
     setOrCreateMeta('meta[name="robots"]', 'name', 'robots', robots);
     setOrCreateMeta('meta[name="googlebot"]', 'name', 'googlebot', robots);
 
     // 5. Open Graph Meta Tags
     setOrCreateMeta('meta[property="og:title"]', 'property', 'og:title', cleanTitle);
-    setOrCreateMeta('meta[property="og:description"]', 'property', 'og:description', description);
+    setOrCreateMeta('meta[property="og:description"]', 'property', 'og:description', resolvedDesc);
     setOrCreateMeta('meta[property="og:url"]', 'property', 'og:url', fullCanonical);
     setOrCreateMeta('meta[property="og:type"]', 'property', 'og:type', ogType);
     setOrCreateMeta('meta[property="og:site_name"]', 'property', 'og:site_name', SITE_NAME);
@@ -104,7 +125,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     // 6. Twitter Cards Meta Tags
     setOrCreateMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setOrCreateMeta('meta[name="twitter:title"]', 'name', 'twitter:title', cleanTitle);
-    setOrCreateMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
+    setOrCreateMeta('meta[name="twitter:description"]', 'name', 'twitter:description', resolvedDesc);
     setOrCreateMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
     setOrCreateMeta('meta[name="twitter:site"]', 'name', 'twitter:site', '@sahlino');
 
@@ -129,33 +150,25 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       schemas = [structuredData];
     }
 
-    // Identify if this is a tool
-    const inferredSlug =
-      toolSlug ||
-      TOOLS.find((t) => `/${t.slug}` === canonicalPath || t.slug === canonicalPath)?.slug;
+    if (toolItem) {
+      const localizedName = getToolName(toolItem.slug, toolItem.name);
+      const localizedDesc = getToolDesc(toolItem.slug, toolItem.seoDescription);
+      const localizedCatName = getCategoryName(toolItem.category, toolItem.categoryName);
+      const toolSchemas = generateToolStructuredData(
+        toolItem,
+        localizedName,
+        localizedDesc,
+        localizedCatName
+      );
 
-    if (inferredSlug) {
-      const toolItem = TOOLS.find((t) => t.slug === inferredSlug);
-      if (toolItem) {
-        const localizedName = getToolName(toolItem.slug, toolItem.name);
-        const localizedDesc = getToolDesc(toolItem.slug, toolItem.seoDescription);
-        const localizedCatName = getCategoryName(toolItem.category, toolItem.categoryName);
-        const toolSchemas = generateToolStructuredData(
-          toolItem,
-          localizedName,
-          localizedDesc,
-          localizedCatName
-        );
-
-        // Merge tool schemas if not already present
-        toolSchemas.forEach((ts) => {
-          const type = ts['@type'];
-          const alreadyExists = schemas.some((s) => s['@type'] === type);
-          if (!alreadyExists) {
-            schemas.push(ts);
-          }
-        });
-      }
+      // Merge tool schemas if not already present
+      toolSchemas.forEach((ts) => {
+        const type = ts['@type'];
+        const alreadyExists = schemas.some((s) => s['@type'] === type);
+        if (!alreadyExists) {
+          schemas.push(ts);
+        }
+      });
     }
 
     // If explicit breadcrumbs provided and no BreadcrumbList exists yet

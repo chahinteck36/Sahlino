@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Sparkles, Copy, Download, Trash2, ArrowUpDown, Check, Filter } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface TextCleanerToolProps {
   onNavigate: (path: string) => void;
@@ -13,15 +14,24 @@ export const TextCleanerTool: React.FC<TextCleanerToolProps> = ({ onNavigate }) 
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [input, setInput] = useState<string>(
-    'Apple\nBanana\n   Apple   \nOrange\n\nBanana\nGrape\nOrange'
-  );
+  const sampleAr = 'تفاح\nموز\n   تفاح   \nبرتقال\n\nموز\nعنب\nبرتقال\nمانجو';
+  const sampleEn = 'Apple\nBanana\n   Apple   \nOrange\n\nBanana\nGrape\nOrange\nMango';
+
+  const [input, setInput] = useState<string>(isAr ? sampleAr : sampleEn);
   const [removeDuplicates, setRemoveDuplicates] = useState<boolean>(true);
   const [removeEmptyLines, setRemoveEmptyLines] = useState<boolean>(true);
   const [trimWhitespace, setTrimWhitespace] = useState<boolean>(true);
   const [sortOrder, setSortOrder] = useState<'none' | 'asc' | 'desc'>('asc');
   const [stripHtml, setStripHtml] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (input === sampleAr && !isAr) {
+      setInput(sampleEn);
+    } else if (input === sampleEn && isAr) {
+      setInput(sampleAr);
+    }
+  }, [isAr]);
 
   const { output, beforeLines, afterLines, removedCount } = useMemo(() => {
     let lines = input.split('\n');
@@ -69,10 +79,8 @@ export const TextCleanerTool: React.FC<TextCleanerToolProps> = ({ onNavigate }) 
   const handleDownload = () => {
     const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'cleaned_text.txt';
-    link.click();
+    triggerDownload(url, 'cleaned_text.txt');
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   return (

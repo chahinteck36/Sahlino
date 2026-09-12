@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface LoanCalculatorToolProps {
   onNavigate: (path: string) => void;
@@ -13,13 +14,15 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [principal, setPrincipal] = useState<number>(25000);
-  const [annualRate, setAnnualRate] = useState<number>(5.5);
+  const [principalStr, setPrincipalStr] = useState<string>('25000');
+  const [annualRateStr, setAnnualRateStr] = useState<string>('5.5');
   const [termYears, setTermYears] = useState<number>(4);
 
   const { monthlyPayment, totalPayment, totalInterest, principalPercent, interestPercent } = useMemo(() => {
-    const P = Math.max(0, principal || 0);
-    const rYear = Math.max(0, annualRate || 0);
+    const rawP = parseFloat(toAsciiDigits(principalStr)) || 0;
+    const rawR = parseFloat(toAsciiDigits(annualRateStr)) || 0;
+    const P = Math.max(0, rawP);
+    const rYear = Math.max(0, rawR);
     const years = Math.max(1, termYears || 1);
     const n = years * 12;
 
@@ -48,13 +51,13 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
     const iPct = 100 - pPct;
 
     return {
-      monthlyPayment: m.toFixed(2),
-      totalPayment: total.toFixed(2),
-      totalInterest: interest.toFixed(2),
+      monthlyPayment: m.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      totalPayment: total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      totalInterest: interest.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
       principalPercent: pPct,
       interestPercent: iPct,
     };
-  }, [principal, annualRate, termYears]);
+  }, [principalStr, annualRateStr, termYears]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -99,11 +102,10 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
                 {isAr ? 'مبلغ القرض (أصل التمويل)' : 'Loan Principal Amount'}
               </label>
               <input
-                type="number"
-                min="100"
-                step="1000"
-                value={principal}
-                onChange={(e) => setPrincipal(parseFloat(e.target.value) || 0)}
+                type="text"
+                inputMode="decimal"
+                value={principalStr}
+                onChange={(e) => setPrincipalStr(e.target.value)}
                 className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white"
               />
             </div>
@@ -114,12 +116,10 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
                   {isAr ? 'نسبة الفائدة السنوية (%)' : 'Annual Interest Rate (%)'}
                 </label>
                 <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  step="0.1"
-                  value={annualRate}
-                  onChange={(e) => setAnnualRate(parseFloat(e.target.value) || 0)}
+                  type="text"
+                  inputMode="decimal"
+                  value={annualRateStr}
+                  onChange={(e) => setAnnualRateStr(e.target.value)}
                   className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white"
                 />
               </div>
@@ -166,7 +166,7 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
               {monthlyPayment}
             </div>
 
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 text-xs space-y-2.5 text-slate-600 dark:text-slate-300 text-left">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 text-xs space-y-2.5 text-slate-600 dark:text-slate-300 text-start">
               <div className="flex justify-between">
                 <span>{isAr ? 'إجمالي السداد مع الفوائد:' : 'Total Repayment Amount:'}</span>
                 <span className="font-bold text-slate-900 dark:text-white font-mono">{totalPayment}</span>

@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ArrowRightLeft, Copy, Check, Download } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface TextReplaceToolProps {
   onNavigate: (path: string) => void;
@@ -13,14 +14,29 @@ export const TextReplaceTool: React.FC<TextReplaceToolProps> = ({ onNavigate }) 
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [text, setText] = useState<string>(
-    'The quick brown fox jumps over the lazy dog. The fox is fast and smart.'
-  );
-  const [findStr, setFindStr] = useState<string>('fox');
-  const [replaceStr, setReplaceStr] = useState<string>('cat');
+  const sampleAr =
+    'ساهلينو هو موقع يقدم أدوات ويب مجانية. يتميز ساهلينو بالسرعة والخصوصية الفائقة لأن ساهلينو يعمل داخل المتصفح مباشرة.';
+  const sampleEn =
+    'The quick brown fox jumps over the lazy dog. The fox is fast and the fox is smart.';
+
+  const [text, setText] = useState<string>(isAr ? sampleAr : sampleEn);
+  const [findStr, setFindStr] = useState<string>(isAr ? 'ساهلينو' : 'fox');
+  const [replaceStr, setReplaceStr] = useState<string>(isAr ? 'Sahlino' : 'cat');
   const [matchCase, setMatchCase] = useState<boolean>(false);
   const [useRegex, setUseRegex] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (text === sampleAr && !isAr) {
+      setText(sampleEn);
+      setFindStr('fox');
+      setReplaceStr('cat');
+    } else if (text === sampleEn && isAr) {
+      setText(sampleAr);
+      setFindStr('ساهلينو');
+      setReplaceStr('Sahlino');
+    }
+  }, [isAr]);
 
   const { resultText, matchCount } = useMemo(() => {
     if (!findStr) return { resultText: text, matchCount: 0 };
@@ -51,6 +67,13 @@ export const TextReplaceTool: React.FC<TextReplaceToolProps> = ({ onNavigate }) 
     navigator.clipboard.writeText(resultText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownload = () => {
+    const blob = new Blob([resultText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    triggerDownload(url, 'replaced_text.txt');
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   return (
@@ -165,13 +188,24 @@ export const TextReplaceTool: React.FC<TextReplaceToolProps> = ({ onNavigate }) 
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300">
                 {isAr ? 'النتيجة بعد الاستبدال' : 'Replaced Output'}
               </label>
-              <button
-                onClick={handleCopy}
-                className="text-xs text-emerald-600 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
-              >
-                {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? (isAr ? 'تم النسخ' : 'Copied') : (isAr ? 'نسخ' : 'Copy')}</span>
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="text-xs text-emerald-600 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copied ? (isAr ? 'تم النسخ' : 'Copied') : (isAr ? 'نسخ' : 'Copy')}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDownload}
+                  className="text-xs text-slate-500 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'تحميل' : 'Download'}</span>
+                </button>
+              </div>
             </div>
             <textarea
               readOnly

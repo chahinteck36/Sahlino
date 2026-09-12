@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { RotateCw, RotateCcw, FlipHorizontal, FlipVertical, Upload, Download, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { RotateCw, RotateCcw, FlipHorizontal, FlipVertical, Upload, Download, Rotate3d, RefreshCw } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface ImageRotateToolProps {
   onNavigate: (path: string) => void;
@@ -56,10 +57,8 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
       ctx.scale(flipH ? -1 : 1, flipV ? -1 : 1);
       ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
 
-      const link = document.createElement('a');
-      link.download = `rotated_${fileName || 'image.png'}`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      const dataUrl = canvas.toDataURL('image/png');
+      triggerDownload(dataUrl, `rotated_${fileName.replace(/\.[^/.]+$/, '') || 'image'}.png`);
     };
     img.src = imageSrc;
   };
@@ -123,6 +122,20 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
               />
             </div>
 
+            {/* Rotation Status Badge */}
+            <div className="flex items-center justify-between px-2 text-xs font-semibold text-slate-500">
+              <span>{isAr ? 'الزاوية الحالية:' : 'Current Rotation:'} <strong className="text-emerald-600">{rotation}°</strong></span>
+              {(flipH || flipV) && (
+                <span className="text-emerald-600 font-medium">
+                  {flipH && flipV
+                    ? (isAr ? 'معكوس أفقياً وعمودياً' : 'Flipped H & V')
+                    : flipH
+                    ? (isAr ? 'معكوس أفقياً' : 'Flipped Horizontally')
+                    : (isAr ? 'معكوس عمودياً' : 'Flipped Vertically')}
+                </span>
+              )}
+            </div>
+
             {/* Controls Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <button
@@ -130,7 +143,7 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
                 className="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4 text-emerald-600" />
-                <span>90° يسار</span>
+                <span>{isAr ? '90° يسار' : '90° Left'}</span>
               </button>
 
               <button
@@ -138,7 +151,7 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
                 className="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RotateCw className="w-4 h-4 text-emerald-600" />
-                <span>90° يمين</span>
+                <span>{isAr ? '90° يمين' : '90° Right'}</span>
               </button>
 
               <button
@@ -150,7 +163,7 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
                 }`}
               >
                 <FlipHorizontal className="w-4 h-4 text-emerald-600" />
-                <span>قلب أفقي</span>
+                <span>{isAr ? 'قلب أفقي' : 'Flip Horizontal'}</span>
               </button>
 
               <button
@@ -162,7 +175,7 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
                 }`}
               >
                 <FlipVertical className="w-4 h-4 text-emerald-600" />
-                <span>قلب عمودي</span>
+                <span>{isAr ? 'قلب عمودي' : 'Flip Vertical'}</span>
               </button>
             </div>
 

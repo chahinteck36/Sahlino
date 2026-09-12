@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Scissors, Upload, FileText, Download, AlertCircle, CheckCircle, RefreshCw } from 'lucide-react';
+import { Scissors, Upload, FileText, Download, AlertCircle, RefreshCw } from 'lucide-react';
 import { PDFDocument } from 'pdf-lib';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits, triggerDownload } from '../../utils/numberUtils';
 
 interface PdfSplitToolProps {
   onNavigate: (path: string) => void;
@@ -46,13 +47,14 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
 
   const parseRanges = (input: string, max: number): number[] => {
     const pages = new Set<number>();
-    const parts = input.split(',').map((p) => p.trim());
+    const normalized = toAsciiDigits(input);
+    const parts = normalized.split(',').map((p) => p.trim());
 
     for (const part of parts) {
       if (part.includes('-')) {
         const [startStr, endStr] = part.split('-');
-        const start = parseInt(startStr, 10);
-        const end = parseInt(endStr, 10);
+        const start = parseInt(startStr.trim(), 10);
+        const end = parseInt(endStr.trim(), 10);
         if (!isNaN(start) && !isNaN(end)) {
           const s = Math.max(1, Math.min(start, end));
           const e = Math.min(max, Math.max(start, end));
@@ -77,7 +79,7 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
     try {
       const targetPages = parseRanges(pageRange, totalPages);
       if (targetPages.length === 0) {
-        setErrorMsg(isAr ? 'يرجى تحديد أرقام صفحات صالحة.' : 'Please provide valid page numbers.');
+        setErrorMsg(isAr ? 'يرجى تحديد أرقام صفحات صالحة من 1 إلى ' + totalPages : 'Please provide valid page numbers from 1 to ' + totalPages);
         setIsProcessing(false);
         return;
       }
@@ -100,6 +102,12 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handleDownloadFile = () => {
+    if (!downloadUrl || !file) return;
+    const filename = `split_${file.name.replace(/\.pdf$/i, '')}.pdf`;
+    triggerDownload(downloadUrl, filename);
   };
 
   return (
@@ -188,7 +196,54 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
                 placeholder="1-3, 5"
                 className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-900 dark:text-white"
               />
-              <p className="text-[11px] text-slate-400 mt-1">
+              <div className="flex flex-wrap gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={() => setPageRange('1')}
+                  className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer font-medium"
+                >
+                  {isAr ? 'الصفحة الأولى فقط' : 'First Page'}
+                </button>
+                {totalPages >= 3 && (
+                  <button
+                    type="button"
+                    onClick={() => setPageRange(`1-${Math.min(totalPages, 3)}`)}
+                    className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer font-medium"
+                  >
+                    {isAr ? 'أول 3 صفحات (1-3)' : 'First 3 Pages'}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setPageRange(`1-${totalPages}`)}
+                  className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer font-medium"
+                >
+                  {isAr ? `كل الصفحات (1-${totalPages})` : `All Pages (1-${totalPages})`}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const odds: number[] = [];
+                    for (let i = 1; i <= totalPages; i += 2) odds.push(i);
+                    setPageRange(odds.join(', '));
+                  }}
+                  className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer font-medium"
+                >
+                  {isAr ? 'الصفحات الفردية' : 'Odd Pages'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const evens: number[] = [];
+                    for (let i = 2; i <= totalPages; i += 2) evens.push(i);
+                    setPageRange(evens.join(', '));
+                  }}
+                  className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer font-medium"
+                >
+                  {isAr ? 'الصفحات الزوجية' : 'Even Pages'}
+                </button>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-2">
                 {isAr
                   ? `أدخل أرقام الصفحات مفصولة بفواصل أو نطاقات مثل: 1-${Math.min(totalPages, 5)}`
                   : `Enter comma-separated page numbers or ranges between 1 and ${totalPages}`}
@@ -214,14 +269,14 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
               </button>
 
               {downloadUrl && (
-                <a
-                  href={downloadUrl}
-                  download={`split_${file.name}`}
-                  className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2"
+                <button
+                  type="button"
+                  onClick={handleDownloadFile}
+                  className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>{isAr ? 'تحميل الملف المستخرج' : 'Download Extracted PDF'}</span>
-                </a>
+                </button>
               )}
             </div>
           </div>

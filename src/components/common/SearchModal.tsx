@@ -44,14 +44,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
   const results: ToolItem[] = query.trim()
     ? TOOLS.filter((tool) => {
         const q = query.toLowerCase().trim();
-        const localizedName = getToolName(tool.slug, tool.name).toLowerCase();
-        const localizedDesc = getToolDesc(tool.slug, tool.description).toLowerCase();
+        const localizedName = (getToolName(tool.slug, tool.name) || '').toLowerCase();
+        const localizedDesc = (getToolDesc(tool.slug, tool.description) || '').toLowerCase();
         return (
-          tool.name.toLowerCase().includes(q) ||
-          tool.description.toLowerCase().includes(q) ||
+          (tool.name || '').toLowerCase().includes(q) ||
+          (tool.description || '').toLowerCase().includes(q) ||
           localizedName.includes(q) ||
           localizedDesc.includes(q) ||
-          tool.tags.some((tg) => tg.toLowerCase().includes(q))
+          (tool.tags || []).some((tg) => (tg || '').toLowerCase().includes(q))
         );
       })
     : TOOLS.filter((t) => t.popular);

@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface TimestampConverterToolProps {
   onNavigate: (path: string) => void;
@@ -27,14 +28,15 @@ export const TimestampConverterTool: React.FC<TimestampConverterToolProps> = ({ 
 
   // Convert Epoch to Date
   const { localDate, utcDate, relativeTime } = (() => {
-    const num = parseInt(epochInput.trim(), 10);
+    const normalized = toAsciiDigits(epochInput.trim());
+    const num = parseInt(normalized, 10);
     if (isNaN(num)) return { localDate: '-', utcDate: '-', relativeTime: '-' };
 
     // Handle milliseconds vs seconds
-    const ms = epochInput.trim().length > 11 ? num : num * 1000;
+    const ms = normalized.length > 11 ? num : num * 1000;
     const d = new Date(ms);
 
-    if (isNaN(d.getTime())) return { localDate: 'Invalid Date', utcDate: 'Invalid Date', relativeTime: '-' };
+    if (isNaN(d.getTime())) return { localDate: isAr ? 'تاريخ غير صالح' : 'Invalid Date', utcDate: isAr ? 'تاريخ غير صالح' : 'Invalid Date', relativeTime: '-' };
 
     return {
       localDate: d.toLocaleString(),

@@ -563,12 +563,12 @@ export function searchArticles(query: string): ArticleItem[] {
   if (!clean) return [];
   return ARTICLES.filter((a) => {
     return (
-      a.title.toLowerCase().includes(clean) ||
-      a.titleAr.includes(clean) ||
-      a.description.toLowerCase().includes(clean) ||
-      a.descriptionAr.includes(clean) ||
-      a.categoryName.toLowerCase().includes(clean) ||
-      a.categoryNameAr.includes(clean)
+      (a.title || '').toLowerCase().includes(clean) ||
+      (a.titleAr || '').includes(clean) ||
+      (a.description || '').toLowerCase().includes(clean) ||
+      (a.descriptionAr || '').includes(clean) ||
+      (a.categoryName || '').toLowerCase().includes(clean) ||
+      (a.categoryNameAr || '').includes(clean)
     );
   });
 }

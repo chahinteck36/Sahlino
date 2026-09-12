@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface CalorieCalculatorToolProps {
   onNavigate: (path: string) => void;
@@ -14,12 +15,16 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
   const isAr = language === 'ar';
 
   const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [age, setAge] = useState<number>(28);
-  const [weight, setWeight] = useState<number>(75);
-  const [height, setHeight] = useState<number>(178);
+  const [ageStr, setAgeStr] = useState<string>('28');
+  const [weightStr, setWeightStr] = useState<string>('75');
+  const [heightStr, setHeightStr] = useState<string>('178');
   const [activity, setActivity] = useState<number>(1.375); // Lightly active
 
   const { bmr, tdee, weightLoss, weightGain, extremeLoss } = useMemo(() => {
+    const age = parseInt(toAsciiDigits(ageStr), 10) || 20;
+    const weight = parseFloat(toAsciiDigits(weightStr)) || 70;
+    const height = parseFloat(toAsciiDigits(heightStr)) || 170;
+
     // Mifflin-St Jeor Equation
     let baseBmr = 10 * weight + 6.25 * height - 5 * age;
     if (gender === 'male') {
@@ -36,7 +41,7 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
       extremeLoss: Math.round(calculatedTdee - 1000),
       weightGain: Math.round(calculatedTdee + 500),
     };
-  }, [gender, age, weight, height, activity]);
+  }, [gender, ageStr, weightStr, heightStr, activity]);
 
   const activities = [
     { value: 1.2, name: 'Sedentary', nameAr: 'خامل (قليل أو لا تمارين)', desc: 'Little to no exercise, desk job' },
@@ -114,11 +119,10 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
                   {isAr ? 'العمر' : 'Age'}
                 </label>
                 <input
-                  type="number"
-                  min="12"
-                  max="100"
-                  value={age}
-                  onChange={(e) => setAge(parseInt(e.target.value, 10) || 20)}
+                  type="text"
+                  inputMode="numeric"
+                  value={ageStr}
+                  onChange={(e) => setAgeStr(e.target.value)}
                   className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-900 dark:text-white"
                 />
               </div>
@@ -127,11 +131,10 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
                   {isAr ? 'الوزن (كجم)' : 'Weight (kg)'}
                 </label>
                 <input
-                  type="number"
-                  min="30"
-                  max="200"
-                  value={weight}
-                  onChange={(e) => setWeight(parseFloat(e.target.value) || 70)}
+                  type="text"
+                  inputMode="decimal"
+                  value={weightStr}
+                  onChange={(e) => setWeightStr(e.target.value)}
                   className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-900 dark:text-white"
                 />
               </div>
@@ -140,11 +143,10 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
                   {isAr ? 'الطول (سم)' : 'Height (cm)'}
                 </label>
                 <input
-                  type="number"
-                  min="120"
-                  max="230"
-                  value={height}
-                  onChange={(e) => setHeight(parseFloat(e.target.value) || 170)}
+                  type="text"
+                  inputMode="decimal"
+                  value={heightStr}
+                  onChange={(e) => setHeightStr(e.target.value)}
                   className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-900 dark:text-white"
                 />
               </div>
@@ -160,7 +162,7 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
                   <button
                     key={act.value}
                     onClick={() => setActivity(act.value)}
-                    className={`w-full text-left p-2.5 rounded-xl border text-xs flex justify-between items-center transition-colors cursor-pointer ${
+                    className={`w-full text-start p-2.5 rounded-xl border text-xs flex justify-between items-center transition-colors cursor-pointer ${
                       activity === act.value
                         ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 font-bold'
                         : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300'
@@ -187,7 +189,7 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
             </span>
 
             {/* Target Breakdown */}
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 space-y-2.5 text-xs text-left">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 space-y-2.5 text-xs text-start">
               <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
                 <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold">
                   <TrendingDown className="w-4 h-4 text-emerald-600" />

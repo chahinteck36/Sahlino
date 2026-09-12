@@ -5,6 +5,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface PdfRotateToolProps {
   onNavigate: (path: string) => void;
@@ -69,6 +70,12 @@ export const PdfRotateTool: React.FC<PdfRotateToolProps> = ({ onNavigate }) => {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handleDownloadFile = () => {
+    if (!downloadUrl || !file) return;
+    const filename = `rotated_${file.name.replace(/\.pdf$/i, '')}.pdf`;
+    triggerDownload(downloadUrl, filename);
   };
 
   return (
@@ -144,9 +151,9 @@ export const PdfRotateTool: React.FC<PdfRotateToolProps> = ({ onNavigate }) => {
               </label>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { angle: 90, label: '90° (مع عقارب الساعة)' },
-                  { angle: 180, label: '180° (عكس رأساً على عقب)' },
-                  { angle: 270, label: '270° (عكس عقارب الساعة)' },
+                  { angle: 90, label: isAr ? '90° (مع عقارب الساعة)' : '90° (Clockwise)' },
+                  { angle: 180, label: isAr ? '180° (عكس رأساً على عقب)' : '180° (Upside-Down)' },
+                  { angle: 270, label: isAr ? '270° (عكس عقارب الساعة)' : '270° (Counter-Clockwise)' },
                 ].map((item) => (
                   <button
                     key={item.angle}
@@ -207,14 +214,14 @@ export const PdfRotateTool: React.FC<PdfRotateToolProps> = ({ onNavigate }) => {
               </button>
 
               {downloadUrl && (
-                <a
-                  href={downloadUrl}
-                  download={`rotated_${file.name}`}
-                  className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2"
+                <button
+                  type="button"
+                  onClick={handleDownloadFile}
+                  className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 text-xs sm:text-sm font-bold shadow-md transition-colors inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>{isAr ? 'تحميل الملف المدور' : 'Download Rotated PDF'}</span>
-                </a>
+                </button>
               )}
             </div>
           </div>

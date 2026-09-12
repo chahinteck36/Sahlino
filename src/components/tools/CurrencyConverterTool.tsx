@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface CurrencyConverterToolProps {
   onNavigate: (path: string) => void;
@@ -29,9 +30,14 @@ export const CurrencyConverterTool: React.FC<CurrencyConverterToolProps> = ({ on
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [amount, setAmount] = useState<number>(100);
+  const [amountStr, setAmountStr] = useState<string>('100');
   const [fromCurrency, setFromCurrency] = useState<string>('USD');
   const [toCurrency, setToCurrency] = useState<string>('SAR');
+
+  const amount = useMemo(() => {
+    const clean = toAsciiDigits(amountStr).replace(/[^0-9.]/g, '');
+    return parseFloat(clean) || 0;
+  }, [amountStr]);
 
   const { convertedAmount, exchangeRate } = useMemo(() => {
     const fromRate = RATES_TO_USD[fromCurrency]?.rate || 1;
@@ -43,7 +49,7 @@ export const CurrencyConverterTool: React.FC<CurrencyConverterToolProps> = ({ on
     const directRate = toRate / fromRate;
 
     return {
-      convertedAmount: finalVal.toFixed(2),
+      convertedAmount: finalVal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
       exchangeRate: directRate.toFixed(4),
     };
   }, [amount, fromCurrency, toCurrency]);
@@ -90,17 +96,30 @@ export const CurrencyConverterTool: React.FC<CurrencyConverterToolProps> = ({ on
         </div>
 
         <div className="space-y-6">
-          {/* Amount input */}
+          {/* Amount input & presets */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-              {isAr ? 'المبلغ المراد تحويله' : 'Amount to Convert'}
-            </label>
+            <div className="flex justify-between items-center mb-1.5">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                {isAr ? 'المبلغ المراد تحويله' : 'Amount to Convert'}
+              </label>
+              <div className="flex gap-1.5">
+                {['50', '100', '500', '1000'].map((preset) => (
+                  <button
+                    key={preset}
+                    type="button"
+                    onClick={() => setAmountStr(preset)}
+                    className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-bold text-slate-600 dark:text-slate-300 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                  >
+                    {preset}
+                  </button>
+                ))}
+              </div>
+            </div>
             <input
-              type="number"
-              min="0"
-              step="any"
-              value={amount}
-              onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
+              type="text"
+              inputMode="decimal"
+              value={amountStr}
+              onChange={(e) => setAmountStr(e.target.value)}
               className="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-lg font-bold text-slate-900 dark:text-white"
             />
           </div>

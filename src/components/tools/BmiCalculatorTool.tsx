@@ -237,7 +237,7 @@ export const BmiCalculatorTool: React.FC<BmiCalculatorToolProps> = ({ onNavigate
               <span>{isAr ? currentCat.labelAr : currentCat.label}</span>
             </div>
 
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 text-xs space-y-2 text-slate-600 dark:text-slate-300 text-left">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-700 text-xs space-y-2 text-slate-600 dark:text-slate-300 text-start">
               <div className="flex justify-between">
                 <span>{isAr ? 'الوزن الصحي لطولك:' : 'Healthy Weight Range:'}</span>
                 <span className="font-bold text-slate-900 dark:text-white font-mono">{healthyRange}</span>

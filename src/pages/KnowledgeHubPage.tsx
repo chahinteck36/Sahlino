@@ -24,10 +24,10 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
       const q = searchQuery.toLowerCase().trim();
       list = list.filter((a) => {
         return (
-          a.title.toLowerCase().includes(q) ||
-          a.titleAr.includes(q) ||
-          a.description.toLowerCase().includes(q) ||
-          a.descriptionAr.includes(q)
+          (a.title || '').toLowerCase().includes(q) ||
+          (a.titleAr || '').includes(q) ||
+          (a.description || '').toLowerCase().includes(q) ||
+          (a.descriptionAr || '').includes(q)
         );
       });
     }

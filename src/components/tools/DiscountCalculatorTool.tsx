@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface DiscountCalculatorToolProps {
   onNavigate: (path: string) => void;
@@ -13,16 +14,21 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [originalPrice, setOriginalPrice] = useState<number>(120);
-  const [discountPercent, setDiscountPercent] = useState<number>(25);
-  const [extraDiscountPercent, setExtraDiscountPercent] = useState<number>(0);
-  const [taxPercent, setTaxPercent] = useState<number>(15);
+  const [originalPriceStr, setOriginalPriceStr] = useState<string>('120');
+  const [discountPercentStr, setDiscountPercentStr] = useState<string>('25');
+  const [extraDiscountPercentStr, setExtraDiscountPercentStr] = useState<string>('0');
+  const [taxPercentStr, setTaxPercentStr] = useState<string>('15');
 
   const { savings, priceAfterDiscount, taxAmount, finalPrice } = useMemo(() => {
-    const price = Math.max(0, originalPrice || 0);
-    const d1 = Math.min(100, Math.max(0, discountPercent || 0));
-    const d2 = Math.min(100, Math.max(0, extraDiscountPercent || 0));
-    const tax = Math.max(0, taxPercent || 0);
+    const rawPrice = parseFloat(toAsciiDigits(originalPriceStr)) || 0;
+    const rawD1 = parseFloat(toAsciiDigits(discountPercentStr)) || 0;
+    const rawD2 = parseFloat(toAsciiDigits(extraDiscountPercentStr)) || 0;
+    const rawTax = parseFloat(toAsciiDigits(taxPercentStr)) || 0;
+
+    const price = Math.max(0, rawPrice);
+    const d1 = Math.min(100, Math.max(0, rawD1));
+    const d2 = Math.min(100, Math.max(0, rawD2));
+    const tax = Math.max(0, rawTax);
 
     // Primary discount
     const discountAmount1 = price * (d1 / 100);
@@ -43,7 +49,7 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
       taxAmount: taxVal.toFixed(2),
       finalPrice: finalTotal.toFixed(2),
     };
-  }, [originalPrice, discountPercent, extraDiscountPercent, taxPercent]);
+  }, [originalPriceStr, discountPercentStr, extraDiscountPercentStr, taxPercentStr]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -89,11 +95,10 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
               </label>
               <div className="relative">
                 <input
-                  type="number"
-                  min="0"
-                  step="any"
-                  value={originalPrice}
-                  onChange={(e) => setOriginalPrice(parseFloat(e.target.value) || 0)}
+                  type="text"
+                  inputMode="decimal"
+                  value={originalPriceStr}
+                  onChange={(e) => setOriginalPriceStr(e.target.value)}
                   className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
@@ -105,18 +110,18 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
                   {isAr ? 'نسبة الخصم (%)' : 'Discount (%)'}
                 </label>
                 <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={discountPercent}
-                  onChange={(e) => setDiscountPercent(parseFloat(e.target.value) || 0)}
+                  type="text"
+                  inputMode="decimal"
+                  value={discountPercentStr}
+                  onChange={(e) => setDiscountPercentStr(e.target.value)}
                   className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white"
                 />
                 <div className="flex gap-1.5 mt-2">
                   {[10, 20, 25, 50, 70].map((pct) => (
                     <button
                       key={pct}
-                      onClick={() => setDiscountPercent(pct)}
+                      type="button"
+                      onClick={() => setDiscountPercentStr(String(pct))}
                       className="px-2 py-1 text-[11px] font-bold rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-600 dark:text-slate-300 cursor-pointer"
                     >
                       {pct}%
@@ -130,11 +135,10 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
                   {isAr ? 'كوبون إضافي (%)' : 'Extra Coupon (%)'}
                 </label>
                 <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={extraDiscountPercent}
-                  onChange={(e) => setExtraDiscountPercent(parseFloat(e.target.value) || 0)}
+                  type="text"
+                  inputMode="decimal"
+                  value={extraDiscountPercentStr}
+                  onChange={(e) => setExtraDiscountPercentStr(e.target.value)}
                   className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white"
                 />
               </div>
@@ -145,11 +149,10 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
                 {isAr ? 'الضريبة / القيمة المضافة (%)' : 'Sales Tax / VAT (%)'}
               </label>
               <input
-                type="number"
-                min="0"
-                max="50"
-                value={taxPercent}
-                onChange={(e) => setTaxPercent(parseFloat(e.target.value) || 0)}
+                type="text"
+                inputMode="decimal"
+                value={taxPercentStr}
+                onChange={(e) => setTaxPercentStr(e.target.value)}
                 className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-base font-bold text-slate-900 dark:text-white"
               />
             </div>

@@ -4,6 +4,7 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { toAsciiDigits } from '../../utils/numberUtils';
 
 interface DateCalculatorToolProps {
   onNavigate: (path: string) => void;
@@ -19,7 +20,7 @@ export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNaviga
 
   // Add/Subtract state
   const [baseDate, setBaseDate] = useState<string>(todayStr);
-  const [daysToAdd, setDaysToAdd] = useState<number>(30);
+  const [daysToAddStr, setDaysToAddStr] = useState<string>('30');
   const [operation, setOperation] = useState<'add' | 'subtract'>('add');
 
   // Difference Calculation
@@ -40,7 +41,8 @@ export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNaviga
   const calculatedDate = useMemo(() => {
     if (!baseDate) return '';
     const d = new Date(baseDate);
-    const delta = operation === 'add' ? daysToAdd : -daysToAdd;
+    const days = parseInt(toAsciiDigits(daysToAddStr), 10) || 0;
+    const delta = operation === 'add' ? days : -days;
     d.setDate(d.getDate() + delta);
     return d.toLocaleDateString(isAr ? 'ar-EG' : 'en-US', {
       weekday: 'long',
@@ -48,7 +50,7 @@ export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNaviga
       month: 'long',
       day: 'numeric',
     });
-  }, [baseDate, daysToAdd, operation, isAr]);
+  }, [baseDate, daysToAddStr, operation, isAr]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -198,11 +200,10 @@ export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNaviga
                 {isAr ? 'عدد الأيام' : 'Number of Days'}
               </label>
               <input
-                type="number"
-                min="1"
-                max="3650"
-                value={daysToAdd}
-                onChange={(e) => setDaysToAdd(parseInt(e.target.value, 10) || 0)}
+                type="text"
+                inputMode="numeric"
+                value={daysToAddStr}
+                onChange={(e) => setDaysToAddStr(e.target.value)}
                 className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold"
               />
             </div>

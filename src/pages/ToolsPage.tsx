@@ -20,17 +20,17 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
   // Filter tools
   const filteredTools = TOOLS.filter((tool) => {
     const matchesCat = selectedCategory === 'all' || tool.category === selectedCategory;
-    const localizedName = getToolName(tool.slug, tool.name);
-    const localizedDesc = getToolDesc(tool.slug, tool.description);
+    const localizedName = (getToolName(tool.slug, tool.name) || '').toLowerCase();
+    const localizedDesc = (getToolDesc(tool.slug, tool.description) || '').toLowerCase();
     const query = searchQuery.toLowerCase().trim();
 
     const matchesQuery =
       !query ||
-      tool.name.toLowerCase().includes(query) ||
-      tool.description.toLowerCase().includes(query) ||
-      localizedName.toLowerCase().includes(query) ||
-      localizedDesc.toLowerCase().includes(query) ||
-      tool.tags.some((tg) => tg.toLowerCase().includes(query));
+      (tool.name || '').toLowerCase().includes(query) ||
+      (tool.description || '').toLowerCase().includes(query) ||
+      localizedName.includes(query) ||
+      localizedDesc.includes(query) ||
+      (tool.tags || []).some((tg) => (tg || '').toLowerCase().includes(query));
 
     return matchesCat && matchesQuery;
   });

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { FileText, Download, Settings2, FileType, Check } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { FileText, Download, RefreshCw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { useLanguage } from '../../context/LanguageContext';
+import { triggerDownload } from '../../utils/numberUtils';
 
 interface TextToPdfToolProps {
   onNavigate: (path: string) => void;
@@ -14,45 +15,167 @@ export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
-  const [text, setText] = useState<string>(
-    'Welcome to Sahlino!\n\nThis is a sample document generated directly in your browser. You can type or paste any notes, essay, code, or article, customize formatting, and instantly download a high-resolution PDF without sending your data to any remote server.'
-  );
-  const [docTitle, setDocTitle] = useState<string>('Document');
-  const [fontSize, setFontSize] = useState<number>(12);
+  const defaultSampleAr =
+    'مرحباً بك في ساهلينو!\n\nهذا مستند تجريبي تم إنشاؤه بالكامل داخل متصفحك. يمكنك كتابة أو لصق أي مذكرات، أو أبحاث، أو مقالات، أو نصوص، وتخصيص حجم الخط وهوامش الصفحة، ثم تنزيل ملف PDF فائق الوضوح بجودة طباعة دون إرسال بياناتك إلى أي خادم خارجي.';
+
+  const defaultSampleEn =
+    'Welcome to Sahlino!\n\nThis is a sample document generated directly inside your browser. You can type or paste notes, essays, articles, or code, adjust formatting, and instantly download a high-resolution PDF document with zero server uploads.';
+
+  const [text, setText] = useState<string>(isAr ? defaultSampleAr : defaultSampleEn);
+  const [docTitle, setDocTitle] = useState<string>(isAr ? 'مستند' : 'Document');
+  const [fontSize, setFontSize] = useState<number>(14);
   const [orientation, setOrientation] = useState<'p' | 'l'>('p');
-  const [margin, setMargin] = useState<number>(15);
+  const [margin, setMargin] = useState<number>(20);
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
-  const handleGeneratePdf = () => {
-    if (!text.trim()) return;
+  useEffect(() => {
+    // If text matches the other language's default, switch it
+    if (text === defaultSampleAr && !isAr) {
+      setText(defaultSampleEn);
+      setDocTitle('Document');
+    } else if (text === defaultSampleEn && isAr) {
+      setText(defaultSampleAr);
+      setDocTitle('مستند');
+    }
+  }, [isAr]);
 
-    const doc = new jsPDF({
-      orientation: orientation === 'p' ? 'portrait' : 'landscape',
-      unit: 'mm',
-      format: 'a4',
-    });
+  const handleGeneratePdf = async () => {
+    if (!text.trim() || isGenerating) return;
+    setIsGenerating(true);
 
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const maxLineWidth = pageWidth - margin * 2;
+    try {
+      // Check if text is predominantly RTL
+      const hasArabic = /[\u0600-\u06FF\u0750-\u077F]/.test(text);
+      const isLandscape = orientation === 'l';
 
-    doc.setFontSize(fontSize);
+      // A4 at 150 DPI
+      const canvasWidth = isLandscape ? 1754 : 1240;
+      const canvasHeight = isLandscape ? 1240 : 1754;
 
-    // Split text to fit page width
-    const lines = doc.splitTextToSize(text, maxLineWidth);
-    let cursorY = margin + 5;
-    const lineHeight = fontSize * 0.45;
+      // Scale factors from mm to px
+      const scale = canvasWidth / (isLandscape ? 297 : 210);
+      const marginPx = margin * scale;
+      const contentWidthPx = canvasWidth - marginPx * 2;
+      const contentHeightPx = canvasHeight - marginPx * 2;
 
-    lines.forEach((line: string) => {
-      if (cursorY + lineHeight > pageHeight - margin) {
-        doc.addPage();
-        cursorY = margin + 5;
+      const fontPx = Math.round(fontSize * (scale / 2.83)); // pt to px
+      const lineHeightPx = Math.round(fontPx * 1.6);
+
+      // Create measurement canvas
+      const measureCanvas = document.createElement('canvas');
+      const measureCtx = measureCanvas.getContext('2d');
+      if (!measureCtx) throw new Error('Canvas not supported');
+
+      const fontDeclaration = `${fontPx}px 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+      measureCtx.font = fontDeclaration;
+
+      // Word wrapping
+      const rawLines = text.split('\n');
+      const wrappedLines: string[] = [];
+
+      for (const rawLine of rawLines) {
+        if (rawLine === '') {
+          wrappedLines.push('');
+          continue;
+        }
+
+        const words = rawLine.split(' ');
+        let currentLine = '';
+
+        for (const word of words) {
+          const testLine = currentLine ? `${currentLine} ${word}` : word;
+          const testWidth = measureCtx.measureText(testLine).width;
+
+          if (testWidth > contentWidthPx && currentLine) {
+            wrappedLines.push(currentLine);
+            currentLine = word;
+          } else {
+            currentLine = testLine;
+          }
+        }
+        if (currentLine) {
+          wrappedLines.push(currentLine);
+        }
       }
-      doc.text(line, margin, cursorY);
-      cursorY += lineHeight;
-    });
 
-    const filename = `${docTitle.trim().replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_') || 'document'}.pdf`;
-    doc.save(filename);
+      // Group lines into pages
+      const linesPerPage = Math.max(1, Math.floor(contentHeightPx / lineHeightPx));
+      const pages: string[][] = [];
+      for (let i = 0; i < wrappedLines.length; i += linesPerPage) {
+        pages.push(wrappedLines.slice(i, i + linesPerPage));
+      }
+      if (pages.length === 0) pages.push(['']);
+
+      // Setup jsPDF
+      const pdf = new jsPDF({
+        orientation: isLandscape ? 'landscape' : 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      const pdfWidthMm = isLandscape ? 297 : 210;
+      const pdfHeightMm = isLandscape ? 210 : 297;
+
+      for (let pIdx = 0; pIdx < pages.length; pIdx++) {
+        if (pIdx > 0) {
+          pdf.addPage('a4', isLandscape ? 'landscape' : 'portrait');
+        }
+
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.width = canvasWidth;
+        pageCanvas.height = canvasHeight;
+        const ctx = pageCanvas.getContext('2d');
+        if (!ctx) continue;
+
+        // Background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+        // Text setup
+        ctx.fillStyle = '#0f172a';
+        ctx.font = fontDeclaration;
+        ctx.textBaseline = 'top';
+
+        const pageLines = pages[pIdx];
+        let y = marginPx;
+
+        for (const line of pageLines) {
+          if (line !== '') {
+            const lineHasRtl = /[\u0600-\u06FF]/.test(line);
+            if (lineHasRtl || (hasArabic && isAr)) {
+              ctx.direction = 'rtl';
+              ctx.textAlign = 'right';
+              ctx.fillText(line, canvasWidth - marginPx, y);
+            } else {
+              ctx.direction = 'ltr';
+              ctx.textAlign = 'left';
+              ctx.fillText(line, marginPx, y);
+            }
+          }
+          y += lineHeightPx;
+        }
+
+        // Page number footer
+        ctx.font = `${Math.round(fontPx * 0.75)}px sans-serif`;
+        ctx.fillStyle = '#94a3b8';
+        ctx.textAlign = 'center';
+        ctx.direction = 'ltr';
+        ctx.fillText(`${pIdx + 1} / ${pages.length}`, canvasWidth / 2, canvasHeight - marginPx / 2);
+
+        const imgData = pageCanvas.toDataURL('image/jpeg', 0.95);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidthMm, pdfHeightMm);
+      }
+
+      const cleanTitle = docTitle.trim().replace(/[^a-zA-Z0-9_\u0600-\u06FF-]/g, '_') || 'document';
+      const pdfBlob = pdf.output('blob');
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      triggerDownload(blobUrl, `${cleanTitle}.pdf`);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+    } catch (err: any) {
+      console.error('PDF generation error:', err);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -85,8 +208,8 @@ export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
             {isAr
-              ? 'اكتب أو الصق أي نص أو مقال وحوله إلى مستند PDF قابل للطباعة مع تحكم بحجم الخط والهوامش'
-              : 'Convert plain text, notes, and articles into clean, formatted printable PDF documents'}
+              ? 'اكتب أو الصق أي نص أو مقال وحوله إلى مستند PDF فائق الوضوح يدعم اللغة العربية والإنجليزية وتخصيص الهوامش بالكامل'
+              : 'Convert plain text, notes, and articles into clean, printable PDF documents with full Arabic & multilingual support'}
           </p>
         </div>
 
@@ -106,17 +229,18 @@ export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
 
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              {isAr ? 'حجم الخط' : 'Font Size (pt)'}
+              {isAr ? 'حجم الخط' : 'Font Size'}
             </label>
             <select
               value={fontSize}
               onChange={(e) => setFontSize(Number(e.target.value))}
               className="w-full p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-semibold cursor-pointer"
             >
-              <option value={10}>10 pt (صغير)</option>
-              <option value={12}>12 pt (قياسي)</option>
-              <option value={14}>14 pt (متوسط)</option>
-              <option value={16}>16 pt (كبير)</option>
+              <option value={11}>{isAr ? '11 pt (صغير)' : '11 pt (Small)'}</option>
+              <option value={14}>{isAr ? '14 pt (قياسي)' : '14 pt (Standard)'}</option>
+              <option value={16}>{isAr ? '16 pt (متوسط)' : '16 pt (Medium)'}</option>
+              <option value={18}>{isAr ? '18 pt (كبير)' : '18 pt (Large)'}</option>
+              <option value={22}>{isAr ? '22 pt (عريض)' : '22 pt (Extra Large)'}</option>
             </select>
           </div>
 
@@ -165,11 +289,11 @@ export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
 
         <button
           onClick={handleGeneratePdf}
-          disabled={!text.trim()}
+          disabled={!text.trim() || isGenerating}
           className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md transition-all cursor-pointer inline-flex items-center gap-2 disabled:opacity-50"
         >
-          <Download className="w-4 h-4" />
-          <span>{isAr ? 'توليد وتحميل مستند PDF' : 'Generate and Download PDF'}</span>
+          {isGenerating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          <span>{isGenerating ? (isAr ? 'جارٍ إنشاء PDF...' : 'Generating PDF...') : (isAr ? 'توليد وتحميل مستند PDF' : 'Generate & Download PDF')}</span>
         </button>
       </div>
 
