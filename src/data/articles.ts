@@ -1,4 +1,5 @@
 import { ArticleItem } from '../types';
+export type { ArticleItem };
 
 export const ARTICLE_CATEGORIES = [
   { id: 'all', name: 'All Articles', nameAr: 'جميع المقالات' },
@@ -12,81 +13,102 @@ export const ARTICLE_CATEGORIES = [
 ];
 
 export const ARTICLES: ArticleItem[] = [
+  // 1. Word to PDF
   {
     id: 'how-to-convert-word-to-pdf',
     slug: 'how-to-convert-word-to-pdf',
     title: 'How to Convert Word Documents and Text to PDF for Free',
-    titleAr: 'كيفية تحويل المستندات والنصوص إلى PDF مجاناً وبأعلى جودة',
-    description: 'Learn the easiest and most secure methods to convert text, Word files, and documents to professional PDF files without losing formatting.',
-    descriptionAr: 'تعرف على أسهل الطرق الآمنة لتحويل النصوص والمستندات إلى ملفات PDF احترافية دون فقدان التنسيق وبأعلى معايير الخصوصية.',
+    titleAr: 'كيفية تحويل ملفات Word والمستندات والنصوص إلى PDF مجاناً وبأعلى جودة',
+    description: 'Learn the easiest and most secure methods to convert Word (.docx), text files, and documents to professional PDF files without losing formatting.',
+    descriptionAr: 'تعرف على أسهل الطرق الآمنة لتحويل ملفات Word (.docx) والنصوص إلى ملفات PDF احترافية دون فقدان التنسيق وبأعلى معايير الخصوصية.',
     category: 'pdf-documents',
     categoryName: 'PDF & Documents',
     categoryNameAr: 'PDF والمستندات',
     readTime: '4 min read',
     readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-01-15',
-    modifiedDate: '2025-03-01',
-    relatedToolSlug: 'text-to-pdf',
+    modifiedDate: '2026-09-14',
+    relatedToolSlug: 'word-to-pdf',
     relatedArticles: ['how-to-merge-pdf-files-online', 'how-to-split-pdf-pages'],
     sections: [
       {
-        heading: 'Why Convert Documents and Text to PDF?',
-        headingAr: 'لماذا نحتاج إلى تحويل المستندات والنصوص إلى صيغة PDF؟',
-        body: 'PDF (Portable Document Format) is the global gold standard for sharing business proposals, academic papers, and official invoices. Unlike Word (.docx) or plain text (.txt) files which may change appearance across different devices or operating systems, a PDF file preserves fonts, layouts, margins, and graphics exactly as created.',
-        bodyAr: 'تعد صيغة PDF المعيار العالمي المفضل لمشاركة المستندات والتقارير الرسمية والأوراق الأكاديمية. على عكس ملفات Word أو النصوص العادية التي قد يتغير مظهرها أو خطوطها عند فتحها على أجهزة مختلفة، يحافظ ملف PDF على الخطوط والتنسيقات والهوامش بدقة تامة على كل جهاز.',
+        heading: 'Why Convert Word Documents and Text to PDF?',
+        headingAr: 'لماذا نحتاج إلى تحويل مستندات Word والنصوص إلى صيغة PDF؟',
+        body: 'PDF (Portable Document Format) is the global gold standard for sharing business proposals, academic papers, contracts, and official invoices. Unlike Word (.docx) or plain text (.txt) files which may change appearance across different devices, fonts, or operating systems, a PDF file preserves fonts, layouts, margins, and graphics exactly as created.',
+        bodyAr: 'تعد صيغة PDF المعيار العالمي المفضل لمشاركة المستندات والتقارير الرسمية والأوراق الأكاديمية والعقود. على عكس ملفات Word أو النصوص العادية التي قد يتغير مظهرها أو خطوطها عند فتحها على أجهزة مختلفة أو برامج غير متوافقة، يحافظ ملف PDF على الخطوط والتنسيقات والهوامش بدقة تامة على كل جهاز وشاشة.',
         bullets: [
           'Universal compatibility across smartphones, tablets, Windows, Mac, and Linux.',
-          'Prevention of accidental text editing or unwanted layout shifts.',
-          'Secure sharing with built-in compression for lightweight email attachments.',
+          'Prevention of accidental text editing, layout shifts, or missing fonts.',
+          'Standardized printing ready for A4 paper and legal submissions.',
+          'Built-in compression for lightweight email attachments and secure cloud sharing.',
         ],
         bulletsAr: [
-          'توافق شامل مع جميع الأجهزة (الهواتف الذكية، الحواسيب، الأجهزة اللوحية).',
-          'حماية المحتوى من التعديل العرضي أو تشوه التنسيق عند الطباعة.',
+          'توافق شامل مع جميع الأجهزة (الهواتف الذكية، الحواسيب، الأجهزة اللوحية بكافة أنظمتها).',
+          'حماية المحتوى من التعديل العرضي أو تشوه التنسيق واختفاء الخطوط عند الطباعة.',
+          'تنسيق قياسي معتمد للطباعة على ورق A4 والمعاملات الحكومية والرسمية.',
           'مشاركة سهلة مع ضغط مناسب لتقليل حجم المرفقات في البريد الإلكتروني.',
         ],
       },
       {
-        heading: 'Step-by-Step: Converting Text to PDF in Your Browser',
-        headingAr: 'خطوات تحويل النص إلى PDF مباشرة في المتصفح',
-        body: 'With modern browser technology, you no longer need expensive desktop software or suspicious file upload services that compromise your confidential information. You can generate clean, paginated PDFs right inside Sahlino.',
-        bodyAr: 'مع التقنيات الحديثة، لم تعد بحاجة لشراء برامج باهظة الثمن أو رفع ملفاتك الحساسة إلى خوادم غير موثوقة. يمكنك تحويل النصوص والمستندات مباشرة داخل متصفحك عبر منصة ساهلينو بكل أمان.',
+        heading: 'Step-by-Step: Converting Word (.docx) to PDF with Sahlino',
+        headingAr: 'خطوات تحويل مستند Word إلى PDF مباشرة في المتصفح',
+        body: 'With Sahlino Word to PDF tool, you no longer need expensive desktop software subscriptions or insecure upload services that compromise confidential contracts and resumes. The entire conversion happens directly in your browser memory.',
+        bodyAr: 'مع أداة تحويل Word إلى PDF على منصة ساهلينو، لم تعد بحاجة لشراء برامج باهظة الثمن أو رفع ملفاتك وسيرتك الذاتية الحساسة إلى خوادم مجهولة. تتم جميع مراحل التحويل مباشرة داخل ذاكرة متصفحك.',
         bullets: [
-          'Step 1: Open Sahlino Text to PDF tool from the Documents category.',
-          'Step 2: Paste or type your document text into the editor.',
-          'Step 3: Customize font size, page margins, and orientation (Portrait or Landscape).',
-          'Step 4: Click "Generate & Download PDF" to instantly save your file.',
+          'Step 1: Open the Word to PDF Converter tool on Sahlino.',
+          'Step 2: Drag and drop your .docx file into the upload box or select it from your device.',
+          'Step 3: Preview the extracted formatted text and verify headings, lists, and paragraphs.',
+          'Step 4: Adjust page orientation (Portrait or Landscape), margins, and font size if desired.',
+          'Step 5: Click "Convert & Download PDF" to instantly save your file.',
         ],
         bulletsAr: [
-          'الخطوة الأولى: افتح أداة "تحويل النص إلى PDF" على منصة ساهلينو.',
-          'الخطوة الثانية: الصق النص أو اكتب المستند الذي ترغب في تحويله.',
-          'الخطوة الثالثة: خصص حجم الخط، الهوامش، واتجاه الصفحة (عمودي أو أفقي).',
-          'الخطوة الرابعة: اضغط على "تنزيل ملف PDF" ليتم إنشاء المستند وحفظه فوراً على جهازك.',
+          'الخطوة الأولى: افتح أداة "محول Word إلى PDF" على منصة ساهلينو.',
+          'الخطوة الثانية: اسحب ملف Word (.docx) وأفلته في المربع أو اختره من جهازك.',
+          'الخطوة الثالثة: عاين المستند المنسق وتأكد من اكتمال العناوين والفقرات والقوائم.',
+          'الخطوة الرابعة: اختر اتجاه الصفحة (عمودي أو أفقي) وحجم الخط والهوامش المناسبة.',
+          'الخطوة الخامسة: اضغط على "تحويل وتنزيل PDF" ليتم إنشاء المستند وحفظه فوراً على جهازك.',
         ],
-        tip: 'For multi-page reports, ensure clear heading breaks so your text flows naturally across page boundaries.',
-        tipAr: 'نصيحة: للمستندات الطويلة، استخدم فقرات واضحة وعناوين فرعية لضمان تقسيم الصفحات بشكل مريح للقراءة.',
+        tip: 'For official resumes and business contracts, keep page margins standard (20mm) and ensure font size is set to 14pt for optimal legibility.',
+        tipAr: 'نصيحة: للسير الذاتية والعقود الرسمية، يُفضل اختيار هوامش قياسية (20 ملم) وحجم خط 14pt لضمان مظهر احترافي ومريح للقراءة والطباعة.',
+      },
+      {
+        heading: 'Privacy and Security: Zero Server Uploads',
+        headingAr: 'الأمان والخصوصية: صفر رفع إلى الخوادم',
+        body: 'Most online document converters send your files to remote servers where they may be stored, indexed, or analyzed. Sahlino utilizes modern client-side WebAssembly and JavaScript libraries. Your files are decrypted, parsed, and converted entirely inside your browser sandbox.',
+        bodyAr: 'تقوم معظم مواقع التحويل التقليدية برفع مستنداتك إلى خوادم سحابية خارجية قد تحتفظ بنسخ منها. في ساهلينو، نعتمد على المعالجة المحلية داخل متصفحك، مما يضمن بقاء وثائقك الشخصية والمالية آمنة 100% داخل جهازك دون أن تلمس أي خادم.',
       },
     ],
     faqs: [
       {
-        question: 'Will my confidential document be uploaded to your servers?',
-        answer: 'Never. Sahlino utilizes client-side JavaScript to render PDFs directly in your web browser. Your text never leaves your device.',
+        question: 'Will my confidential Word document be uploaded to your servers?',
+        answer: 'Never. Sahlino utilizes client-side JavaScript to render PDFs directly in your web browser. Your text and files never leave your device.',
       },
       {
         question: 'Can I print the generated PDF document directly?',
         answer: 'Yes, the generated PDF standard A4 file can be opened in Adobe Acrobat, Chrome, or any viewer and sent directly to standard printers.',
       },
+      {
+        question: 'Does it support Arabic text and Right-to-Left (RTL) formatting?',
+        answer: 'Yes! Sahlino fully supports Arabic, English, and multilingual text with automatic right-to-left line alignment and crisp typography.',
+      },
     ],
     faqsAr: [
       {
-        question: 'هل يتم رفع مستنداتي إلى خوادم خارجية؟',
+        question: 'هل يتم رفع مستنداتي أو ملفات الـ Word إلى خوادم خارجية؟',
         answer: 'أبداً. تتم جميع عمليات التحويل والإنشاء بالكامل داخل متصفحك باستخدام تقنيات المعالجة المحلية، ولا تغادر بياناتك جهازك مطلقاً.',
       },
       {
         question: 'هل يدعم الملف الناتج الطباعة بمقاس A4 القياسي؟',
         answer: 'نعم، يتم إنشاء ملف PDF متوافق تماماً مع قياسات A4 العالمية ويمكن طباعته مباشرة بجودة ممتازة.',
       },
+      {
+        question: 'هل تدعم الأداة اللغة العربية وتنسيق النصوص من اليمين لليسار؟',
+        answer: 'نعم، تدعم الأداة اللغة العربية والنصوص ثنائية اللغة تلقائياً مع محاذاة صحيحة للسطور وجودة خطوط واضحة جداً.',
+      },
     ],
   },
+
+  // 2. Compress Images
   {
     id: 'how-to-compress-images-without-losing-quality',
     slug: 'how-to-compress-images-without-losing-quality',
@@ -100,7 +122,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '5 min read',
     readTimeAr: 'قراءة في 5 دقائق',
     publishedDate: '2025-01-20',
-    modifiedDate: '2025-02-28',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'image-resizer',
     relatedArticles: ['difference-between-jpg-png-webp', 'how-to-create-custom-qr-codes'],
     sections: [
@@ -137,6 +159,8 @@ export const ARTICLES: ArticleItem[] = [
           'اختر جودة ضغط بين 80% و85% لتحصل على أصغر حجم دون أي تشويش.',
           'اضغط تنزيل لحفظ الصورة المحسنة فوراً.',
         ],
+        tip: 'For website banners, resizing width to a maximum of 1920px before applying 80% quality compression can shrink a 10MB photo down to under 250KB.',
+        tipAr: 'نصيحة: لصور المواقع والمدونات، قلل العرض إلى 1920 بكسل كحد أقصى مع نسبة جودة 80% لتحويل صورة بحجم 10 ميجابايت إلى أقل من 250 كيلوبايت.',
       },
     ],
     faqs: [
@@ -144,14 +168,24 @@ export const ARTICLES: ArticleItem[] = [
         question: 'What is the recommended photo size for website performance?',
         answer: 'Aim for under 150 KB for standard blog images, and under 300 KB for large hero banner images.',
       },
+      {
+        question: 'Will compressing an image make it look blurry?',
+        answer: 'At 80-85% quality, compression artifacts are virtually invisible to the human eye on modern high-DPI screens.',
+      },
     ],
     faqsAr: [
       {
         question: 'ما هو الحجم المثالي للصور عند نشرها على الإنترنت؟',
         answer: 'يفضل أن يكون حجم صور المقالات أقل من 150 كيلوبايت، وصور البانر الكبيرة أقل من 300 كيلوبايت لتفادي بطء تحميل الموقع.',
       },
+      {
+        question: 'هل يؤدي ضغط الصورة إلى تشويشها أو ضبابيتها؟',
+        answer: 'عند اختيار نسبة جودة بين 80% و85%، يظل الفقدان اللوني غير ملحوظ إطلاقاً للعين البشرية حتى على شاشات الهواتف الحديثة.',
+      },
     ],
   },
+
+  // 3. Difference between JPG, PNG, WebP
   {
     id: 'difference-between-jpg-png-webp',
     slug: 'difference-between-jpg-png-webp',
@@ -165,7 +199,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '6 min read',
     readTimeAr: 'قراءة في 6 دقائق',
     publishedDate: '2025-01-25',
-    modifiedDate: '2025-03-02',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'image-converter',
     relatedArticles: ['how-to-compress-images-without-losing-quality'],
     sections: [
@@ -190,6 +224,16 @@ export const ARTICLES: ArticleItem[] = [
         headingAr: 'كيفية تحويل الصور بين الصيغ بنقرة واحدة على ساهلينو',
         body: 'Using the Sahlino Image Format Converter, you can seamlessly convert PNG to WebP, WebP to JPG, or JPG to PNG directly inside your web browser. No software installation needed.',
         bodyAr: 'عبر أداة تحويل صيغ الصور في ساهلينو، يمكنك تحويل صورك بين WebP و PNG و JPG في أجزاء من الثانية وبأعلى نقاء، مباشرة داخل متصفحك دون إرسال بياناتك للخارج.',
+        bullets: [
+          'Convert PNG with transparent backgrounds to WebP to save up to 70% storage.',
+          'Convert camera JPG photos to WebP for lightning-fast website performance.',
+          'Convert WebP to PNG or JPG if you need compatibility with legacy graphic editors.',
+        ],
+        bulletsAr: [
+          'تحويل صور PNG ذات الخلفية الشفافة إلى WebP لتوفير 70% من المساحة.',
+          'تحويل صور الكاميرا JPG إلى WebP لتسريع صفحات الويب بشكل كبير.',
+          'تحويل WebP إلى PNG أو JPG عند الحاجة لتعديلها ببرامج تصميم قديمة لا تدعم WebP.',
+        ],
       },
     ],
     faqs: [
@@ -197,14 +241,24 @@ export const ARTICLES: ArticleItem[] = [
         question: 'Can all browsers open WebP images?',
         answer: 'Yes! All modern browsers including Google Chrome, Safari, Apple iOS, Android, Firefox, and Edge have full 100% native support for WebP.',
       },
+      {
+        question: 'Does converting WebP to PNG increase file size?',
+        answer: 'Yes, because PNG is a less aggressively compressed format designed for lossless precision, converting WebP to PNG typically results in a larger file.',
+      },
     ],
     faqsAr: [
       {
         question: 'هل تدعم جميع الأجهزة والمتصفحات صيغة WebP؟',
         answer: 'نعم، جميع المتصفحات الحديثة (Chrome, Safari, iOS, Android, Firefox, Edge) تدعم عرض وتنزيل WebP بنسبة 100%.',
       },
+      {
+        question: 'هل يؤدي تحويل WebP إلى PNG لزيادة حجم الملف؟',
+        answer: 'نعم، نظراً لأن PNG صيغة ضغط غير فاقدة ولا تستخدم خوارزميات التنبؤ المتقدمة لـ WebP، سيزداد حجم الملف بعد التحويل.',
+      },
     ],
   },
+
+  // 4. Merge PDF
   {
     id: 'how-to-merge-pdf-files-online',
     slug: 'how-to-merge-pdf-files-online',
@@ -218,7 +272,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '4 min read',
     readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-01-28',
-    modifiedDate: '2025-02-25',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'pdf-merge',
     relatedArticles: ['how-to-split-pdf-pages', 'how-to-convert-word-to-pdf'],
     sections: [
@@ -228,14 +282,16 @@ export const ARTICLES: ArticleItem[] = [
         body: 'Submitting multiple scattered PDF attachments for visa applications, job submissions, or client presentations frequently results in lost documents and unprofessional presentations. Combining your files into one clean sequence makes review seamless.',
         bodyAr: 'تقديم عدة ملفات متفرقة عند التقديم للوظائف أو المعاملات الرسمية قد يسبب ضياع بعض الأوراق أو إرباك المراجعين. دمجها في ملف واحد يحمل تسلسلاً منطقياً يضمن احترافية تقديمك وسهولة تصفحه.',
         bullets: [
-          'Create single consolidated dossiers for official submissions.',
+          'Create single consolidated dossiers for official submissions and government portals.',
           'Reorder pages and files logically before generating the output.',
           'Save storage and simplify file management on all your devices.',
+          'Avoid email bounce errors caused by sending dozens of small attachments.',
         ],
         bulletsAr: [
-          'إنشاء ملف موحد وشامل للمعاملات الإدارية والرسمية.',
+          'إنشاء ملف موحد وشامل للمعاملات الإدارية والرسمية وبوابات التوظيف.',
           'ترتيب المستندات بالتسلسل المطلوب قبل التجميع النهائي.',
           'تسهيل الأرشفة والمشاركة عبر رسالة بريد واحدة.',
+          'تجنب رفض رسائل البريد الإلكتروني بسبب كثرة المرفقات المنفصلة.',
         ],
       },
       {
@@ -243,6 +299,20 @@ export const ARTICLES: ArticleItem[] = [
         headingAr: 'كيف تدمج ملفات PDF محلياً في متصفحك عبر ساهلينو',
         body: 'Most online PDF tools upload your sensitive financial statements and private IDs to remote cloud servers. Sahlino is different: our PDF engine runs directly on your computer hardware using WebAssembly and Javascript.',
         bodyAr: 'تطلب معظم المواقع الأخرى رفع مستنداتك وسجلاتك إلى خوادمها، بينما تستخدم ساهلينو محرك معالجة محلي يعمل على ذاكرة متصفحك مباشرة لضمان سرية وثائقك 100%.',
+        bullets: [
+          'Step 1: Upload your PDF files in batch by dragging them into the merge box.',
+          'Step 2: Drag or click the up/down arrows to reorder your documents.',
+          'Step 3: Click "Merge PDF Files" to combine pages instantaneously.',
+          'Step 4: Download your merged PDF directly to your device.',
+        ],
+        bulletsAr: [
+          'الخطوة الأولى: ارفع ملفات الـ PDF دفعة واحدة بسحبها إلى صندوق الأداة.',
+          'الخطوة الثانية: رتّب الملفات بسهولة باستخدام أسهم الترتيب لأعلى وأسفل.',
+          'الخطوة الثالثة: اضغط على زر "دمج ملفات PDF" لتجميع الصفحات فورياً.',
+          'الخطوة الرابعة: احفظ الملف المدمج النهائي مباشرة على جهازك.',
+        ],
+        tip: 'Check that all individual PDF files are not password protected before attempting to merge them.',
+        tipAr: 'نصيحة: تأكد من فك كلمات المرور من أي ملف محمي قبل رفعه لتتمكن الأداة من قراءة صفحاته ودمجها بسلاسة.',
       },
     ],
     faqs: [
@@ -250,14 +320,24 @@ export const ARTICLES: ArticleItem[] = [
         question: 'Is there any limit to the number of PDF files I can merge?',
         answer: 'You can merge dozens of files easily as long as your browser has sufficient local memory.',
       },
+      {
+        question: 'Does merging compress or reduce the resolution of pages?',
+        answer: 'No. Sahlino preserves the original vector graphics, font data, and image resolution of each merged page.',
+      },
     ],
     faqsAr: [
       {
         question: 'هل هناك حد أقصى لعدد الملفات التي يمكن دمجها؟',
         answer: 'يمكنك دمج عشرات الملفات بكل سلاسة طالما تسمح ذاكرة جهازك، فالأداة مجانية وبدون قيود اصطناعية.',
       },
+      {
+        question: 'هل يقلل الدمج من جودة ووضوح النصوص والصفحات الأصلية؟',
+        answer: 'كلا، تحافظ أداة الدمج على دقة الرسوميات والخطوط وجودة الصور الأصلية دون أي تشويه.',
+      },
     ],
   },
+
+  // 5. Split PDF Pages
   {
     id: 'how-to-split-pdf-pages',
     slug: 'how-to-split-pdf-pages',
@@ -268,21 +348,89 @@ export const ARTICLES: ArticleItem[] = [
     category: 'pdf-documents',
     categoryName: 'PDF & Documents',
     categoryNameAr: 'PDF والمستندات',
-    readTime: '3 min read',
-    readTimeAr: 'قراءة في 3 دقائق',
+    readTime: '4 min read',
+    readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-02-02',
-    modifiedDate: '2025-03-05',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'pdf-split',
     relatedArticles: ['how-to-merge-pdf-files-online', 'how-to-convert-word-to-pdf'],
     sections: [
       {
         heading: 'When Do You Need to Split a PDF?',
-        headingAr: 'متى تحتاج إلى تقسيم ملف PDF؟',
+        headingAr: 'متى تحتاج إلى تقسيم ملف PDF واستخراج صفحات منه؟',
         body: 'Often a multi-hundred page PDF manual, bank statement, or contract contains only 2 or 3 pages you actually need to share with a partner, accountant, or authority. Splitting allows you to protect the privacy of unrelated pages and drastically reduce file size.',
-        bodyAr: 'في كثير من الأحيان يحتوي كشف الحساب أو الكتاب على صفحات خاصة أو غير لازمة للمعاملة. يتيح لك تقسيم الـ PDF استخراج الصفحات التي تهمك فقط ومشاركتها مع الحفاظ على خصوصية باقي المستند.',
+        bodyAr: 'في كثير من الأحيان يحتوي كشف الحساب أو الكتاب على صفحات خاصة أو غير لازمة للمعاملة. يتيح لك تقسيم الـ PDF استخراج الصفحات التي تهمك فقط ومشاركتها مع الحفاظ على خصوصية باقي المستند وتقليل حجم الملف بشكل ملحوظ.',
+        bullets: [
+          'Extracting specific contract annexes, certificates, or signature pages.',
+          'Dividing large e-books or study modules into digestible weekly reading chapters.',
+          'Separating bank statements to share only the required transactions while concealing other accounts.',
+          'Meeting email attachment size limits by omitting unneeded chapters.',
+        ],
+        bulletsAr: [
+          'استخراج ملحقات عقود محددة، شهادات تخرج، أو صفحات التوقيع فقط.',
+          'تقسيم الكتب الدراسية والكتالوجات الضخمة إلى فصول صغيرة يسهل تصفحها.',
+          'فصل كشوف الحسابات لمشاركة المعاملة المطلوبة فقط مع إخفاء باقي البيانات المالية.',
+          'تقليل حجم الملف ليناسب حدود الإرسال في البريد الإلكتروني والمنصات الحكومية.',
+        ],
+      },
+      {
+        heading: 'How to Extract Custom Page Ranges on Sahlino',
+        headingAr: 'طريقة تحديد نطاقات الصفحات واستخراجها بنقرة واحدة',
+        body: 'Sahlino Split PDF tool offers intuitive page range selection. You can extract individual pages, continuous chapters, or arbitrary combinations using simple notation.',
+        bodyAr: 'توفر أداة تقسيم PDF في ساهلينو واجهة بسيطة لتحديد الصفحات المراد استخراجها، سواء كانت صفحات منفردة أو نطاقات متصلة أو تشكيلة مخصصة.',
+        bullets: [
+          'Single pages: Simply enter numbers like "1, 4, 7".',
+          'Page ranges: Use hyphens like "1-5, 10-15".',
+          'Mixed combinations: Combine both freely like "1-3, 5, 8, 12-14".',
+          'Extract mode: Download each page as an independent PDF or combine selected pages into one focused document.',
+        ],
+        bulletsAr: [
+          'صفحات مفردة: اكتب أرقام الصفحات مفصولة بفواصل مثل "1, 4, 7".',
+          'نطاقات متصلة: استخدم الشرطة لكتابة المدى مثل "1-5, 10-15".',
+          'تجميع مخصص: ادمج بين النطاقات والصفحات بحرية مثل "1-3, 5, 8, 12-14".',
+          'وضع الاستخراج: يمكنك استخراج الصفحات المختارة في ملف واحد جديد فائق الترتيب.',
+        ],
+        tip: 'Always preview your original PDF page numbers in your viewer first, as printed page numbers in books can differ from the physical digital page count.',
+        tipAr: 'نصيحة: تأكد من مراجعة رقم الصفحة الرقمي في قارئ الـ PDF، فقد يختلف ترقيم صفحات الكتاب المطبوعة عن ترتيب الصفحات الرقمية الفعلية.',
+      },
+      {
+        heading: '100% In-Browser Privacy Protection',
+        headingAr: 'حماية كاملة للخصوصية داخل جهازك',
+        body: 'Because PDF files often contain passport copies, bank records, and legal agreements, Sahlino executes the entire splitting algorithm inside your browser using pdf-lib. No external server ever receives your document.',
+        bodyAr: 'نظراً لأن ملفات الـ PDF غالباً ما تحتوي على وثائق سفر أو بيانات مالية أو اتفاقيات سرية، فإن عملية التقسيم تتم بالكامل داخل متصفحك دون إرسال أي بايت لخوادم خارجية.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Can I split a PDF file that is password protected?',
+        answer: 'You must first unlock the PDF by removing its password before splitting, as encryption prevents unauthorized page extraction.',
+      },
+      {
+        question: 'Does splitting affect the clickable links or text searchability in the PDF?',
+        answer: 'No. Sahlino preserves all underlying vector fonts, selectable text, and hyperlinks intact.',
+      },
+      {
+        question: 'Is there any cost or page limit for splitting documents?',
+        answer: 'No, the tool is completely free with no artificial page limits.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل يمكنني تقسيم ملف PDF محمي بكلمة مرور؟',
+        answer: 'يجب إزالة كلمة المرور أولاً قبل التقسيم، لأن التشفير يمنع قراءة واستخراج الصفحات برمجياً.',
+      },
+      {
+        question: 'هل يؤثر التقسيم على إمكانية نسخ النص أو البحث داخله؟',
+        answer: 'كلا، تظل النصوص قابلة للتحديد والنسخ والبحث بنسبة 100% كما كانت في المستند الأصلي.',
+      },
+      {
+        question: 'هل توجد أي رسوم أو حد أقصى لعدد الصفحات التي يمكن استخراجها؟',
+        answer: 'الأداة مجانية بالكامل وبدون أي قيود أو اشتراكات على عدد الصفحات أو حجم الملف.',
       },
     ],
   },
+
+  // 6. Percentage Calculator
   {
     id: 'how-to-calculate-percentages-and-discounts',
     slug: 'how-to-calculate-percentages-and-discounts',
@@ -296,7 +444,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '5 min read',
     readTimeAr: 'قراءة في 5 دقائق',
     publishedDate: '2025-02-05',
-    modifiedDate: '2025-03-01',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'percentage-calculator',
     relatedArticles: ['how-to-calculate-bmi-healthy-weight', 'how-to-calculate-loan-interest-and-installments'],
     sections: [
@@ -307,17 +455,65 @@ export const ARTICLES: ArticleItem[] = [
         bodyAr: 'النسبة المئوية هي تعبير عن قيمة بالنسبة إلى الرقم 100. لمعرفة نسبة رقم من رقم آخر، أو حساب سعر منتج بعد خصم 30% مع الضريبة، تحتاج لمعادلات واضحة توفر عليك الحسابات المعقدة.',
         bullets: [
           'What is P% of Number X? Formula: (P / 100) * X',
+          'X is what percentage of Y? Formula: (X / Y) * 100',
           'Percentage Difference between Old and New: ((New - Old) / Old) * 100',
           'Discounted Price: Original Price * (1 - (Discount% / 100))',
         ],
         bulletsAr: [
           'حساب كم يساوي X% من رقم: (النسبة ÷ 100) × الرقم الأساسي.',
+          'العدد X يمثل كم بالمئة من Y: (X ÷ Y) × 100.',
           'حساب نسبة الزيادة أو النقصان: ((القيمة الجديدة - القديمة) ÷ القديمة) × 100.',
           'حساب السعر بعد الخصم: السعر الأصلي × (1 - (نسبة الخصم ÷ 100)).',
         ],
       },
+      {
+        heading: 'Calculating Shopping Discounts and Sales Tax (VAT)',
+        headingAr: 'حساب خصومات التسوق وضريبة القيمة المضافة عملياً',
+        body: 'Retail shopping often combines discounts with value-added tax (VAT). For example, if a jacket costs $120 with a 25% store discount and an 8% sales tax, calculating the order correctly prevents surprises at checkout.',
+        bodyAr: 'في التسوق، غالباً ما تتداخل الخصومات مع ضريبة القيمة المضافة. على سبيل المثال، إذا كان سعر سلعة 200 ريال مع خصم 20% وضريبة 15%، فإن حساب الترتيب الرياضي الصحيح يضمن معرفة السعر الحقيقي بدقة.',
+        bullets: [
+          'Step 1 (Apply Discount): $120 * (1 - 0.25) = $90',
+          'Step 2 (Apply Sales Tax): $90 * (1 + 0.08) = $97.20 final total',
+          'Stacked discounts: A 20% discount followed by an extra 10% coupon is NOT 30% off. It equals 1 - (0.80 * 0.90) = 28% real discount.',
+        ],
+        bulletsAr: [
+          'الخطوة الأولى (تطبيق الخصم): 200 × (1 - 0.20) = 160 ريال.',
+          'الخطوة الثانية (إضافة الضريبة): 160 × (1 + 0.15) = 184 ريال كإجمالي نهائي.',
+          'تنبيه الخصومات المزدوجة: خصم 20% مع كوبون إضافي 10% لا يعني 30%! بل السعر = 0.80 × 0.90 = 0.72، أي خصم فعلي 28%.',
+        ],
+        tip: 'Always apply discounts before adding tax, as sales tax is legally computed on the final transaction amount.',
+        tipAr: 'نصيحة: طبّق نسبة الخصم أولاً على السعر الأصلي، ثم احسب الضريبة على المبلغ المتبقي، فالضريبة تحتسب نظامياً على قيمة البيع الفعلية.',
+      },
+      {
+        heading: 'Using Sahlino Percentage Calculator',
+        headingAr: 'استخدام حاسبة النسبة المئوية في ساهلينو',
+        body: 'Sahlino Percentage Calculator includes 6 dedicated calculation modes. Simply enter the two numbers, and our engine outputs the result along with the step-by-step formula in real time.',
+        bodyAr: 'توفر حاسبة ساهلينو 6 أنماط حسابية متخصصة. بمجرد إدخال الرقمين، تعرض لك الأداة النتيجة الفورية مع خطوات الحل والمعادلة الرياضية بوضوح.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between percentage change and percentage difference?',
+        answer: 'Percentage change has a directional starting point (e.g. from last year to this year). Percentage difference compares two numbers symmetrically by dividing by their average.',
+      },
+      {
+        question: 'Can percentages exceed 100%?',
+        answer: 'Yes! If an investment grows from $100 to $300, it gained $200, which is a 200% increase.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'ما الفرق بين نسبة التغير والفارق المئوي؟',
+        answer: 'نسبة التغير تقيس النمو أو الانخفاض من نقطة بداية زمنية معينة، بينما الفارق المئوي يقارن بين قيمتين متكافئتين دون ترتيب زمني.',
+      },
+      {
+        question: 'هل يمكن أن تتجاوز النسبة المئوية 100%؟',
+        answer: 'نعم بالتأكيد! إذا ارتفعت مبيعات متجر من 1000 إلى 3000 دولار، فإن مقدار الزيادة هو 2000 دولار أي زيادة بنسبة 200%.',
+      },
     ],
   },
+
+  // 7. BMI Calculator
   {
     id: 'how-to-calculate-bmi-healthy-weight',
     slug: 'how-to-calculate-bmi-healthy-weight',
@@ -331,9 +527,9 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '5 min read',
     readTimeAr: 'قراءة في 5 دقائق',
     publishedDate: '2025-02-10',
-    modifiedDate: '2025-03-04',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'bmi-calculator',
-    relatedArticles: ['how-to-calculate-exact-age-and-birthdays'],
+    relatedArticles: ['how-to-calculate-exact-age-and-birthdays', 'how-to-calculate-percentages-and-discounts'],
     sections: [
       {
         heading: 'What is BMI and Why Does it Matter?',
@@ -344,17 +540,59 @@ export const ARTICLES: ArticleItem[] = [
           'Underweight: BMI below 18.5',
           'Normal / Healthy Weight: BMI between 18.5 and 24.9',
           'Overweight: BMI between 25 and 29.9',
-          'Obese: BMI 30 and above',
+          'Obesity Class I: BMI between 30 and 34.9',
+          'Obesity Class II & III: BMI 35 and above',
         ],
         bulletsAr: [
-          'نقص في الوزن: أقل من 18.5',
-          'وزن مثالي وصحي: من 18.5 إلى 24.9',
+          'نقص في الوزن (نحافة): أقل من 18.5',
+          'وزن طبيعي وصحي: من 18.5 إلى 24.9',
           'وزن زائد: من 25 إلى 29.9',
-          'سمنة: 30 فما فوق',
+          'سمنة من الدرجة الأولى: من 30 إلى 34.9',
+          'سمنة مفرطة (الدرجة الثانية والثالثة): 35 فما فوق',
         ],
+      },
+      {
+        heading: 'Understanding the Limits of BMI',
+        headingAr: 'حدود مقياس BMI وما لا يخبرك به عن صحتك',
+        body: 'While BMI is an excellent rapid screening tool for the general population, it does not directly distinguish between muscle mass and fat tissue. Bodybuilders, professional athletes, and pregnant women often score high BMI despite having very low body fat percentages.',
+        bodyAr: 'رغم أن مؤشر كتلة الجسم ممتاز للتقييم السريع، إلا أنه لا يفرق مباشرة بين كتلة العضلات والدهون. الرياضيون ولاعبو كمال الأجسام قد يظهر لديهم مؤشر مرتفع (وزن زائد) رغم أن نسبة الدهون لديهم منخفضة جداً بسبب الكتلة العضلية.',
+        bullets: [
+          'Athletes: Muscle is denser than fat, leading to higher BMI numbers.',
+          'Older adults: Muscle loss may mask excess visceral fat.',
+          'Waist circumference: A valuable supplementary measurement to evaluate abdominal fat risk.',
+        ],
+        bulletsAr: [
+          'الرياضيون: العضلات أكثر كثافة ووزناً من الدهون، مما قد يرفع المؤشر.',
+          'كبار السن: قد يقل وزن العضلات مع التقدم في السن مما يخفي نسبة الدهون الحقيقية.',
+          'محيط الخصر: يُعد قياس محيط الخصر مكملاً ممتازاً لمؤشر BMI لتقييم دهون البطن.',
+        ],
+        tip: 'Use Sahlino BMI Calculator to also check your ideal healthy weight range according to your height.',
+        tipAr: 'نصيحة: استخدم حاسبة BMI في ساهلينو لمعرفة نطاق وزنك الصحي المثالي بالكيلوجرام المناسب لطولك بالضبط.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the ideal BMI for adults?',
+        answer: 'A BMI between 18.5 and 24.9 is considered the globally recognized healthy range associated with the lowest risk of cardiovascular diseases.',
+      },
+      {
+        question: 'How do I calculate BMI using imperial units (pounds and inches)?',
+        answer: 'The imperial formula is: BMI = (Weight in lbs * 703) / (Height in inches)^2.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'ما هو المعدل المثالي لمؤشر كتلة الجسم؟',
+        answer: 'المعدل الطبيعي والصحي هو بين 18.5 و 24.9، ويرتبط بأقل معدلات مخاطر للإصابة بأمراض القلب وضغط الدم والسكري.',
+      },
+      {
+        question: 'كيف أحسب مؤشر كتلة الجسم بالأرطال والبوصة؟',
+        answer: 'المعادلة بالوحدات الإمبراطورية: (الوزن بالرطل × 703) ÷ (مربع الطول بالبوصة). حاسبة ساهلينو تدعم كلا النظامين تلقائياً.',
       },
     ],
   },
+
+  // 8. Age Calculator
   {
     id: 'how-to-calculate-exact-age-and-birthdays',
     slug: 'how-to-calculate-exact-age-and-birthdays',
@@ -368,18 +606,56 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '3 min read',
     readTimeAr: 'قراءة في 3 دقائق',
     publishedDate: '2025-02-12',
-    modifiedDate: '2025-03-06',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'age-calculator',
     relatedArticles: ['how-to-calculate-percentages-and-discounts'],
     sections: [
       {
         heading: 'The Nuances of Accurate Age Computation',
         headingAr: 'أسرار الحساب الدقيق للعمر ومراعاة السنوات الكبيسة',
-        body: 'Simple division of days by 365 produces inaccurate ages because leap years contain 366 days and months range from 28 to 31 days. A proper chronological age tool calculates exact date boundaries.',
-        bodyAr: 'القسمة التقليدية للأيام على 365 تعطي أرقاماً غير دقيقة بسبب تباين أيام الأشهر بين 28 و31 ووجود السنوات الكبيسة. حاسبة ساهلينو تطبق خوارزمية دقيقة تحسب الأيام الفعلية بدقة.',
+        body: 'Simple division of total elapsed days by 365 produces inaccurate ages because leap years contain 366 days and calendar months range from 28 to 31 days. A proper chronological age tool calculates exact date boundaries.',
+        bodyAr: 'القسمة التقليدية للأيام على 365 تعطي أرقاماً غير دقيقة بسبب تباين أيام الأشهر بين 28 و31 ووجود السنوات الكبيسة. حاسبة ساهلينو تطبق خوارزمية دقيقة تحسب الأيام والشهور الفعلية.',
+        bullets: [
+          'Leap Year Rule: Every year divisible by 4 (except century years not divisible by 400) adds February 29.',
+          'Borrowing days: When birth day exceeds current day, days are borrowed according to the preceding month\'s exact length.',
+          'Total milestones: Calculating age in total days, hours, minutes, and seconds lived.',
+        ],
+        bulletsAr: [
+          'قاعدة السنوات الكبيسة: كل سنة تقبل القسمة على 4 تضيف يوماً إضافياً (29 فبراير).',
+          'استلاف الأيام: عند حساب الفرق بين الأيام، يتم استلاف أيام الشهر السابق الفعلية بدقة.',
+          'إحصائيات شاملة: حساب إجمالي ما عشته بالأيام، والأسابيع، والساعات، والدقائق.',
+        ],
+      },
+      {
+        heading: 'Countdown to Next Birthday and Milestone Tracking',
+        headingAr: 'العد التنازلي ليوم الميلاد القادم والمناسبات الخاصة',
+        body: 'In addition to chronological age, knowing the exact days and hours until your next birthday helps with planning events, retirement milestones, school admissions, and insurance policy dates.',
+        bodyAr: 'بالإضافة لمعرفة عمرك الدقيق، تتيح لك الأداة معرفة عدد الأيام والساعات المتبقية حتى حلول يوم ميلادك القادم، وهو أمر مفيد للتخطيط للمناسبات ومعاملات التقاعد والتأمين وتسجيل المدارس.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does the calculator support historical or future dates?',
+        answer: 'Yes! You can compute age on any specific date in history or find your future age in a designated year.',
+      },
+      {
+        question: 'Why do two people born in different months with the same day count differ in total days lived?',
+        answer: 'Because months vary in length (February has 28 or 29 days while others have 30 or 31), the exact number of days lived depends on which specific months transpired.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل يمكنني حساب عمري في تاريخ محدد سابق أو مستقبلي؟',
+        answer: 'نعم! يمكنك اختيار تاريخ ميلادك ثم تحديد أي تاريخ هدف في الماضي أو المستقبل لحساب عمرك فيه بدقة.',
+      },
+      {
+        question: 'لماذا تختلف أيام الشهور في حساب العمر؟',
+        answer: 'نظراً لأن شهور السنة تختلف بين 28 و 29 و 30 و 31 يوماً، فإن الحساب الدقيق يراعي أيام كل شهر مر في حياتك بالتفصيل.',
       },
     ],
   },
+
+  // 9. QR Code
   {
     id: 'how-to-create-custom-qr-codes',
     slug: 'how-to-create-custom-qr-codes',
@@ -393,7 +669,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '4 min read',
     readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-02-15',
-    modifiedDate: '2025-03-02',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'qr-code-generator',
     relatedArticles: ['how-to-compress-images-without-losing-quality'],
     sections: [
@@ -402,9 +678,61 @@ export const ARTICLES: ArticleItem[] = [
         headingAr: 'لماذا أصبحت رموز الاستجابة السريعة (QR) ركيزة التفاعل الحديث؟',
         body: 'With native smartphone camera scanning, QR codes bridge the physical and digital worlds. From connecting visitors instantly to your home or office WiFi without typing long passwords, to opening product pages and digital menus.',
         bodyAr: 'بفضل قدرة كاميرات الهواتف الذكية على قراءة الرموز فوراً، أصبحت رموز QR أسرع وسيلة لربط العالم الحقيقي بالعالم الرقمي، كالاتصال التلقائي بشبكة الواي فاي أو فتح صفحات الدفع والروابط.',
+        bullets: [
+          'Website Links: Direct customers to landing pages, social profiles, and app stores.',
+          'Instant WiFi: Connect guests without spelling out complex encryption keys.',
+          'vCard Contacts: Save full phone, email, and address info in one tap.',
+          'Plain Text & Notes: Share snippets, codes, and instructions offline.',
+        ],
+        bulletsAr: [
+          'روابط المواقع: توجيه العملاء مباشرة لصفحات الهبوط وقوائم الطعام وحسابات التواصل.',
+          'شبكات الواي فاي: اتصال الضيوف بالإنترنت فوراً دون الحاجة لكتابة كلمات مرور معقدة.',
+          'بطاقات الأعمال (vCard): حفظ الاسم ورقم الهاتف والبريد بضغطة زر واحدة في جهات الاتصال.',
+          'النصوص والملاحظات: مشاركة معلومات أو أكواد التحقق دون الحاجة للاتصال بالإنترنت.',
+        ],
+      },
+      {
+        heading: 'Design Best Practices: Contrast and Error Correction',
+        headingAr: 'أفضل الممارسات لتصميم رمز QR يسهل مسحه من أي كاميرا',
+        body: 'A beautiful QR code must remain easily readable by camera sensors. Following key design rules prevents scanning failures on printed flyers or poorly lit restaurant tables.',
+        bodyAr: 'الرمز الناجح هو الذي تستطيع كاميرات الهواتف قراءته بسرعة حتى في الإضاءة الخافتة أو من مسافات بعيدة. الالتزام بإرشادات التباين يضمن نجاح القراءة 100%.',
+        bullets: [
+          'High Contrast: Always use a dark foreground on a clean light background.',
+          'Quiet Zone: Maintain clear blank margins around the outer edges of the QR code.',
+          'Error Correction (ECC): Levels range from L (7%) to H (30%), allowing codes to be scanned even if partially damaged or covered by a central logo.',
+        ],
+        bulletsAr: [
+          'التباين العالي: احرص دائماً على أن يكون لون الرمز داكناً على خلفية فاتحة ونظيفة.',
+          'منطقة الأمان (Quiet Zone): اترك هامشاً فارغاً حول أطراف الرمز الأربعة دون نصوص.',
+          'مستوى تصحيح الخطأ: يوفر مستوى H حماية حتى 30% مما يسمح بقراءة الرمز حتى لو تعرض للخدش أو وُضع شعار في وسطه.',
+        ],
+        tip: 'Always test-scan your QR code on both an iOS iPhone and an Android device before sending marketing materials to the print shop.',
+        tipAr: 'نصيحة: اختبر مسح الرمز بكاميرا هاتف آيفون وهاتف أندرويد قبل إرسال المطبوعات للمطبعة لضمان سهولة قراءته.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do QR codes created on Sahlino ever expire?',
+        answer: 'No! Sahlino generates static QR codes where data is encoded directly into the pixel pattern. They work forever with no expiration date.',
+      },
+      {
+        question: 'Can I download the QR code in high resolution for large posters?',
+        answer: 'Yes, you can generate high-DPI images that remain sharp when printed on large promotional banners and billboards.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل تنتهي صلاحية رموز الـ QR التي يتم إنشاؤها على ساهلينو؟',
+        answer: 'كلا! الرموز المُنشأة هي رموز ثابتة (Static QR) يتم تشفير البيانات مباشرة داخل نمط النقاط، وتعمل إلى الأبد دون انتهاء صلاحية.',
+      },
+      {
+        question: 'هل تتوفر الرموز بجودة عالية مناسبة للطباعة الكبيرة؟',
+        answer: 'نعم، يتم تصدير الرمز بدقة فائقة تمنع أي تشويش عند طباعته على لافتات وبوسترات المتاجر الكبيرة.',
       },
     ],
   },
+
+  // 10. Word Counter for SEO
   {
     id: 'how-to-count-words-characters-for-seo',
     slug: 'how-to-count-words-characters-for-seo',
@@ -418,9 +746,9 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '4 min read',
     readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-02-18',
-    modifiedDate: '2025-03-05',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'word-counter',
-    relatedArticles: ['how-to-format-validate-json-payloads'],
+    relatedArticles: ['how-to-format-validate-json-payloads', 'how-to-clean-and-deduplicate-text'],
     sections: [
       {
         heading: 'Recommended Text Lengths for Digital Publishing',
@@ -432,16 +760,56 @@ export const ARTICLES: ArticleItem[] = [
           'Google Meta Description: 150-160 characters.',
           'X / Twitter post: 280 characters standard limit.',
           'In-depth SEO Blog Post: 1,200 to 2,500 words.',
+          'SMS message: 160 characters (GSM-7) or 70 characters (Unicode/Arabic).',
         ],
         bulletsAr: [
-          'عنوان صفحة Google (Title): بين 50 و60 حرفاً.',
+          'عنوان صفحة Google (Title): بين 50 و60 حرفاً لتجنب الاقتطاع.',
           'وصف الميتا في Google (Description): بين 150 و160 حرفاً.',
           'منشور منصة X (تويتر سابقاً): 280 حرفاً كحد أقصى للحسابات العادية.',
           'المقالات المتعمقة المتصدرة في SEO: من 1200 إلى 2500 كلمة.',
+          'الرسائل النصية القصيرة SMS: 160 حرفاً بالإنجليزية و70 حرفاً بالعربية لكل رسالة.',
+        ],
+      },
+      {
+        heading: 'Calculating Reading Time and Content Density',
+        headingAr: 'حساب وقت القراءة المقدر ومؤشرات سلاسة المحتوى',
+        body: 'The average adult reads between 200 and 250 words per minute. Providing an estimated reading time at the top of your articles sets expectations for busy readers and improves user engagement metrics.',
+        bodyAr: 'يقرأ الشخص البالغ في المتوسط بين 200 و250 كلمة في الدقيقة. وضع وقت القراءة المقدر في بداية المقال يشجع الزوار على القراءة ويزيد من بقائهم داخل الموقع.',
+        bullets: [
+          'Formula: Total Words / 200 = Estimated minutes to read.',
+          'Paragraph breaks: Keep paragraphs under 4-5 sentences for optimal mobile scanning.',
+          'Keyword density: Natural writing maintains primary keywords under 1.5% - 2% of total word count.',
+        ],
+        bulletsAr: [
+          'معادلة وقت القراءة: إجمالي الكلمات ÷ 200 = دقائق القراءة المقدرة.',
+          'تقسيم الفقرات: اجعل الفقرة بين 3 إلى 5 أسطر لتسهيل القراءة على شاشات الهواتف.',
+          'كثافة الكلمات المفتاحية: احرص على ألا تتجاوز الكلمة المستهدفة 1.5% إلى 2% من إجمالي النص لتفادي الحشو غير المرغوب.',
         ],
       },
     ],
+    faqs: [
+      {
+        question: 'Does word count include spaces and punctuation?',
+        answer: 'Word count measures discrete words separated by spaces. Character count can be measured with spaces included or without spaces.',
+      },
+      {
+        question: 'How does Arabic word counting work?',
+        answer: 'Arabic words connected with the conjunction "و" or prepositions are counted accurately based on standard unicode word boundaries.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل يشمل عد الأحرف المسافات وعلامات الترقيم؟',
+        answer: 'توفر أداة ساهلينو إحصائيتين: إجمالي الأحرف مع المسافات، وإجمالي الأحرف بدون المسافات لتقدير التكلفة والحدود بدقة.',
+      },
+      {
+        question: 'كيف يتم حساب الكلمات العربية المتصلة بواو العطف؟',
+        answer: 'تعتمد الأداة على معايير Unicode المعتمدة لفصل الكلمات والمفردات اللغوية بدقة تامة باللغتين العربية والإنجليزية.',
+      },
+    ],
   },
+
+  // 11. JSON Formatter & Debugging
   {
     id: 'how-to-format-validate-json-payloads',
     slug: 'how-to-format-validate-json-payloads',
@@ -455,7 +823,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '4 min read',
     readTimeAr: 'قراءة في 4 دقائق',
     publishedDate: '2025-02-22',
-    modifiedDate: '2025-03-07',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'json-formatter',
     relatedArticles: ['how-to-count-words-characters-for-seo'],
     sections: [
@@ -466,17 +834,49 @@ export const ARTICLES: ArticleItem[] = [
         bodyAr: 'صيغة JSON صارمة جداً في قواعدها، وأي خطأ بسيط في علامات الترقيم سيؤدي لفشل قراءة البيانات من قبل واجهات API.',
         bullets: [
           'Trailing commas after the final object property or array item.',
-          'Using single quotes instead of double quotes for property keys.',
-          'Unescaped special characters or newlines inside string values.',
+          'Using single quotes instead of double quotes for property keys and string values.',
+          'Unescaped special characters, tabs, or newlines inside string values.',
+          'Missing matching closing curly braces "}" or square brackets "]".',
         ],
         bulletsAr: [
           'وضع فاصلة زائدة (Trailing comma) بعد آخر عنصر في الكائن أو المصفوفة.',
-          'استخدام علامات تنصيص فردية بدل المزدوجة في تسمية المفاتيح والقيم.',
+          'استخدام علامات تنصيص فردية بدل المزدوجة في تسمية المفاتيح والقيم النصية.',
           'عدم إغلاق الأقواس أو تضمين حروف خاصة غير مهربة داخل النصوص.',
+          'استخدام قيم غير معرفة مثل undefined أو NaN التي لا تدعمها صيغة JSON القياسية.',
         ],
+      },
+      {
+        heading: 'Beautifying vs Minifying: When to Use Which?',
+        headingAr: 'الفرق بين التجميل (Beautify) والضغط (Minify) ومتى تستخدمهما؟',
+        body: 'Beautifying adds 2 or 4 space indentation and newlines, making payloads instantly readable by humans during debugging. Minifying strips every extraneous whitespace character, reducing network bandwidth by up to 30% for production API payloads.',
+        bodyAr: 'التجميل (Beautify) يضيف مسافات بادئة وأسطر جديدة لتسهيل قراءة البيانات وتتبع المشكلات، بينما الضغط (Minify) يحذف كافة المسافات الزائدة لتقليل حجم البيانات المنقولة عبر الشبكة وتسريع استجابة الخوادم.',
+        tip: 'In Sahlino JSON Formatter, you can switch between 2 spaces, 4 spaces, and tabs indentation, or click Minify to generate clean production payloads.',
+        tipAr: 'نصيحة: يمكنك في أداة ساهلينو التبديل بين مسافتين أو 4 مسافات أو ضغط الكود بالكامل بنقرة واحدة، مع التحقق من سلامة البناء فورياً.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does JSON support comments?',
+        answer: 'Standard JSON (RFC 8259) strictly forbids comments like // or /* */. Configuration files requiring comments typically use JSONC or YAML.',
+      },
+      {
+        question: 'Is it safe to paste API tokens or private data into Sahlino JSON tool?',
+        answer: 'Yes, 100%! All JSON parsing, formatting, and validation runs locally in your browser memory. No data is sent to our servers.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل تدعم صيغة JSON التعليقات التوضيحية؟',
+        answer: 'وفق المعيار الرسمي RFC 8259، لا تدعم صيغة JSON القياسية التعليقات، وتتطلب إزالتها لتجنب أخطاء التحليل.',
+      },
+      {
+        question: 'هل من الآمن فحص رموز API وبيانات الاعتماد الحساسة في ساهلينو؟',
+        answer: 'نعم 100%، تتم كافة عمليات فحص وتنسيق JSON محلياً داخل متصفحك ولا يتم إرسال أي رمز أو استجابة إلى أي خادم.',
       },
     ],
   },
+
+  // 12. Loan & Installments
   {
     id: 'how-to-calculate-loan-interest-and-installments',
     slug: 'how-to-calculate-loan-interest-and-installments',
@@ -490,7 +890,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '5 min read',
     readTimeAr: 'قراءة في 5 دقائق',
     publishedDate: '2025-02-25',
-    modifiedDate: '2025-03-08',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'loan-calculator',
     relatedArticles: ['how-to-calculate-percentages-and-discounts'],
     sections: [
@@ -499,9 +899,61 @@ export const ARTICLES: ArticleItem[] = [
         headingAr: 'كيف يتم حساب القسط الشهري الثابت (الأقساط المتساوية)؟',
         body: 'Most personal, auto, and home mortgage loans use standard amortization where payments remain identical each month, but the proportion going toward principal versus interest shifts over time.',
         bodyAr: 'تعتمد أغلب القروض الشخصية وتمويل السيارات والعقارات على نظام الأقساط الشهرية الثابتة، حيث تسدد في الشهور الأولى نسبة فوائد أعلى بينما تزيد نسبة سداد أصل المبلغ تدريجياً.',
+        bullets: [
+          'Principal (P): The actual borrowed money amount.',
+          'Monthly Interest Rate (r): Annual rate divided by 12 months.',
+          'Number of payments (n): Loan term in years multiplied by 12.',
+          'Standard EMI Formula: P * [r(1+r)^n] / [(1+r)^n - 1]',
+        ],
+        bulletsAr: [
+          'أصل التمويل (Principal): المبلغ الفعلي المقترض من البنك.',
+          'معدل الفائدة الشهري: نسبة الفائدة السنوية مقسومة على 12 شهراً.',
+          'عدد الأقساط: مدة التمويل بالسنوات مضروبة في 12.',
+          'معادلة القسط الثابت (EMI): تضمن توزيع المبلغ والأرباح على أقساط شهرية متساوية.',
+        ],
+      },
+      {
+        heading: 'How Loan Term Length Impacts Total Interest Paid',
+        headingAr: 'أثر مدة التمويل على إجمالي الأرباح والفوائد المدفوعة',
+        body: 'Extending a loan term (e.g. from 3 years to 5 years) reduces your monthly installment but significantly increases the total interest paid over the life of the loan.',
+        bodyAr: 'تمديد فترة سداد القرض (مثلاً من 3 سنوات إلى 5 سنوات) يقلل قيمة القسط الشهري لكنه يرفع إجمالي الأرباح والفوائد التي تدفعها للبنك بشكل ملحوظ.',
+        bullets: [
+          'Shorter term: Higher monthly payment, dramatically lower overall interest cost.',
+          'Longer term: Lower monthly payment, much higher total cost of borrowing.',
+          'Early repayments: Paying additional principal early directly reduces compounding interest.',
+        ],
+        bulletsAr: [
+          'فترة سداد أقصر: قسط شهري أعلى، ولكن إجمالي فوائد أقل بكثير.',
+          'فترة سداد أطول: قسط شهري أقل، ولكن تكلفة إجمالية أعلى للقرض.',
+          'السداد المبكر: سداد دفعات إضافية مبكرة يقلل رصيد أصل المبلغ ويخفض الفوائد التراكمية.',
+        ],
+        tip: 'Use Sahlino Loan Calculator to experiment with different loan durations and see your exact monthly installment before signing bank papers.',
+        tipAr: 'نصيحة: استخدم حاسبة القروض في ساهلينو لمقارنة خيارات السداد ومعرفة القسط الشهري وإجمالي الفائدة بدقة قبل توقيع عقود التمويل.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between flat interest rate and reducing balance rate?',
+        answer: 'A flat rate calculates interest on the initial full principal for the entire term. A reducing balance rate calculates interest only on the remaining unpaid principal each month.',
+      },
+      {
+        question: 'Can I calculate mortgage and car loans with Sahlino?',
+        answer: 'Yes! The calculator works for personal loans, auto finance, home mortgages, and business loans with standard monthly amortization.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'ما الفرق بين الفائدة الثابتة والفائدة المتناقصة؟',
+        answer: 'الفائدة الثابتة تحتسب الأرباح على كامل المبلغ الأصلي طوال المدة، بينما الفائدة المتناقصة تحتسب الفائدة فقط على المتبقي الفعلي من أصل القرض كل شهر.',
+      },
+      {
+        question: 'هل تدعم الحاسبة قروض السيارات والتمويل العقاري؟',
+        answer: 'نعم، تنطبق نفس المعادلة على التمويل الشخصي، وتمويل السيارات، والتمويل العقاري بنظام الأقساط الشهرية.',
       },
     ],
   },
+
+  // 13. Text Cleaning
   {
     id: 'how-to-clean-and-deduplicate-text',
     slug: 'how-to-clean-and-deduplicate-text',
@@ -515,7 +967,7 @@ export const ARTICLES: ArticleItem[] = [
     readTime: '3 min read',
     readTimeAr: 'قراءة في 3 دقائق',
     publishedDate: '2025-03-01',
-    modifiedDate: '2025-03-09',
+    modifiedDate: '2026-09-14',
     relatedToolSlug: 'text-cleaner',
     relatedArticles: ['how-to-count-words-characters-for-seo'],
     sections: [
@@ -524,6 +976,46 @@ export const ARTICLES: ArticleItem[] = [
         headingAr: 'لماذا يوفر تنظيف النصوص ساعات من العمل اليدوي المرهق؟',
         body: 'Whether working with email lists, product SKUs, research survey responses, or code snippets, duplicate rows and inconsistent spacing create clutter and spreadsheet errors. An automated text cleaner solves these problems instantaneously.',
         bodyAr: 'سواء كنت تتعامل مع قوائم بريد أو أرقام هواتف أو بيانات تم نسخها من جداول مختلفة، فإن وجود فراغات أو أسطر مكررة يعطل أعمالك. أداة تنظيف النصوص تنجز المهمة في لحظة واحدة.',
+        bullets: [
+          'Email Marketing: Remove duplicate addresses to avoid spam flags and reduce send costs.',
+          'Data entry: Strip trailing whitespace and normalize spacing before database imports.',
+          'Alphabetical Sorting: Organize names, tags, and keywords in A-Z or Z-A sequence.',
+          'Empty line removal: Condense fragmented text blocks into clean, uniform paragraphs.',
+        ],
+        bulletsAr: [
+          'التسويق البريدي: حذف العناوين المكررة لتفادي حظر الرسائل وخفض تكاليف الإرسال.',
+          'إدخال البيانات: إزالة الفراغات الزائدة في البداية والنهاية قبل استيرادها إلى قواعد البيانات.',
+          'الترتيب الأبجدي: تنظيم الأسماء والكلمات المفتاحية من الألف إلى الياء بضغطة واحدة.',
+          'حذف الأسطر الفارغة: دمج النصوص المتفرقة وتنظيف الفراغات بين الفقرات.',
+        ],
+      },
+      {
+        heading: 'How to Use Sahlino Text Cleaner',
+        headingAr: 'خطوات تنظيف القوائم والبيانات على ساهلينو',
+        body: 'Paste your raw text into the input box, select the desired operations (e.g. Remove Duplicate Lines, Strip Extra Spaces, Sort Lines, Trim Lines), and copy the pristine result immediately.',
+        bodyAr: 'الصق النص في محرر ساهلينو، وحدد الخيارات المطلوبة (حذف التكرار، مسح المسافات الزائدة، الترتيب الأبجدي، حذف الأسطر الفارغة)، وانسخ النتيجة النظيفة فوراً.',
+        tip: 'Enable case-insensitive deduplication when cleaning email lists so that "user@example.com" and "User@example.com" are correctly recognized as duplicates.',
+        tipAr: 'نصيحة: فعّل خيار تجاهل حالة الأحرف عند تنظيف قوائم البريد الإلكتروني للتعرف على العناوين المكررة حتى لو اختلفت الأحرف الكبيرة والصغيرة.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is my text sent to any server when cleaning?',
+        answer: 'No. All string manipulation and regex cleaning happens locally in your browser memory with 100% privacy.',
+      },
+      {
+        question: 'Can I clean very large lists with thousands of lines?',
+        answer: 'Yes! Modern browsers handle tens of thousands of text lines in a few milliseconds without freezing.',
+      },
+    ],
+    faqsAr: [
+      {
+        question: 'هل يتم إرسال نصوصي أو قوائمي إلى أي خادم خارجي؟',
+        answer: 'أبداً، تتم جميع عمليات معالجة وتنظيف النصوص محلياً بالكامل داخل متصفحك دون رفع أي بيانات.',
+      },
+      {
+        question: 'هل تدعم الأداة القوائم الضخمة التي تحتوي آلاف الأسطر؟',
+        answer: 'نعم، خوارزميات ساهلينو محسنة لمعالجة عشرات الآلاف من الأسطر في أجزاء من الثانية.',
       },
     ],
   },
@@ -540,18 +1032,44 @@ export function getArticlesByCategory(categoryId: string): ArticleItem[] {
 
 export function getRelatedArticles(currentSlug: string, limit = 3): ArticleItem[] {
   const current = getArticleBySlug(currentSlug);
-  if (!current) return ARTICLES.slice(0, limit);
-
-  if (current.relatedArticles && current.relatedArticles.length > 0) {
-    const explicit = ARTICLES.filter((a) => current.relatedArticles?.includes(a.slug));
-    if (explicit.length >= limit) return explicit.slice(0, limit);
+  if (!current) {
+    return ARTICLES.filter((a) => a.slug !== currentSlug).slice(0, limit);
   }
 
-  const sameCategory = ARTICLES.filter((a) => a.category === current.category && a.slug !== currentSlug);
-  if (sameCategory.length >= limit) return sameCategory.slice(0, limit);
+  const seenSlugs = new Set<string>([currentSlug]);
+  const result: ArticleItem[] = [];
 
-  const others = ARTICLES.filter((a) => a.slug !== currentSlug);
-  return [...sameCategory, ...others].slice(0, limit);
+  // 1. Explicitly configured related articles
+  if (current.relatedArticles && current.relatedArticles.length > 0) {
+    for (const slug of current.relatedArticles) {
+      if (!seenSlugs.has(slug)) {
+        const found = getArticleBySlug(slug);
+        if (found) {
+          seenSlugs.add(slug);
+          result.push(found);
+          if (result.length >= limit) return result;
+        }
+      }
+    }
+  }
+
+  // 2. Articles in the same category
+  const sameCategory = ARTICLES.filter((a) => a.category === current.category && !seenSlugs.has(a.slug));
+  for (const article of sameCategory) {
+    seenSlugs.add(article.slug);
+    result.push(article);
+    if (result.length >= limit) return result;
+  }
+
+  // 3. Other articles across categories
+  const others = ARTICLES.filter((a) => !seenSlugs.has(a.slug));
+  for (const article of others) {
+    seenSlugs.add(article.slug);
+    result.push(article);
+    if (result.length >= limit) return result;
+  }
+
+  return result.slice(0, limit);
 }
 
 export function getArticlesForTool(toolSlug: string): ArticleItem[] {

@@ -49,6 +49,7 @@ import { DateCalculatorTool } from './components/tools/DateCalculatorTool';
 import { PdfSplitTool } from './components/tools/PdfSplitTool';
 import { PdfRotateTool } from './components/tools/PdfRotateTool';
 import { TextToPdfTool } from './components/tools/TextToPdfTool';
+import { WordToPdfTool } from './components/tools/WordToPdfTool';
 import { ImageConverterTool } from './components/tools/ImageConverterTool';
 import { ImageRotateTool } from './components/tools/ImageRotateTool';
 import { TextCleanerTool } from './components/tools/TextCleanerTool';
@@ -112,6 +113,10 @@ export default function App() {
     }
     if (cleanPath.startsWith('/articles/')) {
       const slug = cleanPath.replace('/articles/', '');
+      return <ArticleDetailPage articleSlug={slug} onNavigate={navigate} />;
+    }
+    if (cleanPath.startsWith('/knowledge/')) {
+      const slug = cleanPath.replace('/knowledge/', '');
       return <ArticleDetailPage articleSlug={slug} onNavigate={navigate} />;
     }
 
@@ -204,6 +209,9 @@ export default function App() {
     }
     if (cleanPath === '/text-to-pdf') {
       return <TextToPdfTool onNavigate={navigate} />;
+    }
+    if (cleanPath === '/word-to-pdf') {
+      return <WordToPdfTool onNavigate={navigate} />;
     }
     if (cleanPath === '/image-converter') {
       return <ImageConverterTool onNavigate={navigate} />;

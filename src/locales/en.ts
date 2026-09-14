@@ -290,6 +290,8 @@ export const en = {
   'tool.color-converter.desc': 'Convert color codes between HEX, RGB, HSL, HSV, and CMYK formats with live color preview palettes.',
   'tool.lorem-ipsum.name': 'Lorem Ipsum Generator',
   'tool.lorem-ipsum.desc': 'Generate customizable placeholder dummy text in paragraphs, sentences, or words for layout mockups.',
+  'tool.word-to-pdf.name': 'Word to PDF Converter',
+  'tool.word-to-pdf.desc': 'Convert Word documents (.docx) to professional PDF files in your browser with 100% privacy.',
 
   // Categories Names & Descriptions
   'cat.document-tools.name': 'Document & PDF Tools',

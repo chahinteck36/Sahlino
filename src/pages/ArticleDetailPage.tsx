@@ -279,9 +279,9 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {relatedArticles.map((rel) => (
+              {relatedArticles.map((rel, idx) => (
                 <div
-                  key={rel.id}
+                  key={`${rel.slug}-${idx}`}
                   onClick={() => onNavigate(`/knowledge/${rel.slug}`)}
                   className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all cursor-pointer shadow-sm flex flex-col justify-between"
                 >

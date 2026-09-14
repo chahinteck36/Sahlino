@@ -290,6 +290,8 @@ export const ar = {
   'tool.color-converter.desc': 'التحويل المباشر بين أكواد الألوان HEX و RGB و HSL و HSV مع معاينة حية.',
   'tool.lorem-ipsum.name': 'مولد نصوص لوريم إيبسوم',
   'tool.lorem-ipsum.desc': 'توليد نصوص بديلة وتجريبية بالتنسيق المرغوب لتصميم القوالب وتخطيط الصفحات.',
+  'tool.word-to-pdf.name': 'محول Word إلى PDF',
+  'tool.word-to-pdf.desc': 'تحويل مستندات Word (.docx) إلى ملفات PDF احترافية قابلة للطباعة بنقرة واحدة وخصوصية 100% داخل المتصفح.',
 
   // Categories Names & Descriptions
   'cat.document-tools.name': 'أدوات المستندات والـ PDF',

@@ -1,7 +1,9 @@
 import React from 'react';
 import { BookOpen, ArrowRight, Clock, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { getArticlesForTool, ARTICLES } from '../../data/articles';
+import { getArticlesForTool, getArticleBySlug, ARTICLES } from '../../data/articles';
+import { getToolBySlug } from '../../data/tools';
+import { ArticleItem } from '../../types';
 
 interface RelatedArticlesSectionProps {
   toolSlug: string;
@@ -16,12 +18,45 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
   const isRtl = isRTL;
   const isAr = language === 'ar';
 
-  let articles = getArticlesForTool(toolSlug);
-  if (articles.length === 0) {
-    // Show top 3 general guide articles if no direct match
-    articles = ARTICLES.slice(0, 3);
+  // Collect and deduplicate relevant articles for this tool
+  const matchedArticles: ArticleItem[] = [];
+  const seenSlugs = new Set<string>();
+
+  // 1. Check if tool defines explicit relatedArticles in its catalog definition
+  const tool = getToolBySlug(toolSlug);
+  if (tool?.relatedArticles && tool.relatedArticles.length > 0) {
+    for (const slug of tool.relatedArticles) {
+      if (!seenSlugs.has(slug)) {
+        const found = getArticleBySlug(slug);
+        if (found) {
+          seenSlugs.add(slug);
+          matchedArticles.push(found);
+        }
+      }
+    }
   }
 
+  // 2. Add articles where relatedToolSlug matches this tool
+  const directMatches = getArticlesForTool(toolSlug);
+  for (const article of directMatches) {
+    if (!seenSlugs.has(article.slug)) {
+      seenSlugs.add(article.slug);
+      matchedArticles.push(article);
+    }
+  }
+
+  // 3. Fallback to top 3 articles if no matches found
+  if (matchedArticles.length === 0) {
+    for (const article of ARTICLES) {
+      if (!seenSlugs.has(article.slug)) {
+        seenSlugs.add(article.slug);
+        matchedArticles.push(article);
+        if (matchedArticles.length >= 3) break;
+      }
+    }
+  }
+
+  const articles = matchedArticles.slice(0, 3);
   if (articles.length === 0) return null;
 
   return (
@@ -53,7 +88,7 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {articles.map((article) => {
+        {articles.map((article, idx) => {
           const title = isAr ? article.titleAr : article.title;
           const description = isAr ? article.descriptionAr : article.description;
           const readTime = isAr ? article.readTimeAr : article.readTime;
@@ -61,7 +96,7 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
 
           return (
             <div
-              key={article.id}
+              key={`${article.slug}-${idx}`}
               onClick={() => onNavigate(`/knowledge/${article.slug}`)}
               className="group p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all cursor-pointer shadow-sm hover:shadow-md flex flex-col justify-between"
             >

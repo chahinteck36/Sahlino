@@ -742,6 +742,37 @@ export const TOOLS: ToolItem[] = [
     relatedArticles: ['how-to-merge-pdf-files-online'],
   },
 
+  // Word to PDF Converter
+  {
+    id: 'word-to-pdf',
+    name: 'Word to PDF Converter',
+    slug: 'word-to-pdf',
+    description: 'Convert Microsoft Word documents (.docx) to high-quality PDF files for free in your browser with 100% privacy.',
+    category: 'document-tools',
+    categoryName: 'Document & PDF Tools',
+    iconName: 'FileText',
+    popular: true,
+    status: 'available',
+    tags: ['word to pdf', 'docx to pdf', 'convert word', 'word converter', 'doc to pdf', 'تحويل word الى pdf', 'تحويل وورد الى pdf', 'مستندات'],
+    seoTitle: 'Convert Word to PDF Online - Free DOCX to PDF Converter | Sahlino',
+    seoDescription: 'Convert Microsoft Word (.docx) documents to professional PDF files in seconds. 100% free, private, client-side conversion with zero server uploads.',
+    faqs: [
+      {
+        question: 'Is my Word document uploaded to any server?',
+        answer: 'No. The conversion is performed 100% locally in your browser memory. Your private documents never leave your computer.',
+      },
+      {
+        question: 'Which Word formats are supported?',
+        answer: 'Modern Microsoft Word (.docx) files are fully supported with headings, paragraphs, bullet points, and formatting preservation.',
+      },
+      {
+        question: 'Can I customize font size and margins before downloading?',
+        answer: 'Yes! You can choose page orientation (Portrait or Landscape), adjust font size, adjust margins, and preview before downloading.',
+      },
+    ],
+    relatedArticles: ['how-to-convert-word-to-pdf', 'how-to-merge-pdf-files-online'],
+  },
+
   // 8. Text to PDF
   {
     id: 'text-to-pdf',
