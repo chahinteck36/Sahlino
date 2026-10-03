@@ -11,9 +11,10 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  onNavigate?: (path: string) => void;
 }
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, onNavigate }) => {
   const { t } = useLanguage();
 
   const handleHomeClick = (e: React.MouseEvent) => {
@@ -21,6 +22,8 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
       e.preventDefault();
       if (items[0]?.onClick) {
         items[0].onClick();
+      } else if (onNavigate) {
+        onNavigate('/');
       } else {
         window.history.pushState({}, '', '/');
         window.dispatchEvent(new PopStateEvent('popstate'));
@@ -58,10 +61,6 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
           const isLast = index === items.length - 1;
           const position = index + 2;
 
-          // Resolve path intelligently:
-          // 1. Explicit item.href if provided
-          // 2. If current leaf item, use currentPath
-          // 3. If onClick contains navigation path (e.g. onNavigate('/categories/...')), extract it
           let resolvedPath = item.href;
           if (!resolvedPath) {
             if (isLast) {
@@ -78,9 +77,16 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
           const relativeHref = resolvedPath || '#';
 
           const handleClick = (e: React.MouseEvent) => {
-            if (item.onClick && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
               e.preventDefault();
-              item.onClick();
+              if (item.onClick) {
+                item.onClick();
+              } else if (onNavigate && resolvedPath) {
+                onNavigate(resolvedPath);
+              } else if (resolvedPath) {
+                window.history.pushState({}, '', resolvedPath);
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
             }
           };
 

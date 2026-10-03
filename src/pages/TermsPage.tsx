@@ -46,7 +46,7 @@ export const TermsPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
               {isAr ? 'شروط وأحكام الاستخدام' : 'Terms of Service'}
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-              {isAr ? 'ساري المفعول اعتباراً من: مارس 2025' : 'Effective date: March 2025'}
+              {isAr ? 'آخر تحديث: أكتوبر 2026' : 'Last Updated: October 2026'}
             </p>
           </header>
 

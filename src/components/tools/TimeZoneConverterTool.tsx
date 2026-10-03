@@ -17,7 +17,9 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -534,6 +536,9 @@ export const TimeZoneConverterTool: React.FC<TimeZoneConverterToolProps> = ({ on
       <AdPlaceholder slotId="ad-slot-timezone-middle" />
 
       {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="time-zone-converter" />
+
       <FAQSection faqs={toolData.faqs || []} />
 
       {/* Internal Linking */}
@@ -543,6 +548,9 @@ export const TimeZoneConverterTool: React.FC<TimeZoneConverterToolProps> = ({ on
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="time-zone-converter" onNavigate={onNavigate} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/layout/Navbar';
@@ -17,47 +17,46 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { KnowledgeHubPage } from './pages/KnowledgeHubPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
 
-// MVP & Active Tools
-import { JsonFormatterTool } from './components/tools/JsonFormatterTool';
-import { ImageResizerTool } from './components/tools/ImageResizerTool';
-import { TimeZoneConverterTool } from './components/tools/TimeZoneConverterTool';
-import { PercentageCalculatorTool } from './components/tools/PercentageCalculatorTool';
-import { BusinessDaysCalculatorTool } from './components/tools/BusinessDaysCalculatorTool';
-import { PdfMergeTool } from './components/tools/PdfMergeTool';
-import { ImagesToPdfTool } from './components/tools/ImagesToPdfTool';
-import { QrCodeGeneratorTool } from './components/tools/QrCodeGeneratorTool';
-import { WordCounterTool } from './components/tools/WordCounterTool';
-import { CaseConverterTool } from './components/tools/CaseConverterTool';
-import { Base64Tool } from './components/tools/Base64Tool';
-import { UrlEncoderTool } from './components/tools/UrlEncoderTool';
-import { UuidGeneratorTool } from './components/tools/UuidGeneratorTool';
-import { HashGeneratorTool } from './components/tools/HashGeneratorTool';
-import { ImageCropperTool } from './components/tools/ImageCropperTool';
-import { UnitConverterTool } from './components/tools/UnitConverterTool';
-import { DataStorageConverterTool } from './components/tools/DataStorageConverterTool';
-import { NumberBaseConverterTool } from './components/tools/NumberBaseConverterTool';
-import { PasswordGeneratorTool } from './components/tools/PasswordGeneratorTool';
-import { AgeCalculatorTool } from './components/tools/AgeCalculatorTool';
-import { MetaTagGeneratorTool } from './components/tools/MetaTagGeneratorTool';
+// Dynamic Lazy-Loaded Tools (Optimized code splitting for high performance)
+const JsonFormatterTool = lazy(() => import('./components/tools/JsonFormatterTool').then(m => ({ default: m.JsonFormatterTool })));
+const ImageResizerTool = lazy(() => import('./components/tools/ImageResizerTool').then(m => ({ default: m.ImageResizerTool })));
+const TimeZoneConverterTool = lazy(() => import('./components/tools/TimeZoneConverterTool').then(m => ({ default: m.TimeZoneConverterTool })));
+const PercentageCalculatorTool = lazy(() => import('./components/tools/PercentageCalculatorTool').then(m => ({ default: m.PercentageCalculatorTool })));
+const BusinessDaysCalculatorTool = lazy(() => import('./components/tools/BusinessDaysCalculatorTool').then(m => ({ default: m.BusinessDaysCalculatorTool })));
+const PdfMergeTool = lazy(() => import('./components/tools/PdfMergeTool').then(m => ({ default: m.PdfMergeTool })));
+const ImagesToPdfTool = lazy(() => import('./components/tools/ImagesToPdfTool').then(m => ({ default: m.ImagesToPdfTool })));
+const QrCodeGeneratorTool = lazy(() => import('./components/tools/QrCodeGeneratorTool').then(m => ({ default: m.QrCodeGeneratorTool })));
+const WordCounterTool = lazy(() => import('./components/tools/WordCounterTool').then(m => ({ default: m.WordCounterTool })));
+const CaseConverterTool = lazy(() => import('./components/tools/CaseConverterTool').then(m => ({ default: m.CaseConverterTool })));
+const Base64Tool = lazy(() => import('./components/tools/Base64Tool').then(m => ({ default: m.Base64Tool })));
+const UrlEncoderTool = lazy(() => import('./components/tools/UrlEncoderTool').then(m => ({ default: m.UrlEncoderTool })));
+const UuidGeneratorTool = lazy(() => import('./components/tools/UuidGeneratorTool').then(m => ({ default: m.UuidGeneratorTool })));
+const HashGeneratorTool = lazy(() => import('./components/tools/HashGeneratorTool').then(m => ({ default: m.HashGeneratorTool })));
+const ImageCropperTool = lazy(() => import('./components/tools/ImageCropperTool').then(m => ({ default: m.ImageCropperTool })));
+const UnitConverterTool = lazy(() => import('./components/tools/UnitConverterTool').then(m => ({ default: m.UnitConverterTool })));
+const DataStorageConverterTool = lazy(() => import('./components/tools/DataStorageConverterTool').then(m => ({ default: m.DataStorageConverterTool })));
+const NumberBaseConverterTool = lazy(() => import('./components/tools/NumberBaseConverterTool').then(m => ({ default: m.NumberBaseConverterTool })));
+const PasswordGeneratorTool = lazy(() => import('./components/tools/PasswordGeneratorTool').then(m => ({ default: m.PasswordGeneratorTool })));
+const AgeCalculatorTool = lazy(() => import('./components/tools/AgeCalculatorTool').then(m => ({ default: m.AgeCalculatorTool })));
+const MetaTagGeneratorTool = lazy(() => import('./components/tools/MetaTagGeneratorTool').then(m => ({ default: m.MetaTagGeneratorTool })));
 
-// Expanded Suite Tools
-import { BmiCalculatorTool } from './components/tools/BmiCalculatorTool';
-import { DiscountCalculatorTool } from './components/tools/DiscountCalculatorTool';
-import { LoanCalculatorTool } from './components/tools/LoanCalculatorTool';
-import { CalorieCalculatorTool } from './components/tools/CalorieCalculatorTool';
-import { DateCalculatorTool } from './components/tools/DateCalculatorTool';
-import { PdfSplitTool } from './components/tools/PdfSplitTool';
-import { PdfRotateTool } from './components/tools/PdfRotateTool';
-import { TextToPdfTool } from './components/tools/TextToPdfTool';
-import { WordToPdfTool } from './components/tools/WordToPdfTool';
-import { ImageConverterTool } from './components/tools/ImageConverterTool';
-import { ImageRotateTool } from './components/tools/ImageRotateTool';
-import { TextCleanerTool } from './components/tools/TextCleanerTool';
-import { TextReplaceTool } from './components/tools/TextReplaceTool';
-import { HtmlCssFormatterTool } from './components/tools/HtmlCssFormatterTool';
-import { TimestampConverterTool } from './components/tools/TimestampConverterTool';
-import { ColorConverterTool } from './components/tools/ColorConverterTool';
-import { CurrencyConverterTool } from './components/tools/CurrencyConverterTool';
+const BmiCalculatorTool = lazy(() => import('./components/tools/BmiCalculatorTool').then(m => ({ default: m.BmiCalculatorTool })));
+const DiscountCalculatorTool = lazy(() => import('./components/tools/DiscountCalculatorTool').then(m => ({ default: m.DiscountCalculatorTool })));
+const LoanCalculatorTool = lazy(() => import('./components/tools/LoanCalculatorTool').then(m => ({ default: m.LoanCalculatorTool })));
+const CalorieCalculatorTool = lazy(() => import('./components/tools/CalorieCalculatorTool').then(m => ({ default: m.CalorieCalculatorTool })));
+const DateCalculatorTool = lazy(() => import('./components/tools/DateCalculatorTool').then(m => ({ default: m.DateCalculatorTool })));
+const PdfSplitTool = lazy(() => import('./components/tools/PdfSplitTool').then(m => ({ default: m.PdfSplitTool })));
+const PdfRotateTool = lazy(() => import('./components/tools/PdfRotateTool').then(m => ({ default: m.PdfRotateTool })));
+const TextToPdfTool = lazy(() => import('./components/tools/TextToPdfTool').then(m => ({ default: m.TextToPdfTool })));
+const WordToPdfTool = lazy(() => import('./components/tools/WordToPdfTool').then(m => ({ default: m.WordToPdfTool })));
+const ImageConverterTool = lazy(() => import('./components/tools/ImageConverterTool').then(m => ({ default: m.ImageConverterTool })));
+const ImageRotateTool = lazy(() => import('./components/tools/ImageRotateTool').then(m => ({ default: m.ImageRotateTool })));
+const TextCleanerTool = lazy(() => import('./components/tools/TextCleanerTool').then(m => ({ default: m.TextCleanerTool })));
+const TextReplaceTool = lazy(() => import('./components/tools/TextReplaceTool').then(m => ({ default: m.TextReplaceTool })));
+const HtmlCssFormatterTool = lazy(() => import('./components/tools/HtmlCssFormatterTool').then(m => ({ default: m.HtmlCssFormatterTool })));
+const TimestampConverterTool = lazy(() => import('./components/tools/TimestampConverterTool').then(m => ({ default: m.TimestampConverterTool })));
+const ColorConverterTool = lazy(() => import('./components/tools/ColorConverterTool').then(m => ({ default: m.ColorConverterTool })));
+const CurrencyConverterTool = lazy(() => import('./components/tools/CurrencyConverterTool').then(m => ({ default: m.CurrencyConverterTool })));
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -271,7 +270,18 @@ export default function App() {
           />
 
           {/* Main Content Area */}
-          <main className="flex-1 pb-16">{renderContent()}</main>
+          <main className="flex-1 pb-16">
+            <Suspense
+              fallback={
+                <div className="min-h-[50vh] flex flex-col items-center justify-center py-20">
+                  <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span className="mt-4 text-xs font-bold text-slate-400">Loading Sahlino Tool...</span>
+                </div>
+              }
+            >
+              {renderContent()}
+            </Suspense>
+          </main>
 
           {/* Global Footer */}
           <Footer onNavigate={navigate} />

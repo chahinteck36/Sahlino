@@ -1,3 +1,6 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Palette, Copy, Check, Sparkles } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -11,6 +14,7 @@ interface ColorConverterToolProps {
 
 export const ColorConverterTool: React.FC<ColorConverterToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('color-converter');
   const isAr = language === 'ar';
 
   const [hex, setHex] = useState<string>('#10B981');
@@ -170,6 +174,19 @@ export const ColorConverterTool: React.FC<ColorConverterToolProps> = ({ onNaviga
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="color-converter" onNavigate={onNavigate} />
     </div>

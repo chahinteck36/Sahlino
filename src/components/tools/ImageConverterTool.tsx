@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState } from 'react';
 import { ArrowLeftRight, Upload, Download, Check, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface ImageConverterToolProps {
 
 export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('image-converter');
   const isAr = language === 'ar';
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -233,6 +238,22 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onNaviga
           </div>
         )}
       </div>
+
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="image-converter" />
+
+      {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="image-converter" onNavigate={onNavigate} />
     </div>

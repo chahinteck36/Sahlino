@@ -1,3 +1,6 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, ArrowRightLeft, Copy, Check, Download } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +15,7 @@ interface TextReplaceToolProps {
 
 export const TextReplaceTool: React.FC<TextReplaceToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('text-replace');
   const isAr = language === 'ar';
 
   const sampleAr =
@@ -216,6 +220,19 @@ export const TextReplaceTool: React.FC<TextReplaceToolProps> = ({ onNavigate }) 
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="text-replace" onNavigate={onNavigate} />
     </div>

@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState } from 'react';
 import { Scissors, Upload, FileText, Download, AlertCircle, RefreshCw } from 'lucide-react';
 import { PDFDocument } from 'pdf-lib';
@@ -13,6 +17,7 @@ interface PdfSplitToolProps {
 
 export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('pdf-split');
   const isAr = language === 'ar';
 
   const [file, setFile] = useState<File | null>(null);
@@ -282,6 +287,21 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onNavigate }) => {
           </div>
         )}
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="pdf-split" />
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="pdf-split" onNavigate={onNavigate} />
     </div>

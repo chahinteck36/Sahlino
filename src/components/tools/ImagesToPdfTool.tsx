@@ -15,7 +15,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -364,6 +366,9 @@ export const ImagesToPdfTool: React.FC<{ onNavigate: (path: string) => void }> =
         )}
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="images-to-pdf" />
+
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="images-to-pdf"
@@ -371,6 +376,9 @@ export const ImagesToPdfTool: React.FC<{ onNavigate: (path: string) => void }> =
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="images-to-pdf" onNavigate={onNavigate} />
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { TOOLS, CATEGORIES } from '../src/data/tools.js';
+import { TOOLS, CATEGORIES } from '../src/data/tools.ts';
+import { ARTICLES } from '../src/data/articles.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,66 +11,73 @@ const BASE_URL = 'https://www.sahlino.tech';
 const TODAY = new Date().toISOString().split('T')[0];
 
 interface SitemapEntry {
-  path: string;
+  loc: string;
+  lastmod: string;
   changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority: string;
 }
 
-function generateSitemapXml(): string {
+export function generateSitemapXml(): string {
   const entries: SitemapEntry[] = [
-    // Core Platform Pages
-    { path: '/', changefreq: 'daily', priority: '1.0' },
-    { path: '/tools', changefreq: 'weekly', priority: '0.9' },
-    { path: '/categories', changefreq: 'weekly', priority: '0.9' },
+    // 1. Core Platform Pages
+    { loc: `${BASE_URL}/`, lastmod: TODAY, changefreq: 'daily', priority: '1.0' },
+    { loc: `${BASE_URL}/tools`, lastmod: TODAY, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${BASE_URL}/categories`, lastmod: TODAY, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${BASE_URL}/knowledge`, lastmod: TODAY, changefreq: 'weekly', priority: '0.85' },
 
-    // Category Pages
+    // 2. Category Hub Pages
     ...CATEGORIES.map((cat) => ({
-      path: `/categories/${cat.slug}`,
+      loc: `${BASE_URL}/categories/${cat.slug}`,
+      lastmod: TODAY,
       changefreq: 'weekly' as const,
       priority: '0.8',
     })),
 
-    // Available Public Tools
+    // 3. Available Public Tools (Only live, non-draft, accessible tools)
     ...TOOLS.filter((tool) => tool.status === 'available').map((tool) => ({
-      path: `/${tool.slug}`,
+      loc: `${BASE_URL}/${tool.slug}`,
+      lastmod: TODAY,
       changefreq: 'weekly' as const,
       priority: '0.85',
     })),
 
-    // Public Informational & Legal Pages
-    { path: '/about', changefreq: 'monthly', priority: '0.6' },
-    { path: '/contact', changefreq: 'monthly', priority: '0.6' },
-    { path: '/privacy-policy', changefreq: 'monthly', priority: '0.4' },
-    { path: '/terms', changefreq: 'monthly', priority: '0.4' },
-    { path: '/cookie-policy', changefreq: 'monthly', priority: '0.4' },
+    // 4. In-Depth Knowledge Guides & Articles
+    ...ARTICLES.map((article) => ({
+      loc: `${BASE_URL}/knowledge/${article.slug}`,
+      lastmod: article.modifiedDate || article.publishedDate || TODAY,
+      changefreq: 'monthly' as const,
+      priority: '0.8',
+    })),
+
+    // 5. Public Informational & Legal Pages
+    { loc: `${BASE_URL}/about`, lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
+    { loc: `${BASE_URL}/contact`, lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
+    { loc: `${BASE_URL}/privacy-policy`, lastmod: TODAY, changefreq: 'monthly', priority: '0.4' },
+    { loc: `${BASE_URL}/terms`, lastmod: TODAY, changefreq: 'monthly', priority: '0.4' },
+    { loc: `${BASE_URL}/cookie-policy`, lastmod: TODAY, changefreq: 'monthly', priority: '0.4' },
   ];
 
-  const languages = ['en', 'ar', 'fr', 'es', 'de'];
+  // Ensure no duplicate URLs
+  const uniqueUrls = new Map<string, SitemapEntry>();
+  for (const entry of entries) {
+    if (!uniqueUrls.has(entry.loc)) {
+      uniqueUrls.set(entry.loc, entry);
+    }
+  }
 
-  const urlElements = entries
+  const urlElements = Array.from(uniqueUrls.values())
     .map((entry) => {
-      const loc = entry.path === '/' ? `${BASE_URL}/` : `${BASE_URL}${entry.path}`;
-
-      const hreflangTags = [
-        `    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}" />`,
-        ...languages.map(
-          (lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${loc}" />`
-        ),
-      ].join('\n');
-
       return `  <url>
-    <loc>${loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <loc>${entry.loc}</loc>
+    <lastmod>${entry.lastmod}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
-${hreflangTags}
   </url>`;
     })
     .join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urlElements}
 </urlset>
 `;

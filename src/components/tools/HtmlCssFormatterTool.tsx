@@ -1,3 +1,6 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useEffect } from 'react';
 import { CodeXml, Copy, Check, Download, Minimize2, Maximize2, RefreshCw } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +15,7 @@ interface HtmlCssFormatterToolProps {
 
 export const HtmlCssFormatterTool: React.FC<HtmlCssFormatterToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('html-css-formatter');
   const isAr = language === 'ar';
 
   const defaultHtml = `<div class="card">\n  <h1>${isAr ? 'مرحباً ساهلينو' : 'Hello Sahlino'}</h1>\n  <p>${isAr ? 'أدوات ويب سريعة وآمنة تعمل داخل متصفحك.' : 'Fast and private browser tools.'}</p>\n</div>`;
@@ -238,6 +242,19 @@ export const HtmlCssFormatterTool: React.FC<HtmlCssFormatterToolProps> = ({ onNa
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="html-css-formatter" onNavigate={onNavigate} />
     </div>

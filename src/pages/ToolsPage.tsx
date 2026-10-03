@@ -108,17 +108,53 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTools.map((tool) => {
             const isAvailable = tool.status === 'available';
+            if (isAvailable) {
+              return (
+                <a
+                  key={tool.id}
+                  href={`/${tool.slug}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate(`/${tool.slug}`);
+                    }
+                  }}
+                  className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-lg cursor-pointer group flex flex-col justify-between transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-11 h-11 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center border border-indigo-100 dark:border-indigo-900/50">
+                        <DynamicIcon name={tool.iconName} className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        {tool.popular && (
+                          <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">
+                            {t('badge.popular', 'Popular')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-2 tracking-tight">
+                      {getToolName(tool.slug, tool.name)}
+                    </h3>
+                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                      {getToolDesc(tool.slug, tool.description)}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-black text-indigo-600 dark:text-indigo-400">
+                    <span>{t('btn.openTool', 'Open Tool')}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 transition-transform rtl:rotate-180" />
+                  </div>
+                </a>
+              );
+            }
+
             return (
               <div
                 key={tool.id}
-                onClick={() => {
-                  if (isAvailable) onNavigate(`/${tool.slug}`);
-                }}
-                className={`p-6 rounded-3xl border transition-all flex flex-col justify-between ${
-                  isAvailable
-                    ? 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-lg cursor-pointer group'
-                    : 'border-slate-200/60 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-900/30 opacity-75 cursor-default'
-                }`}
+                className="p-6 rounded-3xl border border-slate-200/60 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-900/30 opacity-75 cursor-default flex flex-col justify-between transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -126,20 +162,13 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
                       <DynamicIcon name={tool.iconName} className="w-5 h-5" />
                     </div>
                     <div className="flex items-center gap-1.5">
-                      {tool.popular && (
-                        <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900/60">
-                          {t('badge.popular', 'Popular')}
-                        </span>
-                      )}
-                      {!isAvailable && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
-                          {t('badge.comingSoon', 'Coming Soon')}
-                        </span>
-                      )}
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
+                        {t('badge.comingSoon', 'Coming Soon')}
+                      </span>
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-2 tracking-tight">
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2 tracking-tight">
                     {getToolName(tool.slug, tool.name)}
                   </h3>
                   <p className="text-xs font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
@@ -147,9 +176,8 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onNavigate }) => {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-black text-indigo-600 dark:text-indigo-400">
-                  <span>{isAvailable ? t('btn.openTool', 'Open Tool') : t('badge.comingSoon', 'Coming Soon')}</span>
-                  {isAvailable && <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 transition-transform rtl:rotate-180" />}
+                <div className="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-black text-slate-400">
+                  <span>{t('badge.comingSoon', 'Coming Soon')}</span>
                 </div>
               </div>
             );

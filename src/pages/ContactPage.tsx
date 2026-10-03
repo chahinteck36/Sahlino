@@ -22,6 +22,12 @@ export const ContactPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
+    const mailtoUrl = `mailto:contact@sahlino.tech?subject=${encodeURIComponent(
+      `[Sahlino Contact] ${subject || 'Feedback / Inquiry'}`
+    )}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}\n\nSent via Sahlino.tech Contact Form`
+    )}`;
+    window.location.href = mailtoUrl;
     setSubmitted(true);
   };
 
@@ -68,22 +74,35 @@ export const ContactPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
             <div className="p-8 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-3">
               <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
               <h3 className="text-lg font-bold text-emerald-950 dark:text-emerald-100">
-                {isAr ? 'تم استلام رسالتك بنجاح!' : 'Message Received!'}
+                {isAr ? 'تم تجهيز رسالتك للإرسال' : 'Message Prepared for Sending'}
               </h3>
               <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-300">
                 {isAr
-                  ? 'شكراً لتواصلك معنا. سنراجع اقتراحك أو ملاحظتك في أقرب وقت ممكن.'
-                  : 'Thank you for reaching out. Our team will review your feedback shortly.'}
+                  ? 'تم فتح تطبيق البريد الخاص بك لإرسال الرسالة مباشرة إلى contact@sahlino.tech. إذا لم يفتح تطبيق البريد تلقائياً، يمكنك إرسال بريدك مباشرة إلى عنواننا الموضح أدناه.'
+                  : 'Your email application has been launched to send your inquiry directly to contact@sahlino.tech. If your client did not open automatically, you can email us directly at the address below.'}
               </p>
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setMessage('');
-                }}
-                className="mt-4 px-6 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 cursor-pointer"
-              >
-                {isAr ? 'إرسال رسالة أخرى' : 'Send another message'}
-              </button>
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={`mailto:contact@sahlino.tech?subject=${encodeURIComponent(
+                    `[Sahlino Contact] ${subject || 'Feedback'}`
+                  )}&body=${encodeURIComponent(
+                    `Name: ${name}\nEmail: ${email}\n\n${message}`
+                  )}`}
+                  className="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'إعادة فتح تطبيق البريد' : 'Re-open Email App'}</span>
+                </a>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setMessage('');
+                  }}
+                  className="px-5 py-2.5 rounded-xl border border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200 text-xs font-bold hover:bg-emerald-100/50 cursor-pointer"
+                >
+                  {isAr ? 'كتابة رسالة جديدة' : 'Compose New Message'}
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">

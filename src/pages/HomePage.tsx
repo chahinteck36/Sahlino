@@ -125,9 +125,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
               ) : (
                 <div className="space-y-1">
                   {searchResults.slice(0, 5).map((tool) => (
-                    <button
+                    <a
                       key={tool.id}
-                      onClick={() => onNavigate(`/${tool.slug}`)}
+                      href={`/${tool.slug}`}
+                      onClick={(e) => {
+                        if (!e.ctrlKey && !e.metaKey) {
+                          e.preventDefault();
+                          onNavigate(`/${tool.slug}`);
+                        }
+                      }}
                       className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 text-start transition-colors cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
@@ -144,7 +150,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-slate-400 rtl:rotate-180" />
-                    </button>
+                    </a>
                   ))}
                 </div>
               )}
@@ -158,13 +164,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
             {t('search.popularTools', 'Popular Tools')}:
           </span>
           {popularTools.slice(0, 5).map((tool) => (
-            <button
+            <a
               key={tool.id}
-              onClick={() => onNavigate(`/${tool.slug}`)}
+              href={`/${tool.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/${tool.slug}`);
+                }
+              }}
               className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-950 dark:hover:text-indigo-300 text-slate-700 dark:text-slate-300 font-bold transition-colors cursor-pointer"
             >
               {getToolName(tool.slug, tool.name)}
-            </button>
+            </a>
           ))}
         </div>
       </section>
@@ -185,20 +197,32 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
               {t('home.popularSubtitle', 'The most utilized utilities, built for instant in-browser performance.')}
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('/tools')}
+          <a
+            href="/tools"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                onNavigate('/tools');
+              }
+            }}
             className="text-xs sm:text-sm font-black text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>{t('btn.viewAllTools', 'View all tools')}</span>
             <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {popularTools.map((tool) => (
-            <div
+            <a
               key={tool.id}
-              onClick={() => onNavigate(`/${tool.slug}`)}
+              href={`/${tool.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/${tool.slug}`);
+                }
+              }}
               className="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-indigo-400 dark:hover:border-indigo-500/70 hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
@@ -223,7 +247,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
                 <span>{t('btn.openTool', 'Open Tool')}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 transition-transform rtl:rotate-180" />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
@@ -239,23 +263,35 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
               {t('home.categoriesSubtitle', 'Find the exact utility you need organized across functional categories.')}
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('/categories')}
+          <a
+            href="/categories"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                onNavigate('/categories');
+              }
+            }}
             className="text-xs sm:text-sm font-black text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>{t('btn.allCategories', 'All Categories')}</span>
             <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CATEGORIES.map((cat) => {
             const count = TOOLS.filter((t) => t.category === cat.id).length;
             return (
-              <div
+              <a
                 key={cat.id}
-                onClick={() => onNavigate(`/categories/${cat.slug}`)}
-                className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all cursor-pointer group"
+                href={`/categories/${cat.slug}`}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    onNavigate(`/categories/${cat.slug}`);
+                  }
+                }}
+                className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all cursor-pointer group block"
               >
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-11 h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center border border-slate-200 dark:border-slate-700/80 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-950 dark:group-hover:text-indigo-400 transition-colors">
@@ -273,7 +309,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
                 <p className="text-xs font-medium text-slate-600 dark:text-slate-400 line-clamp-2">
                   {getCategoryDesc(cat.slug, cat.description)}
                 </p>
-              </div>
+              </a>
             );
           })}
         </div>
@@ -294,20 +330,32 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
               {t('knowledge.subtitle', 'Learn the science, mathematics, and best practices behind every tool.')}
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('/knowledge')}
+          <a
+            href="/knowledge"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                onNavigate('/knowledge');
+              }
+            }}
             className="text-xs sm:text-sm font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>{t('knowledge.viewAll', 'View All Articles')}</span>
             <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ARTICLES.slice(0, 3).map((article) => (
-            <article
+            <a
               key={article.id}
-              onClick={() => onNavigate(`/articles/${article.slug}`)}
+              href={`/knowledge/${article.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/knowledge/${article.slug}`);
+                }
+              }}
               className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-emerald-500/60 hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
@@ -333,7 +381,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearchModa
                 <span>{t('knowledge.readGuide', 'Read Complete Guide')}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </section>

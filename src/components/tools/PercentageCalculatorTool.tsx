@@ -14,6 +14,7 @@ import { Breadcrumbs } from '../common/Breadcrumbs';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { FAQSection } from '../common/FAQSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -417,39 +418,97 @@ export const PercentageCalculatorTool: React.FC<PercentageCalculatorToolProps> =
       <AdPlaceholder slotId="ad-slot-percentage-middle" />
 
       {/* Educational Guide */}
-      <section className="my-10 space-y-6" aria-label="Educational Guides">
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-          Understanding Percentage Formulas
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-            <h3 className="font-black text-base text-slate-900 dark:text-white mb-2 tracking-tight">
-              Percentage Increase vs. Decrease
-            </h3>
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed">
-              When calculating a percentage increase or decrease, the starting value is always in the denominator. If a product price increases from $50 to $75, the growth is calculated relative to the original $50: (75 - 50) / 50 = +50%.
-            </p>
+      <section className="my-10 space-y-8" aria-label="Educational Guides">
+        {/* How to Use Section */}
+        <div className="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-xs">
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
+            How to Use the Free Percentage Calculator Online
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">1</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Select Calculation Mode</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Choose between X% of Y, Percentage Increase, Percentage Decrease, or Difference.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">2</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Enter Your Numbers</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Type percentage rate and initial values into the input fields.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">3</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">View Instant Steps</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">The calculator updates in real time with complete step-by-step mathematical working.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">4</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Copy Your Result</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Click the copy button to copy the answer directly to your clipboard for invoices or homework.</p>
+            </div>
           </div>
+        </div>
 
-          <div className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-            <h3 className="font-black text-base text-slate-900 dark:text-white mb-2 tracking-tight">
-              Why Percentage Difference Differs from Change
-            </h3>
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed">
-              Percentage change specifies a chronological direction (old value vs. new value). Percentage difference compares two values without direction by dividing the difference by their average.
-            </p>
+        {/* Real-World Scenarios and Formulas */}
+        <div>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
+            Formulas and Real-World Mathematical Scenarios
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+              <h3 className="font-black text-base text-slate-900 dark:text-white mb-2 tracking-tight">
+                Retail Discounts & Sales Tax
+              </h3>
+              <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                A 20% discount on an $80 item means you save (20 / 100) × 80 = $16, paying a final total of $64.
+              </p>
+              <code className="text-xs font-mono font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">
+                Final = Price × (1 - Rate)
+              </code>
+            </div>
+
+            <div className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+              <h3 className="font-black text-base text-slate-900 dark:text-white mb-2 tracking-tight">
+                Percentage Growth vs. Decline
+              </h3>
+              <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                When price increases from $50 to $75, the growth is relative to the starting $50: ((75 - 50) / 50) × 100 = +50%.
+              </p>
+              <code className="text-xs font-mono font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">
+                Change = ((New - Old) / Old) × 100%
+              </code>
+            </div>
+
+            <div className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+              <h3 className="font-black text-base text-slate-900 dark:text-white mb-2 tracking-tight">
+                Mental Math Shortcuts
+              </h3>
+              <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                To calculate 15% in your head: move the decimal point one place left for 10%, divide that by 2 for 5%, and add both values together.
+              </p>
+              <code className="text-xs font-mono font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">
+                15% = 10% + (10% / 2)
+              </code>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <FAQSection faqs={toolData.faqs || []} />
+      <FAQSection faqs={toolData?.faqs || []} />
 
-      {/* Internal Linking */}
-      <RelatedTools
-        currentSlug={toolData.slug}
-        category={toolData.category}
-        categoryName={toolData.categoryName}
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
+
+      {/* Internal Linking: Related Knowledge Articles */}
+      <RelatedArticlesSection
+        toolSlug="percentage-calculator"
         onNavigate={onNavigate}
       />
     </div>

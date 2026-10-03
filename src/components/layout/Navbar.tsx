@@ -51,9 +51,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Brand Logo & Tagline */}
-          <button
+          <a
             id="navbar-brand-logo"
-            onClick={() => handleNav('/')}
+            href="/"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                handleNav('/');
+              }
+            }}
             className="flex items-center gap-2.5 text-start focus:outline-hidden group cursor-pointer"
           >
             <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${activeColorConfig.gradientClass} flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-all`}>
@@ -67,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
                 {t('brand.tagline', 'Make It Easy.')}
               </span>
             </div>
-          </button>
+          </a>
 
           {/* Search Trigger Button */}
           <button
@@ -88,9 +94,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
             {navLinks.map((link) => {
               const isActive = currentPath === link.path;
               return (
-                <button
+                <a
                   key={link.path}
-                  onClick={() => handleNav(link.path)}
+                  href={link.path}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      handleNav(link.path);
+                    }
+                  }}
                   className={`px-3.5 py-1.5 rounded-xl text-sm font-bold tracking-tight transition-colors cursor-pointer ${
                     isActive
                       ? `${activeColorConfig.badgeClass} font-extrabold border`
@@ -98,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
                   }`}
                 >
                   {link.label}
-                </button>
+                </a>
               );
             })}
           </nav>
@@ -251,9 +263,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
             {navLinks.map((link) => {
               const isActive = currentPath === link.path;
               return (
-                <button
+                <a
                   key={link.path}
-                  onClick={() => handleNav(link.path)}
+                  href={link.path}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      handleNav(link.path);
+                    }
+                  }}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-start transition-colors cursor-pointer ${
                     isActive
                       ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 font-black'
@@ -261,7 +279,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenS
                   }`}
                 >
                   <span>{link.label}</span>
-                </button>
+                </a>
               );
             })}
           </div>

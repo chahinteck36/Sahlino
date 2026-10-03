@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Landmark, DollarSign, Calendar, Percent, PieChart } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface LoanCalculatorToolProps {
 
 export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('loan-calculator');
   const isAr = language === 'ar';
 
   const [principalStr, setPrincipalStr] = useState<string>('25000');
@@ -197,6 +202,21 @@ export const LoanCalculatorTool: React.FC<LoanCalculatorToolProps> = ({ onNaviga
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="loan-calculator" />
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="loan-calculator" onNavigate={onNavigate} />
     </div>

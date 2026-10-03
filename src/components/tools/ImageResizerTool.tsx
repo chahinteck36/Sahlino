@@ -16,6 +16,7 @@ import { Breadcrumbs } from '../common/Breadcrumbs';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { FAQSection } from '../common/FAQSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -765,6 +766,35 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onNavigate }
 
       {/* Educational Guide */}
       <section className="my-10 space-y-8" aria-label="Educational Guides">
+        {/* Step-by-Step How to Use */}
+        <div className="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] shadow-xs">
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
+            How to Resize and Compress Images Online in 4 Easy Steps
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">1</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Upload Your Picture</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Drag and drop your JPG, PNG, or WebP photo into the canvas dropzone.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">2</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Set Dimensions or Scale</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Enter custom pixel dimensions with aspect ratio lock, or pick social presets.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">3</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Fine-tune Quality Slider</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Set compression to 80-85% for the perfect balance of crisp detail and small file size.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/60">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-600 text-white font-black text-xs mb-2">4</span>
+              <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1">Instant Local Download</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Preview the exact new kilobyte size and download your optimized image immediately.</p>
+            </div>
+          </div>
+        </div>
+
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
             {t('imageResizer.howItWorksTitle', 'Why Resize and Compress Images in the Browser?')}
@@ -805,13 +835,21 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onNavigate }
       </section>
 
       {/* FAQ Section */}
-      <FAQSection faqs={toolData.faqs || []} />
+      <FAQSection faqs={toolData?.faqs || []} />
 
       {/* Internal Linking */}
-      <RelatedTools
-        currentSlug={toolData.slug}
-        category={toolData.category}
-        categoryName={toolData.categoryName}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
+
+      {/* Related Articles Section */}
+      <RelatedArticlesSection
+        toolSlug="image-resizer"
         onNavigate={onNavigate}
       />
     </div>

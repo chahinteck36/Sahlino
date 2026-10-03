@@ -45,17 +45,6 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
     }
   }
 
-  // 3. Fallback to top 3 articles if no matches found
-  if (matchedArticles.length === 0) {
-    for (const article of ARTICLES) {
-      if (!seenSlugs.has(article.slug)) {
-        seenSlugs.add(article.slug);
-        matchedArticles.push(article);
-        if (matchedArticles.length >= 3) break;
-      }
-    }
-  }
-
   const articles = matchedArticles.slice(0, 3);
   if (articles.length === 0) return null;
 
@@ -78,13 +67,19 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
           </div>
         </div>
 
-        <button
-          onClick={() => onNavigate('/knowledge')}
+        <a
+          href="/knowledge"
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey) {
+              e.preventDefault();
+              onNavigate('/knowledge');
+            }
+          }}
           className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors cursor-pointer"
         >
           <span>{isAr ? 'كل المقالات' : 'All Articles'}</span>
           {isRtl ? <ChevronRight className="w-3.5 h-3.5 rotate-180" /> : <ChevronRight className="w-3.5 h-3.5" />}
-        </button>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -95,9 +90,15 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
           const categoryName = isAr ? article.categoryNameAr : article.categoryName;
 
           return (
-            <div
+            <a
               key={`${article.slug}-${idx}`}
-              onClick={() => onNavigate(`/knowledge/${article.slug}`)}
+              href={`/knowledge/${article.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/knowledge/${article.slug}`);
+                }
+              }}
               className="group p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all cursor-pointer shadow-sm hover:shadow-md flex flex-col justify-between"
             >
               <div>
@@ -123,7 +124,7 @@ export const RelatedArticlesSection: React.FC<RelatedArticlesSectionProps> = ({
                 <span>{isAr ? 'اقرأ المقال' : 'Read Guide'}</span>
                 <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
               </div>
-            </div>
+            </a>
           );
         })}
       </div>

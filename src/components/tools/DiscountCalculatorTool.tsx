@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { BadgePercent, DollarSign, Tag, Calculator } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface DiscountCalculatorToolProps {
 
 export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('discount-calculator');
   const isAr = language === 'ar';
 
   const [originalPriceStr, setOriginalPriceStr] = useState<string>('120');
@@ -185,6 +190,21 @@ export const DiscountCalculatorTool: React.FC<DiscountCalculatorToolProps> = ({ 
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="discount-calculator" />
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="discount-calculator" onNavigate={onNavigate} />
     </div>

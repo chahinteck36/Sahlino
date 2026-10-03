@@ -11,7 +11,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -218,6 +220,9 @@ export const UuidGeneratorTool: React.FC<{ onNavigate: (path: string) => void }>
         </div>
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="uuid-generator" />
+
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="uuid-generator"
@@ -225,6 +230,9 @@ export const UuidGeneratorTool: React.FC<{ onNavigate: (path: string) => void }>
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="uuid-generator" onNavigate={onNavigate} />
     </div>
   );
 };

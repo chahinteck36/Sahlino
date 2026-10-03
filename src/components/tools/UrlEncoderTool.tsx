@@ -12,7 +12,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -203,6 +205,9 @@ export const UrlEncoderTool: React.FC<{ onNavigate: (path: string) => void }> = 
         )}
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="url-encoder" />
+
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="url-encoder"
@@ -210,6 +215,9 @@ export const UrlEncoderTool: React.FC<{ onNavigate: (path: string) => void }> = 
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="url-encoder" onNavigate={onNavigate} />
     </div>
   );
 };

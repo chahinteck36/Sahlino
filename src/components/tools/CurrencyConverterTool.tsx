@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Coins, ArrowRightLeft, RefreshCw, TrendingUp } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -28,6 +32,7 @@ const RATES_TO_USD: Record<string, { rate: number; name: string; nameAr: string;
 
 export const CurrencyConverterTool: React.FC<CurrencyConverterToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('currency-converter');
   const isAr = language === 'ar';
 
   const [amountStr, setAmountStr] = useState<string>('100');
@@ -184,6 +189,22 @@ export const CurrencyConverterTool: React.FC<CurrencyConverterToolProps> = ({ on
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="currency-converter" />
+
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="currency-converter" onNavigate={onNavigate} />
     </div>

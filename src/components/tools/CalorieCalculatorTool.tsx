@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Flame, Activity, Zap, TrendingDown, Target, TrendingUp } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface CalorieCalculatorToolProps {
 
 export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('calorie-calculator');
   const isAr = language === 'ar';
 
   const [gender, setGender] = useState<'male' | 'female'>('male');
@@ -209,6 +214,22 @@ export const CalorieCalculatorTool: React.FC<CalorieCalculatorToolProps> = ({ on
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="calorie-calculator" />
+
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="calorie-calculator" onNavigate={onNavigate} />
     </div>

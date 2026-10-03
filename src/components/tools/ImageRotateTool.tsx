@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState } from 'react';
 import { RotateCw, RotateCcw, FlipHorizontal, FlipVertical, Upload, Download, Rotate3d, RefreshCw } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface ImageRotateToolProps {
 
 export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('image-rotate');
   const isAr = language === 'ar';
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -199,6 +204,22 @@ export const ImageRotateTool: React.FC<ImageRotateToolProps> = ({ onNavigate }) 
           </div>
         )}
       </div>
+
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="image-rotate" />
+
+      {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="image-rotate" onNavigate={onNavigate} />
     </div>

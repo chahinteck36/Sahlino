@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useRef } from 'react';
 import {
   FileText,
@@ -27,6 +31,7 @@ interface WordToPdfToolProps {
 
 export const WordToPdfTool: React.FC<WordToPdfToolProps> = ({ onNavigate }) => {
   const { language, isRTL } = useLanguage();
+  const toolData = getToolBySlug('word-to-pdf');
   const isAr = language === 'ar';
   const isRtl = isRTL;
 
@@ -915,7 +920,23 @@ Prepared by: Sahlino Technical Team`;
         </div>
 
         {/* Related Articles Section */}
-        <RelatedArticlesSection toolSlug="word-to-pdf" onNavigate={onNavigate} />
+              {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="word-to-pdf" />
+
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
+
+      <RelatedArticlesSection toolSlug="word-to-pdf" onNavigate={onNavigate} />
       </div>
     </div>
   );

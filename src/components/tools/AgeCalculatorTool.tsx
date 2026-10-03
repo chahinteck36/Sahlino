@@ -9,7 +9,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -192,6 +194,8 @@ export const AgeCalculatorTool: React.FC<{ onNavigate: (path: string) => void }>
         )}
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="age-calculator" />
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="age-calculator"
@@ -199,6 +203,9 @@ export const AgeCalculatorTool: React.FC<{ onNavigate: (path: string) => void }>
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="age-calculator" onNavigate={onNavigate} />
     </div>
   );
 };

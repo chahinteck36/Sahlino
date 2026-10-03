@@ -20,15 +20,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <button
-              onClick={() => onNavigate('/')}
+            <a
+              href="/"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate('/');
+                }
+              }}
               className="flex items-center gap-2.5 text-start group cursor-pointer"
             >
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-700 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 <Layers className="w-5 h-5" />
               </div>
               <span className="font-black text-xl tracking-tight text-slate-900 dark:text-white">Sahlino</span>
-            </button>
+            </a>
             <p className="text-sm font-medium text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed">
               {t('hero.subtitle', 'Free online tools for developers, creators, businesses and everyday tasks.')}
             </p>
@@ -46,12 +52,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 text-sm font-semibold">
               {availableTools.slice(0, 6).map((tool) => (
                 <li key={tool.slug}>
-                  <button
-                    onClick={() => onNavigate(`/${tool.slug}`)}
-                    className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-start cursor-pointer"
+                  <a
+                    href={`/${tool.slug}`}
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey) {
+                        e.preventDefault();
+                        onNavigate(`/${tool.slug}`);
+                      }
+                    }}
+                    className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-start cursor-pointer block"
                   >
                     {getToolName(tool.slug, tool.name)}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -65,12 +77,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 text-sm font-semibold">
               {CATEGORIES.map((cat) => (
                 <li key={cat.slug}>
-                  <button
-                    onClick={() => onNavigate(`/categories/${cat.slug}`)}
-                    className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-start cursor-pointer"
+                  <a
+                    href={`/categories/${cat.slug}`}
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey) {
+                        e.preventDefault();
+                        onNavigate(`/categories/${cat.slug}`);
+                      }
+                    }}
+                    className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-start cursor-pointer block"
                   >
                     {getCategoryName(cat.slug, cat.name)}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -83,52 +101,88 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2.5 text-sm font-semibold">
               <li>
-                <button
-                  onClick={() => onNavigate('/knowledge')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/knowledge"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/knowledge');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('nav.knowledge', 'Knowledge Hub & Guides')}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('/about')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/about');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('nav.about', 'About')}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('/contact')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/contact');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('nav.contact', 'Contact')}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('/privacy-policy')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/privacy-policy"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/privacy-policy');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('footer.privacy', 'Privacy Policy')}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('/terms')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/terms"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/terms');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('footer.terms', 'Terms of Service')}
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('/cookie-policy')}
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                <a
+                  href="/cookie-policy"
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate('/cookie-policy');
+                    }
+                  }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer block"
                 >
                   {t('footer.cookies', 'Cookie Policy')}
-                </button>
+                </a>
               </li>
             </ul>
           </div>

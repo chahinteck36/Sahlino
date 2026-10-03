@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Calendar, Clock, ArrowRight, Plus, Minus, Check } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface DateCalculatorToolProps {
 
 export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('date-calculator');
   const isAr = language === 'ar';
 
   const todayStr = new Date().toISOString().split('T')[0];
@@ -219,6 +224,22 @@ export const DateCalculatorTool: React.FC<DateCalculatorToolProps> = ({ onNaviga
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="date-calculator" />
+
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="date-calculator" onNavigate={onNavigate} />
     </div>

@@ -36,20 +36,32 @@ export const RelatedTools: React.FC<RelatedToolsProps> = ({
             <span className="text-indigo-600 dark:text-indigo-400 font-bold">{localizedCatName}</span>
           </p>
         </div>
-        <button
-          onClick={() => onNavigate(`/categories/${category}`)}
+        <a
+          href={`/categories/${category}`}
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey) {
+              e.preventDefault();
+              onNavigate(`/categories/${category}`);
+            }
+          }}
           className="text-xs font-black text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
         >
           <span>{localizedCatName}</span>
           <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-        </button>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {related.map((tool) => (
-          <div
+          <a
             key={tool.id}
-            onClick={() => onNavigate(`/${tool.slug}`)}
+            href={`/${tool.slug}`}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+                onNavigate(`/${tool.slug}`);
+              }
+            }}
             className="p-5 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-indigo-400 dark:hover:border-indigo-600/70 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
           >
             <div>
@@ -74,7 +86,7 @@ export const RelatedTools: React.FC<RelatedToolsProps> = ({
               <span>{t('btn.useTool', 'Use Tool')}</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>

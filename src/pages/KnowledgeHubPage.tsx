@@ -125,9 +125,15 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
               <span>{isAr ? 'مقال مقترح ومميز' : 'Featured Guide'}</span>
             </div>
 
-            <div
-              onClick={() => onNavigate(`/knowledge/${featuredArticle.slug}`)}
-              className="group p-6 sm:p-8 rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-gradient-to-r from-emerald-50/50 via-white to-slate-50 dark:from-emerald-950/20 dark:via-slate-900 dark:to-slate-900 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all cursor-pointer shadow-sm hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center"
+            <a
+              href={`/knowledge/${featuredArticle.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/knowledge/${featuredArticle.slug}`);
+                }
+              }}
+              className="group p-6 sm:p-8 rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-gradient-to-r from-emerald-50/50 via-white to-slate-50 dark:from-emerald-950/20 dark:via-slate-900 dark:to-slate-900 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all cursor-pointer shadow-sm hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center block"
             >
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-3">
@@ -160,7 +166,7 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
                   <ArrowRight className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         )}
 
@@ -219,10 +225,16 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
               const relatedTool = article.relatedToolSlug ? getToolBySlug(article.relatedToolSlug) : null;
 
               return (
-                <article
+                <a
                   key={article.id}
-                  onClick={() => onNavigate(`/knowledge/${article.slug}`)}
-                  className="group flex flex-col justify-between p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all cursor-pointer shadow-sm hover:shadow-md"
+                  href={`/knowledge/${article.slug}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onNavigate(`/knowledge/${article.slug}`);
+                    }
+                  }}
+                  className="group flex flex-col justify-between p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all cursor-pointer shadow-sm hover:shadow-md block"
                 >
                   <div>
                     {/* Meta Top */}
@@ -252,6 +264,7 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
                     {relatedTool && (
                       <div
                         onClick={(e) => {
+                          e.preventDefault();
                           e.stopPropagation();
                           onNavigate(`/${relatedTool.slug}`);
                         }}
@@ -273,7 +286,7 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({ onNavigate }
                       <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                     </div>
                   </div>
-                </article>
+                </a>
               );
             })}
           </div>

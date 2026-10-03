@@ -110,13 +110,17 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
           ) : (
             <div className="space-y-1">
               {results.map((tool) => (
-                <button
+                <a
                   key={tool.id}
-                  onClick={() => {
-                    onSelectTool(tool.slug);
-                    onClose();
+                  href={`/${tool.slug}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey) {
+                      e.preventDefault();
+                      onSelectTool(tool.slug);
+                      onClose();
+                    }
                   }}
-                  className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800/80 text-start transition-colors group cursor-pointer"
+                  className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800/80 text-start transition-colors group cursor-pointer block"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-100 dark:border-indigo-900/40">
@@ -144,7 +148,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 shrink-0 ms-2 rtl:rotate-180" />
-                </button>
+                </a>
               ))}
             </div>
           )}

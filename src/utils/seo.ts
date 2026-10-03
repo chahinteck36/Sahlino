@@ -1,21 +1,31 @@
-import { ToolItem, CategoryInfo, SupportedLanguage, ToolCategory } from '../types';
+import { ToolItem, CategoryInfo, SupportedLanguage, ToolCategory, ArticleItem } from '../types';
 
-export const SITE_URL = 'https://www.sahlino.tech';
+export const OFFICIAL_SITE_URL = 'https://www.sahlino.tech';
+export const SITE_URL = OFFICIAL_SITE_URL;
 export const SITE_NAME = 'Sahlino';
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/og-image.png`;
+export const DEFAULT_OG_IMAGE = `${OFFICIAL_SITE_URL}/assets/og-image.png`;
 
 /**
- * Normalizes any relative or absolute path into an absolute canonical URL on https://www.sahlino.tech
+ * Normalizes any relative or absolute path into an absolute canonical URL strictly on https://www.sahlino.tech
  */
-export function getCanonicalUrl(path = ''): string {
-  if (!path || path === '/') {
-    return `${SITE_URL}/`;
+export function getCanonicalUrl(pathOrUrl = ''): string {
+  if (!pathOrUrl || pathOrUrl === '/') {
+    return `${OFFICIAL_SITE_URL}/`;
   }
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
+
+  // If already an absolute URL, check domain and clean
+  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
+    try {
+      const parsed = new URL(pathOrUrl);
+      const cleanPathname = parsed.pathname.replace(/^\/+|\/+$/g, '');
+      return cleanPathname ? `${OFFICIAL_SITE_URL}/${cleanPathname}` : `${OFFICIAL_SITE_URL}/`;
+    } catch {
+      // Fallback if URL parsing fails
+    }
   }
-  const cleanPath = path.replace(/^\/+|\/+$/g, '');
-  return `${SITE_URL}/${cleanPath}`;
+
+  const cleanPath = pathOrUrl.replace(/^\/+|\/+$/g, '');
+  return cleanPath ? `${OFFICIAL_SITE_URL}/${cleanPath}` : `${OFFICIAL_SITE_URL}/`;
 }
 
 /**
@@ -50,13 +60,12 @@ export function generateHomeStructuredData() {
       '@type': 'WebSite',
       name: SITE_NAME,
       alternateName: ['ساهلينو', 'Sahlino Online Tools', 'Sahlino Tools'],
-      url: `${SITE_URL}/`,
+      url: `${OFFICIAL_SITE_URL}/`,
       description:
         'Free, fast, browser-based online tools for developers, creators, businesses, and everyday tasks. 100% in-browser privacy.',
-      inLanguage: ['en', 'ar', 'fr', 'es', 'de'],
       potentialAction: {
         '@type': 'SearchAction',
-        target: `${SITE_URL}/tools?q={search_term_string}`,
+        target: `${OFFICIAL_SITE_URL}/tools?q={search_term_string}`,
         'query-input': 'required name=search_term_string',
       },
     },
@@ -64,15 +73,15 @@ export function generateHomeStructuredData() {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: SITE_NAME,
-      url: `${SITE_URL}/`,
-      logo: `${SITE_URL}/assets/icon.svg`,
+      url: `${OFFICIAL_SITE_URL}/`,
+      logo: `${OFFICIAL_SITE_URL}/assets/icon.svg`,
       description: 'Provider of private, client-side, browser-based web utility tools.',
     },
     {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       name: SITE_NAME,
-      url: `${SITE_URL}/`,
+      url: `${OFFICIAL_SITE_URL}/`,
       operatingSystem: 'Web',
       applicationCategory: 'UtilitiesApplication',
       browserRequirements: 'Requires JavaScript. Requires HTML5.',
@@ -124,7 +133,7 @@ export function generateToolStructuredData(
       creator: {
         '@type': 'Organization',
         name: SITE_NAME,
-        url: `${SITE_URL}/`,
+        url: `${OFFICIAL_SITE_URL}/`,
       },
     },
     {
@@ -135,13 +144,13 @@ export function generateToolStructuredData(
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: `${SITE_URL}/`,
+          item: `${OFFICIAL_SITE_URL}/`,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: categoryName,
-          item: `${SITE_URL}/categories/${tool.category}`,
+          item: `${OFFICIAL_SITE_URL}/categories/${tool.category}`,
         },
         {
           '@type': 'ListItem',
@@ -210,13 +219,13 @@ export function generateCategoryStructuredData(
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: `${SITE_URL}/`,
+          item: `${OFFICIAL_SITE_URL}/`,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Categories',
-          item: `${SITE_URL}/categories`,
+          item: `${OFFICIAL_SITE_URL}/categories`,
         },
         {
           '@type': 'ListItem',
@@ -230,23 +239,107 @@ export function generateCategoryStructuredData(
 }
 
 /**
+ * Generates Schema.org Article, BreadcrumbList, and FAQPage (if applicable) for articles
+ */
+export function generateArticleStructuredData(
+  article: ArticleItem,
+  localizedTitle?: string,
+  localizedDesc?: string,
+  localizedCatName?: string,
+  faqs?: { question: string; answer: string }[]
+) {
+  const canonicalUrl = getCanonicalUrl(`knowledge/${article.slug}`);
+  const headline = localizedTitle || article.title;
+  const description = localizedDesc || article.description;
+  const catName = localizedCatName || article.categoryName;
+
+  const schemas: Record<string, unknown>[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: headline,
+      description: description,
+      image: DEFAULT_OG_IMAGE,
+      datePublished: article.publishedDate,
+      dateModified: article.modifiedDate || article.publishedDate,
+      author: {
+        '@type': 'Organization',
+        name: `${SITE_NAME} Editorial Team`,
+        url: `${OFFICIAL_SITE_URL}/`,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${OFFICIAL_SITE_URL}/assets/icon.svg`,
+        },
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl,
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${OFFICIAL_SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Knowledge Center',
+          item: `${OFFICIAL_SITE_URL}/knowledge`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: headline,
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ];
+
+  if (faqs && faqs.length > 0) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  return schemas;
+}
+
+/**
  * Generates BreadcrumbList schema for any list of breadcrumb items
  */
 export function generateBreadcrumbStructuredData(
-  items: { name: string; path?: string; item?: string; href?: string }[]
+  items: { name?: string; label?: string; path?: string; item?: string; href?: string }[]
 ) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: items.map((item, index) => {
       const rawTarget = item.item || item.path || item.href || '/';
-      const itemUrl = rawTarget.startsWith('http://') || rawTarget.startsWith('https://')
-        ? rawTarget
-        : getCanonicalUrl(rawTarget);
+      const itemUrl = getCanonicalUrl(rawTarget);
       return {
         '@type': 'ListItem',
         position: index + 1,
-        name: item.name,
+        name: item.name || item.label || 'Page',
         item: itemUrl,
       };
     }),

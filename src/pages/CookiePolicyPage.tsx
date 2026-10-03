@@ -49,6 +49,9 @@ export const CookiePolicyPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               {isAr ? 'سياسة ملفات تعريف الارتباط (Cookie Policy)' : 'Cookie Policy'}
             </h1>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+              {isAr ? 'آخر تحديث: أكتوبر 2026' : 'Last Updated: October 2026'}
+            </p>
           </header>
 
           <section className="space-y-4">
@@ -64,12 +67,23 @@ export const CookiePolicyPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
 
           <section className="space-y-4">
             <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              {isAr ? 'ملفات تعريف الارتباط الإعلانية' : 'Advertising Cookies'}
+              {isAr ? '2. التخزين المحلي وملفات التفضيلات (Local Storage)' : '2. Local Preferences & Storage'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               {isAr
-                ? 'نستخدم خدمات إعلانية مثل Google AdSense لتمويل المنصة مجاناً. تتيح هذه الملفات للشركاء الإعلانيين تقديم إعلانات مخصصة للمستخدمين بناءً على تفاعلهم على الويب.'
-                : 'We partner with Google AdSense to serve ads. Third-party vendors and ad networks may use cookies to serve ads based on prior browsing history.'}
+                ? 'تعتمد ساهلينو بشكل أساسي على التخزين المحلي داخل المتصفح (HTML5 localStorage) لتذكر خياراتك التفضيلية غير الشخصية، مثل تفعيل الوضع الليلي (Dark Mode) واختيار لغة الواجهة (العربية أو الإنجليزية). هذه البيانات مخزنة على جهازك حصراً ولا يتم إرسالها إلى أي خوادم.'
+                : 'Sahlino primarily utilizes client-side HTML5 localStorage to preserve your non-personal preferences, such as Dark Mode toggles and interface language selection (Arabic or English). This data remains strictly in your local browser and is never transmitted to remote servers.'}
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              {isAr ? '3. ملفات تعريف الارتباط للإعلانات الرقمية' : '3. Digital Advertising Cookies'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              {isAr
+                ? 'لتمويل استمرار وتطوير منصة ساهلينو كخدمة مجانية بالكامل لجميع المستخدمين، قد تعرض المنصة وحدات إعلانية رقمية بالتعاون مع شبكات إعلانية معتمدة وموثوقة. عند تفعيل هذه الوحدات الإعلانية، قد تستخدم الشبكات الإعلانية ملفات تعريف الارتباط (Cookies) أو معرفات رقمية قياسية لتقديم إعلانات ملائمة، ومنع تكرار ظهور نفس الإعلان، وحساب إحصاءات المشاهدة وفقاً للمعايير والأنظمة الدولية لحماية الخصوصية.'
+                : 'To support and sustain the Sahlino platform as a 100% free resource for users worldwide, the platform may display non-intrusive digital advertisements through accredited advertising networks. When advertising units are active, third-party advertising partners may set standard browser cookies or digital identifiers to deliver contextual advertisements, prevent repetitive impressions, and generate aggregate delivery metrics in compliance with applicable privacy standards.'}
             </p>
           </section>
 

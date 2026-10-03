@@ -11,7 +11,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -189,6 +191,9 @@ export const NumberBaseConverterTool: React.FC<{ onNavigate: (path: string) => v
         )}
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="number-base-converter" />
+
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="number-base-converter"
@@ -196,6 +201,9 @@ export const NumberBaseConverterTool: React.FC<{ onNavigate: (path: string) => v
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="number-base-converter" onNavigate={onNavigate} />
     </div>
   );
 };

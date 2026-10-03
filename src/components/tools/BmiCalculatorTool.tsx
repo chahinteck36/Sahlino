@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo } from 'react';
 import { Activity, RefreshCw, Info, Heart, CheckCircle2, AlertTriangle } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -11,6 +15,7 @@ interface BmiCalculatorToolProps {
 
 export const BmiCalculatorTool: React.FC<BmiCalculatorToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('bmi-calculator');
   const isAr = language === 'ar';
 
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -277,6 +282,21 @@ export const BmiCalculatorTool: React.FC<BmiCalculatorToolProps> = ({ onNavigate
       </div>
 
       {/* Internal Linking Bridge to Knowledge Center */}
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="bmi-calculator" />
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
+
       <RelatedArticlesSection toolSlug="bmi-calculator" onNavigate={onNavigate} />
     </div>
   );

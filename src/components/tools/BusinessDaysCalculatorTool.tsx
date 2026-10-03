@@ -15,7 +15,9 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -577,6 +579,9 @@ export const BusinessDaysCalculatorTool: React.FC<BusinessDaysCalculatorToolProp
       </section>
 
       {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="business-days-calculator" />
+
       <FAQSection faqs={toolData.faqs || []} />
 
       {/* Internal Linking */}
@@ -586,6 +591,9 @@ export const BusinessDaysCalculatorTool: React.FC<BusinessDaysCalculatorToolProp
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="business-days-calculator" onNavigate={onNavigate} />
     </div>
   );
 };

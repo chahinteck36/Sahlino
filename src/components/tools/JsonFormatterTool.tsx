@@ -16,7 +16,9 @@ import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -427,6 +429,8 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
       </section>
 
       {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="json-formatter" />
       <FAQSection faqs={toolData.faqs || []} />
 
       {/* Internal Linking / Related Tools */}
@@ -436,6 +440,9 @@ export const JsonFormatterTool: React.FC<JsonFormatterToolProps> = ({ onNavigate
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="json-formatter" onNavigate={onNavigate} />
     </div>
   );
 };

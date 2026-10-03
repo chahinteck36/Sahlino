@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Sparkles, Copy, Download, Trash2, ArrowUpDown, Check, Filter } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +16,7 @@ interface TextCleanerToolProps {
 
 export const TextCleanerTool: React.FC<TextCleanerToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('text-cleaner');
   const isAr = language === 'ar';
 
   const sampleAr = 'تفاح\nموز\n   تفاح   \nبرتقال\n\nموز\nعنب\nبرتقال\nمانجو';
@@ -235,6 +240,21 @@ export const TextCleanerTool: React.FC<TextCleanerToolProps> = ({ onNavigate }) 
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="text-cleaner" />
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="text-cleaner" onNavigate={onNavigate} />
     </div>

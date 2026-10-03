@@ -1,3 +1,7 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useEffect } from 'react';
 import { FileText, Download, RefreshCw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
@@ -13,6 +17,7 @@ interface TextToPdfToolProps {
 
 export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('text-to-pdf');
   const isAr = language === 'ar';
 
   const defaultSampleAr =
@@ -296,6 +301,22 @@ export const TextToPdfTool: React.FC<TextToPdfToolProps> = ({ onNavigate }) => {
           <span>{isGenerating ? (isAr ? 'جارٍ إنشاء PDF...' : 'Generating PDF...') : (isAr ? 'توليد وتحميل مستند PDF' : 'Generate & Download PDF')}</span>
         </button>
       </div>
+
+            {/* FAQ Section */}
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="text-to-pdf" />
+
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="text-to-pdf" onNavigate={onNavigate} />
     </div>

@@ -38,10 +38,16 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ onNavigate }) =>
           const categoryTools = TOOLS.filter((item) => item.category === cat.id);
 
           return (
-            <div
+            <a
               key={cat.id}
-              onClick={() => onNavigate(`/categories/${cat.slug}`)}
-              className="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-indigo-400 dark:hover:border-indigo-600/60 hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between"
+              href={`/categories/${cat.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  onNavigate(`/categories/${cat.slug}`);
+                }
+              }}
+              className="p-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-indigo-400 dark:hover:border-indigo-600/60 hover:shadow-xl transition-all cursor-pointer group flex flex-col justify-between block"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -78,7 +84,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ onNavigate }) =>
                 <span>{getCategoryName(cat.slug, cat.name)}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 transition-transform rtl:rotate-180" />
               </div>
-            </div>
+            </a>
           );
         })}
       </div>

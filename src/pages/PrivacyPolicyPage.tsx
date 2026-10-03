@@ -51,7 +51,7 @@ export const PrivacyPolicyPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
               {isAr ? 'سياسة الخصوصية وحماية البيانات' : 'Privacy & Data Protection Policy'}
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-              {isAr ? 'آخر تحديث: مارس 2025' : 'Last Updated: March 2025'}
+              {isAr ? 'آخر تحديث: أكتوبر 2026' : 'Last Updated: October 2026'}
             </p>
           </header>
 
@@ -84,12 +84,12 @@ export const PrivacyPolicyPage: React.FC<LegalPageProps> = ({ onNavigate }) => {
 
           <section className="space-y-4">
             <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              {isAr ? '2. إعلانات Google AdSense وملفات تعريف الارتباط' : '2. Google AdSense & Cookies'}
+              {isAr ? '2. الإعلانات الرقمية وملفات تعريف الارتباط' : '2. Digital Advertising & Cookies'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               {isAr
-                ? 'يستخدم الموقع خدمة Google AdSense لعرض الإعلانات التي تمول تطوير هذه الأدوات المجانية. تستخدم Google ملفات تعريف الارتباط (Cookies) لعرض إعلانات ملائمة بناءً على زيارات المستخدم السابقة لموقعنا أو مواقع أخرى. يمكنك تعطيل الإعلانات المخصصة عبر زيارة إعدادات إعلانات Google.'
-                : 'This site uses Google AdSense to serve advertisements that fund our free utility tools. Google uses cookies (including the DoubleClick cookie) to serve ads based on prior visits to our website or other sites on the internet. You can opt out of personalized advertising by visiting Google Ads Settings.'}
+                ? 'قد يعرض الموقع إعلانات رقمية من شركاء إعلانيين معتمدين للمساعدة في تمويل واستمرار توفير هذه الأدوات بشكل مجاني للجميع. قد تستخدم هذه الشبكات الإعلانية ملفات تعريف الارتباط (Cookies) أو تقنيات التخزين المحلي لعرض إعلانات مناسبة وغير متطفلة وفقاً لضوابط الخصوصية المعمول بها. كما يمكن للمستخدم دائماً التحكم في ملفات تعريف الارتباط أو تعطيلها من خلال إعدادات المتصفح الخاص به في أي وقت.'
+                : 'This platform may display digital advertisements from verified advertising partners to support and sustain our free in-browser utilities. When advertising units are active, third-party partners may utilize standard cookies or local storage to deliver non-intrusive, relevant advertisements in compliance with privacy regulations. Users retain full control to manage or block cookies through their web browser settings at any time.'}
             </p>
           </section>
 

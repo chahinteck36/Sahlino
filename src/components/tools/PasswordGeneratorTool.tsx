@@ -12,7 +12,9 @@ import {
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
 import { FAQSection } from '../common/FAQSection';
+import { ToolGuideSection } from '../common/ToolGuideSection';
 import { RelatedTools } from '../common/RelatedTools';
+import { RelatedArticlesSection } from '../common/RelatedArticlesSection';
 import { getToolBySlug } from '../../data/tools';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -253,6 +255,9 @@ export const PasswordGeneratorTool: React.FC<{ onNavigate: (path: string) => voi
         </div>
       </div>
 
+      {/* Educational Guide */}
+      <ToolGuideSection toolSlug="password-generator" />
+
       <FAQSection faqs={toolData.faqs || []} />
       <RelatedTools
         currentSlug="password-generator"
@@ -260,6 +265,9 @@ export const PasswordGeneratorTool: React.FC<{ onNavigate: (path: string) => voi
         categoryName={toolData.categoryName}
         onNavigate={onNavigate}
       />
+
+      {/* Internal Linking: Related Articles */}
+      <RelatedArticlesSection toolSlug="password-generator" onNavigate={onNavigate} />
     </div>
   );
 };

@@ -1,3 +1,6 @@
+import { getToolBySlug } from '../../data/tools';
+import { FAQSection } from '../common/FAQSection';
+import { RelatedTools } from '../common/RelatedTools';
 import React, { useState, useEffect } from 'react';
 import { Clock, RefreshCw, Copy, Check, Calendar, ArrowDownUp } from 'lucide-react';
 import { SEOHead } from '../common/SEOHead';
@@ -12,6 +15,7 @@ interface TimestampConverterToolProps {
 
 export const TimestampConverterTool: React.FC<TimestampConverterToolProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
+  const toolData = getToolBySlug('timestamp-converter');
   const isAr = language === 'ar';
 
   const [currentEpoch, setCurrentEpoch] = useState<number>(Math.floor(Date.now() / 1000));
@@ -188,6 +192,19 @@ export const TimestampConverterTool: React.FC<TimestampConverterToolProps> = ({ 
           </div>
         </div>
       </div>
+
+            {/* FAQ Section */}
+      <FAQSection faqs={toolData?.faqs || []} />
+
+      {/* Internal Linking: Related Tools */}
+      {toolData && (
+        <RelatedTools
+          currentSlug={toolData.slug}
+          category={toolData.category}
+          categoryName={toolData.categoryName}
+          onNavigate={onNavigate}
+        />
+      )}
 
       <RelatedArticlesSection toolSlug="timestamp-converter" onNavigate={onNavigate} />
     </div>
